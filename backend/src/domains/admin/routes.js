@@ -50,7 +50,6 @@ router.post("/auth", async (req, res) => {
       res.send({ status: "Failed", message: error["details"][0]["message"] });
     } else {
       const authenticatedAdmin = await authenticateAdmin(email, password);
-      console.log(authenticateAdmin);
       res.json({
         status: "Success",
         message: "utilisateur trouvé",
