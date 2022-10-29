@@ -1,4 +1,5 @@
 const Admin = require("./model");
+const Hotel = require("./../hotel/model");
 const hashData = require("./../../util/hashData");
 const verifyHashedData = require("./../../util/verifyHashedData");
 const { ROLES } = require("./../../security/role");
@@ -69,4 +70,52 @@ const authenticateAdmin = async (email, password) => {
     throw error;
   }
 };
-module.exports = { authenticateAdmin, createAdmin };
+
+//Admin Create Hotel
+const createHotel = async (data) => {
+  try {
+    const {
+      hotelName,
+      hotelAddress,
+      hotelCity,
+      hotelStars,
+      hotelRooms,
+      hotelPrice,
+      hotelDescription,
+      hotelImage,
+      hotelPhone,
+      hotelEmail,
+      password,
+    } = data;
+    const existingHotel = await Hotel.find({ hotelEmail });
+    if (existingHotel.length) {
+      //A user aleady exist
+      throw Error("Hotel email aleardy exist");
+    } else {
+      //User doesn't exist so we can save him as a new user
+      //Hashing Password
+      const hashedPassword = await hashData(password);
+      const newHotel = new Hotel({
+        hotelName,
+        hotelAddress,
+        hotelCity,
+        hotelStars,
+        hotelRooms,
+        hotelPrice,
+        hotelDescription,
+        hotelImage,
+        hotelPhone,
+        hotelEmail,
+        password: hashedPassword,
+        verified: false,
+        role: ROLES.HOTEL,
+      });
+      //Save the organization
+      const createdHotel = await newHotel.save();
+      return createdHotel;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+module.exports = { authenticateAdmin, createAdmin, createHotel };

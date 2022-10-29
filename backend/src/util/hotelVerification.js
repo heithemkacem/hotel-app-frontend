@@ -12,13 +12,18 @@ const hotelRegisterValidation = (data) => {
       "string.min": `common:Enter_a_valid_hotel_address_of_min_4_characters`,
       "string.max": `common:Enter_a_valid_hotel_address_of_max_26_characters`,
     }),
+    hotelPhone: joi.number().required().messages({
+      "string.empty": `common:Enter_a_valid_hotel_phone`,
+    }),
     hotelCity: joi.string().required().min(4).max(26).messages({
       "string.empty": `common:Enter_a_valid_hotel_city`,
       "string.min": `common:Enter_a_valid_hotel_city_of_min_4_characters`,
       "string.max": `common:Enter_a_valid_hotel_city_of_max_26_characters`,
     }),
-    hotelStars: joi.number().required().messages({
+    hotelStars: joi.number().min(1).max(5).required().messages({
       "string.empty": `common:Enter_a_valid_hotel_stars`,
+      "string.min": `common:Enter_a_valid_hotel_start_of_min_1_star`,
+      "string.max": `common:Enter_a_valid_hotel_start_of_max_5_star`,
     }),
     hotelRooms: joi.number().required().messages({
       "string.empty": `common:Enter_a_valid_hotel_rooms`,
@@ -32,7 +37,7 @@ const hotelRegisterValidation = (data) => {
     hotelImage: joi.string().required().messages({
       "string.empty": `common:Enter_a_valid_hotel_image`,
     }),
-    email: joi.string().required().email().messages({
+    hotelEmail: joi.string().required().email().messages({
       "string.empty": "common:Merci_d_entrer_un_email_valide",
       "string.email": "common:Merci_d_entrer_un_email_valide",
     }),
@@ -43,7 +48,6 @@ const hotelRegisterValidation = (data) => {
         "common:Merci_d_entrer_un_mot_de_passe_de_max_26_caractères",
     }),
     confirmPassword: joi
-
       .string()
       .required()
       .valid(joi.ref("password"))

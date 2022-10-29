@@ -5,7 +5,8 @@ const {
   adminRegisterValidation,
   adminLoginValidation,
 } = require("./../../util/adminVerification");
-const { createAdmin, authenticateAdmin } = require("./controller");
+const { hotelRegisterValidation } = require("./../../util/hotelVerification");
+const { createAdmin, authenticateAdmin, createHotel } = require("./controller");
 //Passport
 const passport = require("passport");
 const { strategy } = require("./../../security/strategy");
@@ -55,6 +56,53 @@ router.post("/auth", async (req, res) => {
         message: "Admin Found",
         token: "Bearer " + authenticatedAdmin.token,
         admin: authenticatedAdmin,
+      });
+    }
+  } catch (error) {
+    res.json({
+      status: "Failed",
+      message: error.message,
+    });
+  }
+});
+
+// Admin Inscription
+router.post("/create-hotel", async (req, res) => {
+  const {
+    hotelName,
+    hotelAddress,
+    hotelCity,
+    hotelStars,
+    hotelRooms,
+    hotelPrice,
+    hotelDescription,
+    hotelImage,
+    hotelPhone,
+    hotelEmail,
+    password,
+  } = req.body;
+  try {
+    const { error } = hotelRegisterValidation(req.body);
+    if (error) {
+      res.send({ status: "Failed", message: error["details"][0]["message"] });
+    } else {
+      const createdHotel = await createHotel({
+        hotelName,
+        hotelAddress,
+        hotelCity,
+        hotelStars,
+        hotelRooms,
+        hotelPrice,
+        hotelDescription,
+        hotelImage,
+        hotelPhone,
+        hotelEmail,
+        password,
+      });
+      res.json({
+        status: "Success",
+        message: "Hotel created successfully",
+        admin: createdHotel,
       });
     }
   } catch (error) {
