@@ -92,7 +92,7 @@ const createHotel = async (data) => {
       //A user aleady exist
       throw Error("Hotel email aleardy exist");
     } else {
-      //User doesn't exist so we can save him as a new user
+      //Hotel doesn't exist so we can save him as a new user
       //Hashing Password
       const hashedPassword = await hashData(password);
       const newHotel = new Hotel({
