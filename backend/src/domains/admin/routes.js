@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// User Auth
+// Admin Auth
 router.post("/auth", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -52,7 +52,7 @@ router.post("/auth", async (req, res) => {
       const authenticatedAdmin = await authenticateAdmin(email, password);
       res.json({
         status: "Success",
-        message: "utilisateur trouvé",
+        message: "Admin Found",
         token: "Bearer " + authenticatedAdmin.token,
         admin: authenticatedAdmin,
       });

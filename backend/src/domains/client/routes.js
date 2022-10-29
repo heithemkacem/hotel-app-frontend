@@ -53,7 +53,7 @@ router.post("/auth", async (req, res) => {
       const authenticatedClient = await authenticateClient(email, password);
       res.json({
         status: "Success",
-        message: "utilisateur trouvé",
+        message: "Client Found",
         token: "Bearer " + authenticatedClient.token,
         client: authenticatedClient,
       });
