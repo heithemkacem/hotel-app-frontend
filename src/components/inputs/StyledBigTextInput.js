@@ -43,7 +43,7 @@ const StyledBigTextInput = ({
     setInputBackgroundColor("transparent");
   };
 
-  if (language === "fr") {
+  if (language === "en") {
     return (
       <View>
         <SmallText style={{ fontWeight: "600" }}>{label}</SmallText>

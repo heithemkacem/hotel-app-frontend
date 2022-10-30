@@ -4,10 +4,7 @@ import { SafeAreaView, View, Text, Button, Image } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { useTranslation } from "react-i18next";
 import { styles } from "./../../styles/styles";
-const LANGUAGES = [
-  { code: "fr", label: "Français", country_code: "fr" },
-  { code: "ar", label: "العربية", country_code: "ar" },
-];
+
 const Onboarding = ({ navigation }) => {
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
@@ -68,7 +65,7 @@ const Onboarding = ({ navigation }) => {
     );
   };
   const renderItem = ({ item }) => {
-    if (selectedLanguageCode == "fr") {
+    if (selectedLanguageCode == "en") {
       return (
         <View
           style={{
@@ -105,22 +102,22 @@ const Onboarding = ({ navigation }) => {
             key: "s1",
             backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/bienvenue.png"),
-            title: t("common:Bienvenue"),
-            subtitle: t("common:paragraph1"),
+            title: t("common:SlideOneTitle"),
+            subtitle: t("common:SlideOneSubtitle"),
           },
           {
             key: "s2",
             backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/solution.png"),
-            title: t("common:paragraph2"),
-            subtitle: t("common:paragraph3"),
+            title: t("common:SlideTwoTitle"),
+            subtitle: t("common:SlideTwoSubtitle"),
           },
           {
             key: "s3",
             backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/maps.png"),
-            title: t("common:paragraph4"),
-            subtitle: t("common:paragraph5"),
+            title: t("common:SlideThreeTitle"),
+            subtitle: t("common:SlideThreeSubtitle"),
           },
         ]}
         renderItem={renderItem}
@@ -130,10 +127,10 @@ const Onboarding = ({ navigation }) => {
         onDone={() => moveTo("HomePage")}
         showPrevButton={true}
         showSkipButton={true}
-        renderNextButton={() => buttonLabel(t("common:Suivant"))}
-        renderSkipButton={() => buttonLabel(t("common:Sauter"))}
-        renderDoneButton={() => buttonLabel(t("common:Commencer"))}
-        renderPrevButton={() => buttonLabel(t("common:Précédent"))}
+        renderNextButton={() => buttonLabel(t("common:Next"))}
+        renderSkipButton={() => buttonLabel(t("common:Skip"))}
+        renderDoneButton={() => buttonLabel(t("common:Start"))}
+        renderPrevButton={() => buttonLabel(t("common:Previous"))}
         activeDotStyle={{
           backgroundColor: "#FFFFFF",
           width: 30,

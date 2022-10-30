@@ -71,7 +71,7 @@ const ResetPassword = ({ navigation, route }) => {
   return (
     <MainContainer>
       <RegularText style={{ textAlign: "center", color: black }}>
-        {t("common:Enter_the4digitcode_sent_to_your_email")}
+        {t("common:Digit")}
       </RegularText>
       <StyledCodeInput
         code={code}
@@ -126,7 +126,7 @@ const ResetPassword = ({ navigation, route }) => {
             <StyledTextInput
               language={selectedLanguageCode}
               icon="lock-open-variant"
-              label={t("common:Confirm_New_Password")}
+              label={t("common:ConfirmNewPassword")}
               placeholder="**********"
               secureTextEntry={true}
               isPassword={true}

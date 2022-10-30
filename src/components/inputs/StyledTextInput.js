@@ -75,7 +75,7 @@ const StyledTextInput = ({
     setInputBackgroundColor("transparent");
   };
 
-  if (language === "fr") {
+  if (language === "en") {
     return (
       <View>
         <LeftIcon>

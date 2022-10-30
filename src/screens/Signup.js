@@ -36,7 +36,6 @@ const SignUp = ({ navigation }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
-
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
@@ -48,9 +47,10 @@ const SignUp = ({ navigation }) => {
       </RegularText>
       <Formik
         initialValues={{
+          username: "",
           name: "",
           familyName: "",
-          address: "",
+          phone: "",
           email: "",
           password: "",
           confirmPassword: "",
@@ -70,6 +70,18 @@ const SignUp = ({ navigation }) => {
           errors,
         }) => (
           <>
+            <StyledTextInput
+              language={selectedLanguageCode}
+              icon="account"
+              label={t("common:Username")}
+              placeholder={t("common:EnterUserName")}
+              autoCapitalize="none"
+              onChangeText={handleChange("username")}
+              onBlur={handleBlur("username")}
+              style={{ marginBottom: 15 }}
+              value={values.username}
+              errors={touched.username && errors.username}
+            />
             <StyledTextInput
               language={selectedLanguageCode}
               icon="account"
@@ -109,15 +121,15 @@ const SignUp = ({ navigation }) => {
             />
             <StyledTextInput
               language={selectedLanguageCode}
-              icon="bank"
-              label={t("common:Address")}
-              placeholder={t("common:Address")}
+              icon="phone"
+              label={t("common:Phone")}
+              placeholder={t("common:EnterPhoneNumber")}
               autoCapitalize="none"
-              onChangeText={handleChange("address")}
-              onBlur={handleBlur("address")}
+              onChangeText={handleChange("phone")}
+              onBlur={handleBlur("phone")}
               style={{ marginBottom: 15 }}
-              value={values.address}
-              errors={touched.address && errors.address}
+              value={values.phone}
+              errors={touched.phone && errors.phone}
             />
             <StyledTextInput
               language={selectedLanguageCode}

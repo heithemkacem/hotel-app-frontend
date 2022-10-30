@@ -3,10 +3,10 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ar from "./Translations/ar";
-import fr from "./Translations/fr";
+import en from "./Translations/en";
 const LANGUAGES = {
   ar,
-  fr,
+  en,
 };
 const LANG_CODES = Object.keys(LANGUAGES);
 const LANGUAGE_DETECTOR = {
@@ -28,7 +28,7 @@ const LANGUAGE_DETECTOR = {
   },
   init: () => {},
   cacheUserLanguage: (language) => {
-    AsyncStorage.setItem("user-language", "fr");
+    AsyncStorage.setItem("user-language", "en");
   },
 };
 i18n

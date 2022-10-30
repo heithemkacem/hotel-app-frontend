@@ -142,98 +142,7 @@ export const styles = StyleSheet.create({
     textTransform: "none",
     color: "white",
   },
-  containerInformation: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    top: 70,
-  },
-  titleArInformation: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "right",
-  },
-  titleFrInformation: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "left",
-  },
-  labelArInformation: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "right",
-    fontWeight: "bold",
-  },
-  labelFrInformation: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "left",
-    fontWeight: "bold",
-  },
-  labelArReclamation: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "right",
-    fontWeight: "bold",
-  },
-  labelFrReclamation: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "left",
-    fontWeight: "bold",
-  },
-  containerReclamation: {
-    justifyContent: "center",
-    height: "100%",
-    marginBottom: 50,
-  },
-  cameraReclamation: {
-    flex: 1,
-  },
-  buttonContainerAReclamation: {
-    position: "absolute",
-    top: 5,
-    left: 5,
-  },
-  cancelButtonContainerReclamation: {
-    position: "absolute",
-    top: 5,
-    right: 5,
-  },
 
-  buttonTakePhotoContainerReclamation: {
-    position: "absolute",
-    left: "50%",
-    transform: [{ translateX: -50 }],
-    bottom: 25,
-    alignItems: "center",
-  },
-  buttonReclamation: {
-    flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center",
-  },
-  textReclamation: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "white",
-  },
-
-  componentReclamation: {
-    width: "80%",
-    backgroundColor: "#fff",
-    display: "flex",
-    border: "none",
-  },
-  buttonContainerReclamation: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
   containerSettings: {
     paddingTop: 60,
     paddingHorizontal: 16,
@@ -268,14 +177,6 @@ export const styles = StyleSheet.create({
     marginLeft: 27,
     marginRight: 27,
     paddingTop: 30,
-  },
-  titleNews: {
-    color: "#000",
-    textAlign: "center",
-    fontWeight: "700",
-    fontSize: 16,
-    paddingTop: 20,
-    marginEnd: 10,
   },
 
   buttonSettings: {
@@ -316,11 +217,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1,
   },
-  FlatView: {
-    marginTop: 20,
-    flex: 1,
-    //margin:30,
-  },
+
   itemContainer: {
     justifyContent: "center",
     borderRadius: 5,
@@ -335,132 +232,7 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  itemFlatListName: {
-    fontSize: 16,
-    color: "#000",
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  itemFlatListContainer: {
-    justifyContent: "center",
-    borderRadius: 15,
-    padding: 0,
-    height: 200,
-    margin: 15,
-    backgroundColor: "#F0FFF",
-    boxShadow:
-      "rgb(0 0 0 / 10%) 14px -13px 6px 0px, rgb(0 0 0 / 10%) 0px 0px 1px 0px;",
-  },
-  itemDetailsName: {
-    fontSize: 16,
-    color: "#000",
-    fontWeight: "bold",
-    // textAlign: "center",
-    marginBottom: 20,
-  },
-  itemDetailsContainer: {
-    justifyContent: "center",
-    borderRadius: 15,
-    padding: 10,
-    height: 210,
-    backgroundColor: "#E1251B",
-    // boxShadow:
-    // "rgb(0 0 0 / 10%) 14px -13px 6px 0px, rgb(0 0 0 / 10%) 0px 0px 1px 0px;",
-  },
-  itemDetailsNormalText: {
-    fontSize: 13,
-    color: "#000",
-    fontWeight: "bold",
-    // textAlign: "center",
-    marginBottom: 20,
-  },
-  FlatViewDetails: {
-    marginTop: 20,
-    flex: 1,
-    margin: 30,
-  },
-  NewsView: {
-    marginTop: 20,
-    flex: 1,
-  },
-  itemNewsContainer: {
-    justifyContent: "center",
-    //borderRadius: 15,
-    padding: 0,
-    // height: 250,
-    marginTop: 15,
-    backgroundColor: "#fff",
-    boxShadow:
-      "rgb(0 0 0 / 10%) 14px -13px 6px 0px, rgb(0 0 0 / 10%) 0px 0px 1px 0px;",
-  },
-  itemNewsName: {
-    fontSize: 16,
-    color: "#000",
-    fontWeight: "bold",
-    textAlign: "left",
-    paddingLeft: 15,
-  },
-  itemTextTitle: {
-    marginTop: 15,
-    fontSize: 16,
-    color: "#000",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  containerNews: {
-    flex: 1,
-    justifyContent: "space-around",
-    alignItems: "center",
-    margin: 10,
-    borderRadius: 20,
-  },
-  cardView: {
-    flex: 1,
-    height: "100%",
-    justifyContent: "space-around",
-    alignItems: "center",
-    margin: 10,
-    borderRadius: 20,
-    padding: 35,
-  },
-  ViewNews: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    marginVertical: 7,
-  },
-  TextNews: {
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "left",
-    //flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  TextNewsAr: {
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "right",
-    //flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  ImageNews: {
-    width: 360,
-    height: 175,
-    borderRadius: 10,
-  },
-  DescriptionTextNews: {
-    fontSize: 16,
-    textAlign: "right",
-    marginTop: 15,
-  },
-  DescriptionTextNewsAr: {
-    fontSize: 16,
-    textAlign: "left",
-    marginTop: 15,
-  },
+
   Loading: {
     flex: 1,
     justifyContent: "center",

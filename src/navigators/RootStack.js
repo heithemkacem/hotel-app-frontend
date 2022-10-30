@@ -25,7 +25,7 @@ import { Logout } from "./../_actions/actions/authActions";
 import { useSelector } from "react-redux";
 
 const LANGUAGES = [
-  { code: "fr", label: "Français" },
+  { code: "en", label: "English" },
   { code: "ar", label: "العربية" },
 ];
 const Stack = createStackNavigator();

@@ -14,9 +14,9 @@ const Settings = ({ navigation, route }) => {
     return i18n.changeLanguage(code);
   };
   const choisirLangue = async (selectedLanguageCode) => {
-    if (selectedLanguageCode == "fr") {
+    if (selectedLanguageCode == "en") {
       await I18nManager.forceRTL(false);
-      setLanguage("fr");
+      setLanguage("en");
 
       return;
     }
@@ -35,14 +35,14 @@ const Settings = ({ navigation, route }) => {
         style={styles.buttonNavigateSettings}
       >
         <Text style={styles.textButtonNavigateSettings}>
-          {t("common:ModiferMdp")}
+          {t("common:ModifyPassword")}
         </Text>
       </Button>
       <Text style={styles.textStyleSettings}>
         {t("common:languageSelector")}
       </Text>
-      <Button onPress={() => choisirLangue("fr")} style={styles.buttonSettings}>
-        <Text style={styles.textButtonSettings}>{t("common:Français")}</Text>
+      <Button onPress={() => choisirLangue("en")} style={styles.buttonSettings}>
+        <Text style={styles.textButtonSettings}>{t("common:English")}</Text>
       </Button>
       <Button onPress={() => choisirLangue("ar")} style={styles.buttonSettings}>
         <Text style={styles.textButtonSettings}>{t("common:Arabe")}</Text>
