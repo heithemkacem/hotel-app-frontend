@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   },
   containerOnBoarding: {
     flex: 1,
-    backgroundColor: "#5f9ea0",
+    backgroundColor: "#E1251B",
     padding: 10,
   },
 
@@ -65,6 +65,8 @@ export const styles = StyleSheet.create({
     marginTop: 30,
     width: 150,
     height: 150,
+    //border raduis circle
+    borderRadius: 150 / 2,
     //align the image in the center
     alignSelf: "center",
   },
@@ -110,7 +112,7 @@ export const styles = StyleSheet.create({
     marginLeft: 25,
     fontSize: 12,
     fontWeight: "600",
-    color: "#4d7e80",
+    color: "#E1251B",
   },
   containerEditPassword: {
     paddingLeft: 20,
@@ -260,7 +262,7 @@ export const styles = StyleSheet.create({
     color: "tomato",
   },
   textStyleSettings: {
-    color: "#4d7e80",
+    color: "#E1251B",
     fontWeight: "700",
     fontSize: 16,
     marginLeft: 27,
@@ -277,7 +279,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonSettings: {
-    backgroundColor: "#4d7e80",
+    backgroundColor: "#E1251B",
     borderRadius: 30,
     width: "90%",
     marginLeft: 20,
@@ -362,7 +364,7 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     height: 210,
-    backgroundColor: "#5f9ea0",
+    backgroundColor: "#E1251B",
     // boxShadow:
     // "rgb(0 0 0 / 10%) 14px -13px 6px 0px, rgb(0 0 0 / 10%) 0px 0px 1px 0px;",
   },

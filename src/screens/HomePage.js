@@ -15,7 +15,7 @@ const HomePage = ({ navigation }) => {
   return (
     <MainContainer>
       <Logo
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Logo_commune_Sousse.svg/1200px-Logo_commune_Sousse.svg.png"
+        src={require("./../assets/logo.png")}
         style={{ marginTop: "35%" }}
       />
       <View

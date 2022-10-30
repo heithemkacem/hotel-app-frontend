@@ -1,7 +1,6 @@
 import axios from "axios";
 const localUrl = "http://localhost:8080/";
-const devUrl = "https://tbgemobile-test.odoo.whitecapetech.com/";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 import Toast from "react-native-root-toast";
 
 //!Edit Password Action

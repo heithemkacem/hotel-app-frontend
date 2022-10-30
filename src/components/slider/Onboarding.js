@@ -54,8 +54,8 @@ const Onboarding = ({ navigation }) => {
       >
         <Text
           style={{
-            color: "#fff",
-            backgroundColor: "#395e60",
+            color: "#000000",
+            backgroundColor: "#FFFFFF",
             borderRadius: 16,
             fontWeight: "600",
             fontSize: 14,
@@ -103,21 +103,21 @@ const Onboarding = ({ navigation }) => {
         data={[
           {
             key: "s1",
-            backgroundColor: "#5f9ea0",
+            backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/bienvenue.png"),
             title: t("common:Bienvenue"),
             subtitle: t("common:paragraph1"),
           },
           {
             key: "s2",
-            backgroundColor: "#5f9ea0",
+            backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/solution.png"),
             title: t("common:paragraph2"),
             subtitle: t("common:paragraph3"),
           },
           {
             key: "s3",
-            backgroundColor: "#5f9ea0",
+            backgroundColor: "#E1251B",
             image: require("../../assets/slider-image/maps.png"),
             title: t("common:paragraph4"),
             subtitle: t("common:paragraph5"),
@@ -135,7 +135,7 @@ const Onboarding = ({ navigation }) => {
         renderDoneButton={() => buttonLabel(t("common:Commencer"))}
         renderPrevButton={() => buttonLabel(t("common:Précédent"))}
         activeDotStyle={{
-          backgroundColor: "#395e60",
+          backgroundColor: "#FFFFFF",
           width: 30,
         }}
       />

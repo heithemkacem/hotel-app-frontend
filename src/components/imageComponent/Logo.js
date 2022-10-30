@@ -16,7 +16,7 @@ const IconBg = styled.View`
 const Logo = ({ src, ...props }) => {
   return (
     <IconBg style={{ ...props.style }}>
-      <Image source={{ uri: src }} style={{ width: 130, height: 180 }} />
+      <Image source={src} style={{ width: 130, height: 180 }} />
     </IconBg>
   );
 };

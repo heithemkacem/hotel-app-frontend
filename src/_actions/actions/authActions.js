@@ -5,8 +5,7 @@ import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-root-toast";
 const localUrl = "http://localhost:8080/";
-const devUrl = "https://tbgemobile-test.odoo.whitecapetech.com/";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 
 //!Login User
 export const LoginAction =
