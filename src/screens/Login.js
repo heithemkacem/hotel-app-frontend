@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MainContainer from "../components/containers/MainContainer";
 import RegularText from "../components/texts/RegularText";
 import StyledTextInput from "../components/inputs/StyledTextInput";
@@ -7,7 +7,6 @@ import RegularButton from "../components/buttons/RegularButton";
 import { ActivityIndicator } from "react-native";
 import { colors } from "../components/colors";
 import PressableText from "../components/texts/PressableText";
-import RowContainer from "../components/containers/RowContainer";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { LoginAction } from "../_actions/actions/authActions";

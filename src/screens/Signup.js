@@ -122,7 +122,7 @@ const SignUp = ({ navigation }) => {
             <StyledTextInput
               language={selectedLanguageCode}
               icon="phone"
-              label={t("common:Phone")}
+              label={t("common:PhoneNumber")}
               placeholder={t("common:EnterPhoneNumber")}
               autoCapitalize="none"
               onChangeText={handleChange("phone")}

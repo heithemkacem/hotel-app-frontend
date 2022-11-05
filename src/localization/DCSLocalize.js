@@ -1,4 +1,3 @@
-//!Get the location and trad the app between arabic and french
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,7 +7,6 @@ const LANGUAGES = {
   ar,
   en,
 };
-const LANG_CODES = Object.keys(LANGUAGES);
 const LANGUAGE_DETECTOR = {
   type: "languageDetector",
   async: true,
@@ -18,9 +16,9 @@ const LANGUAGE_DETECTOR = {
         if (err) {
           console.log("Error fetching Languages from asyncstorage ", err);
         } else {
-          console.log("No language is set, choosing french as fallback");
+          console.log("No language is set, choosing FRENCH as fallback");
+          callback(en);
         }
-
         return;
       }
       callback(language);
@@ -28,19 +26,21 @@ const LANGUAGE_DETECTOR = {
   },
   init: () => {},
   cacheUserLanguage: (language) => {
-    AsyncStorage.setItem("user-language", "en");
+    //choose language from dropdown and save it to asyncstorage
+    AsyncStorage.setItem("user-language", language);
   },
 };
-i18n
-  .use(LANGUAGE_DETECTOR)
-  .use(initReactI18next)
-  .init({
-    compatibilityJSON: "v3",
-    resources: LANGUAGES,
-    react: {
-      useSuspense: false,
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+
+i18n.use(initReactI18next).init({
+  lng: "en",
+  compatibilityJSON: "v3",
+
+  fallbackLng: "en",
+  resources: {
+    en: en,
+    ar: ar,
+  },
+  interpolation: {
+    escapeValue: false, // react already safes from xss
+  },
+});

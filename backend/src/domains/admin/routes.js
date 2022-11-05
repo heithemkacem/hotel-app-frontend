@@ -3,13 +3,12 @@ const express = require("express");
 const router = express.Router();
 const {
   adminRegisterValidation,
-  adminLoginValidation,
+  LoginValidation,
 } = require("./../../util/adminVerification");
-
 const { hotelRegisterValidation } = require("./../../util/hotelVerification");
 const {
   createAdmin,
-  authenticateAdmin,
+  authenticate,
   createHotel,
   getAllHotels,
   deleteHotel,
@@ -23,7 +22,7 @@ passport.use(strategy);
 
 // Admin Inscription
 router.post("/signup", async (req, res) => {
-  const { username, firstName, lastName, email, password } = req.body;
+  const { username, firstName, lastName, email, password, phone } = req.body;
   try {
     const { error } = adminRegisterValidation(req.body);
     if (error) {
@@ -35,6 +34,7 @@ router.post("/signup", async (req, res) => {
         lastName,
         email,
         password,
+        phone,
       });
       res.json({
         status: "Success",
@@ -54,17 +54,12 @@ router.post("/signup", async (req, res) => {
 router.post("/auth", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const { error } = adminLoginValidation(req.body);
+    const { error } = LoginValidation(req.body);
     if (error) {
       res.send({ status: "Failed", message: error["details"][0]["message"] });
     } else {
-      const authenticatedAdmin = await authenticateAdmin(email, password);
-      res.json({
-        status: "Success",
-        message: "Admin Found",
-        token: "Bearer " + authenticatedAdmin.token,
-        admin: authenticatedAdmin,
-      });
+      const authenticated = await authenticate(email, password);
+      res.json(authenticated);
     }
   } catch (error) {
     res.json({

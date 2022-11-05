@@ -12,6 +12,9 @@ const adminRegisterValidation = (data) => {
       "string.min": "common:Enter_a_valid_first_name_min_4_characters",
       "string.max": "common:Enter_a_valid_first_name_max_26_characters",
     }),
+    phone: joi.number().required().messages({
+      "string.empty": "common:Enter_a_valid_phone",
+    }),
     lastName: joi.string().required().min(4).max(26).messages({
       "string.empty": "common:Enter_a_valid_last_name",
       "string.min": "common:Enter_a_valid_last_name_min_4_characters",
@@ -47,7 +50,7 @@ const adminRegisterValidation = (data) => {
   });
   return schemaValidation.validate(data);
 };
-const adminLoginValidation = (data) => {
+const LoginValidation = (data) => {
   const schemaValidation = joi.object({
     email: joi.string().required().email().messages({
       "string.empty": "common:Enter_a_valid_email",
@@ -64,4 +67,4 @@ const adminLoginValidation = (data) => {
 
 module.exports.adminRegisterValidation = adminRegisterValidation;
 
-module.exports.adminLoginValidation = adminLoginValidation;
+module.exports.LoginValidation = LoginValidation;

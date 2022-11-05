@@ -19,6 +19,10 @@ const AdminSchema = new Schema({
     min: 4,
     max: 26,
   },
+  phone: {
+    type: Number,
+    require: true,
+  },
   email: {
     type: String,
     require: true,

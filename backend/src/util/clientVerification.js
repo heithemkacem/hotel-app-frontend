@@ -40,21 +40,5 @@ const clientRegisterValidation = (data) => {
   });
   return schemaValidation.validate(data);
 };
-const clientLoginValidation = (data) => {
-  const schemaValidation = joi.object({
-    email: joi.string().required().email().messages({
-      "string.empty": "common:Enter_a_valid_email",
-      "string.email": "common:Enter_a_valid_email",
-    }),
-    password: joi.string().required().min(8).max(26).messages({
-      "string.empty": "common:Enter_a_valid_password",
-      "string.min": "common:Enter_a_valid_password_min_8_characters",
-      "string.max": "common:Enter_a_valid_password_max_26_characters",
-    }),
-  });
-  return schemaValidation.validate(data);
-};
 
 module.exports.clientRegisterValidation = clientRegisterValidation;
-
-module.exports.clientLoginValidation = clientLoginValidation;
