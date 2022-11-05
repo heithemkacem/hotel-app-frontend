@@ -9,7 +9,7 @@ import { setAuth } from "./src/util/setAuth";
 import { setUser, Logout } from "./src/_actions/actions/authActions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwt_decode from "jwt-decode";
-
+import Toast from "react-native-toast-message";
 export default function App() {
   //get jwt item from asynsStorage
   AsyncStorage.getItem("jwt").then((token) => {
@@ -17,7 +17,7 @@ export default function App() {
       const decode = jwt_decode(token);
       store.dispatch(setUser(decode));
       setAuth(token);
-      const currentDate = Date.now / 1000;
+      const currentDate = Date.now() / 1000;
       if (decode.exp > currentDate) {
         store.dispatch(Logout());
       }
@@ -28,6 +28,7 @@ export default function App() {
     <Provider store={store}>
       <RootStack />
       <StatusBar style="auto" />
+      <Toast />
     </Provider>
   );
 }

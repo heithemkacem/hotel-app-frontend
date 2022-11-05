@@ -4,7 +4,7 @@ const hashData = require("../../util/hashData");
 const verifyHashedData = require("../../util/verifyHashedData");
 const sendEmail = require("../../util/sendEmail");
 const otpGenerator = require("otp-generator");
-
+//! Still Not Tested need testes
 const sendOTPVerificationEmail = async ({ _id, email }) => {
   try {
     //url to be used in the email

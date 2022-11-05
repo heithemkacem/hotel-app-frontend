@@ -27,9 +27,10 @@ const SignupSchema = Yup.object().shape({
     [Yup.ref("password"), null],
     "Passwords must match"
   ),
-  name: Yup.string().required("Name Required"),
-  familyName: Yup.string().required("Family name Required"),
-  address: Yup.string().required("Address Required"),
+  firstName: Yup.string().required("Name Required"),
+  lastName: Yup.string().required("Family name Required"),
+  username: Yup.string().required("Username Required"),
+  phone: Yup.number().required("Phone Required"),
 });
 const { primary, black } = colors;
 const SignUp = ({ navigation }) => {
@@ -48,8 +49,8 @@ const SignUp = ({ navigation }) => {
       <Formik
         initialValues={{
           username: "",
-          name: "",
-          familyName: "",
+          firstName: "",
+          lastName: "",
           phone: "",
           email: "",
           password: "",
@@ -88,11 +89,11 @@ const SignUp = ({ navigation }) => {
               label={t("common:Name")}
               placeholder={t("common:EnterName")}
               autoCapitalize="none"
-              onChangeText={handleChange("name")}
-              onBlur={handleBlur("name")}
+              onChangeText={handleChange("firstName")}
+              onBlur={handleBlur("firstName")}
               style={{ marginBottom: 15 }}
-              value={values.name}
-              errors={touched.name && errors.name}
+              value={values.firstName}
+              errors={touched.firstName && errors.firstName}
             />
             <StyledTextInput
               language={selectedLanguageCode}
@@ -100,11 +101,11 @@ const SignUp = ({ navigation }) => {
               label={t("common:FamilyName")}
               placeholder={t("common:EnterFamillyName")}
               autoCapitalize="none"
-              onChangeText={handleChange("familyName")}
-              onBlur={handleBlur("familyName")}
+              onChangeText={handleChange("lastName")}
+              onBlur={handleBlur("lastName")}
               style={{ marginBottom: 15 }}
-              value={values.familyName}
-              errors={touched.familyName && errors.familyName}
+              value={values.lastName}
+              errors={touched.lastName && errors.lastName}
             />
             <StyledTextInput
               language={selectedLanguageCode}

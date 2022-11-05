@@ -4,11 +4,11 @@ import jwt_decode from "jwt-decode";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-root-toast";
-const localUrl = "http://localhost:8080/";
+const localUrl = "http://localhost:5000";
 const currentUrl = localUrl;
 
 //!Login Admin
-export const AdminLoginAction =
+export const LoginAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {
       await axios
@@ -16,13 +16,10 @@ export const AdminLoginAction =
         .then((response) => {
           if (response.data.status === "Failed") {
             setSubmitting(false);
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             const { token } = response.data;
@@ -31,13 +28,10 @@ export const AdminLoginAction =
             const decode = jwt_decode(token);
             dispatch(setUser(decode));
             setAuth(token);
-            Toast.show(t("common:Welcome"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:Welcome"),
             });
             moveTo("Dashboard");
           } else if (response.data.status === "Verify") {
@@ -50,157 +44,22 @@ export const AdminLoginAction =
         })
         .catch((error) => {
           setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
     } catch (error) {
       setSubmitting(false);
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
-      });
-    }
-  };
-//Login Hotel
-export const HotelLoginAction =
-  (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
-    try {
-      await axios
-        .post(`${currentUrl}/hotel/auth`, credentials)
-        .then((response) => {
-          if (response.data.status === "Failed") {
-            setSubmitting(false);
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
-            });
-          } else if (response.data.status === "Success") {
-            const { token } = response.data;
-            AsyncStorage.setItem("jwt", token);
-            setSubmitting(false);
-            const decode = jwt_decode(token);
-            dispatch(setUser(decode));
-            setAuth(token);
-            Toast.show(t("common:Welcome"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
-            });
-            moveTo("HotelDashboard");
-          } else if (response.data.status === "Verify") {
-            setSubmitting(false);
-            moveTo("EmailVerification", {
-              email: credentials.email,
-              id: response.data.id,
-            });
-          }
-        })
-        .catch((error) => {
-          setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
-          });
-        });
-    } catch (error) {
-      setSubmitting(false);
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
 
-//Login Client
-//Login Hotel
-export const ClientLoginAction =
-  (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
-    try {
-      await axios
-        .post(`${currentUrl}/client/auth`, credentials)
-        .then((response) => {
-          if (response.data.status === "Failed") {
-            setSubmitting(false);
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
-            });
-          } else if (response.data.status === "Success") {
-            const { token } = response.data;
-            AsyncStorage.setItem("jwt", token);
-            setSubmitting(false);
-            const decode = jwt_decode(token);
-            dispatch(setUser(decode));
-            setAuth(token);
-            Toast.show(t("common:Welcome"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
-            });
-            moveTo("ClientDashboard");
-          } else if (response.data.status === "Verify") {
-            setSubmitting(false);
-            moveTo("EmailVerification", {
-              email: credentials.email,
-              id: response.data.id,
-            });
-          }
-        })
-        .catch((error) => {
-          setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
-          });
-        });
-    } catch (error) {
-      setSubmitting(false);
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
-      });
-    }
-  };
 //!Signup User
 export const SignupAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -211,13 +70,10 @@ export const SignupAction =
         .then(async (response) => {
           if (response.data.status === "Failed") {
             setSubmitting(false);
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setSubmitting(false);
@@ -226,36 +82,27 @@ export const SignupAction =
               email: response.data.email,
             });
             //make the error ""
-            Toast.show(t("common:Inscription_réussie"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:Inscription_réussie"),
             });
           }
         })
         .catch((error) => {
           setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
     } catch (error) {
       setSubmitting(false);
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
@@ -270,23 +117,18 @@ export const ForgotPasswordAction =
         .then(async (response) => {
           if (response.data.status === "Failed") {
             setSubmitting(false);
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setSubmitting(false);
-            Toast.show(t("common:verificationemailsent"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:verificationemailsent"),
             });
 
             moveTo("ResetPassword", {
@@ -297,24 +139,18 @@ export const ForgotPasswordAction =
         })
         .catch((error) => {
           setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
     } catch (error) {
       setSubmitting(false);
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
@@ -330,23 +166,18 @@ export const ResetPasswordAction =
         .post(`${currentUrl}/client/reset-password`, { values, email })
         .then((response) => {
           if (response.data.status === "Failed") {
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setSubmitting(false);
-            Toast.show(t("common:Password_changed"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:Password_changed"),
             });
 
             moveTo("Login");
@@ -354,27 +185,23 @@ export const ResetPasswordAction =
         })
         .catch((error) => {
           setSubmitting(false);
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
       setSubmitting(false);
     } catch (error) {
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
+
+//! Not tested
 //!User Resend Password
 export const ResendEmailAction =
   (
@@ -395,34 +222,26 @@ export const ResendEmailAction =
         .post(`${currentUrl}resendOTP`, { id, email })
         .then((response) => {
           if (response.data.status === "Failed") {
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setResendStatus(t("common:Sent"));
-            Toast.show(t("common:OTP_has_been_resent"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:OTP_has_been_resent"),
             });
           }
         })
         .catch((error) => {
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
       setResendingEmail(false);
@@ -435,13 +254,10 @@ export const ResendEmailAction =
     } catch (error) {
       setResendingEmail(false);
       setResendStatus("Failed! ");
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
@@ -457,46 +273,34 @@ export const VerifyOTPAction =
         .post(`${currentUrl}verify`, { otp, id })
         .then((response) => {
           if (response.data.status === "Failed") {
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setPinReady(true);
-            Toast.show(t("common:Your_account_has_been_verified"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
-            });
 
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:Your_account_has_been_verified"),
+            });
             moveTo("Login");
           }
         })
         .catch((error) => {
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
     } catch (error) {
-      Toast.show(t(error.message), {
-        duration: 10000,
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
       });
     }
   };
@@ -511,44 +315,33 @@ export const VerifyOTPlModifyPasswordAction =
         .post(`${currentUrl}verify-modify-password`, { otp, id })
         .then((response) => {
           if (response.data.status === "Failed") {
-            Toast.show(t(response.data.message), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "red",
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
             setPinReady(true);
-            Toast.show(t("common:You_can_set_your_new_password_now"), {
-              duration: 10000,
-              position: Toast.positions.BOTTOM,
-              shadow: true,
-              animation: true,
-              hideOnPress: true,
-              backgroundColor: "green",
+
+            Toast.show({
+              type: "success",
+              text1: "Success",
+              text2: t("common:You_can_set_your_new_password_now"),
             });
           }
         })
         .catch((error) => {
-          Toast.show(t(error.message), {
-            duration: 10000,
-            position: Toast.positions.BOTTOM,
-            shadow: true,
-            animation: true,
-            hideOnPress: true,
-            backgroundColor: "red",
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
           });
         });
     } catch (error) {
-      Toast.show(t(response.data.message), {
-        duration: t(error.message),
-        position: Toast.positions.BOTTOM,
-        shadow: true,
-        animation: true,
-        hideOnPress: true,
-        backgroundColor: "red",
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(response.data.message),
       });
     }
   };
