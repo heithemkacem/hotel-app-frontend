@@ -4,9 +4,9 @@ import jwt_decode from "jwt-decode";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
-const localUrl = "https://hotel-app-1r94.onrender.com";
+const localUrl = "http://localhost:5000";
+const devUrl = "https://hotel-app-1r94.onrender.com";
 const currentUrl = localUrl;
-
 //!Login Admin
 export const LoginAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -85,7 +85,7 @@ export const SignupAction =
             Toast.show({
               type: "success",
               text1: "Success",
-              text2: t("common:Inscription_réussie"),
+              text2: t("common:SignupSuccess"),
             });
           }
         })
@@ -162,8 +162,13 @@ export const ResetPasswordAction =
     try {
       //Call Backend
       const email = route.params.email;
+      const { newPassword, confirmNewPassword } = values;
       await axios
-        .post(`${currentUrl}/client/reset-password`, { values, email })
+        .post(`${currentUrl}/client/reset-password`, {
+          newPassword,
+          confirmNewPassword,
+          email,
+        })
         .then((response) => {
           if (response.data.status === "Failed") {
             Toast.show({
@@ -253,7 +258,7 @@ export const ResendEmailAction =
       }, 5000);
     } catch (error) {
       setResendingEmail(false);
-      setResendStatus("Failed! ");
+      setResendStatus(t("common:Failed"));
       Toast.show({
         type: "error",
         text1: t("common:Error"),
@@ -343,6 +348,52 @@ export const VerifyOTPlModifyPasswordAction =
         text1: t("common:Error"),
         text2: t(response.data.message),
       });
+    }
+  };
+export const EditPasswordAction =
+  (values, setSubmitting, id, moveTo, t) => async (dispatch) => {
+    try {
+      const { oldPassword, newPassword, confirmNewPassword } = values;
+      await axios
+        .post(`${currentUrl}/client/reset_password`, {
+          oldPassword,
+          newPassword,
+          id,
+          confirmNewPassword,
+        })
+        .then((response) => {
+          if (response.data.status === "Failed") {
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
+            });
+            setSubmitting(false);
+          } else if (response.data.status === "Success") {
+            Toast.show({
+              type: "success",
+              text1: t("common:Success"),
+              text2: t("common:password_changed_successfully"),
+            });
+            setSubmitting(false);
+            moveTo("Settings");
+          }
+        })
+        .catch((error) => {
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
+          });
+          setSubmitting(false);
+        });
+    } catch (error) {
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
+      });
+      setSubmitting(false);
     }
   };
 

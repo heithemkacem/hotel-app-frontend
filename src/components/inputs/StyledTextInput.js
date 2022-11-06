@@ -133,7 +133,9 @@ const StyledTextInput = ({
         <RightIconArabe>
           <MaterialCommunityIcons name={icon} size={30} color={accent} />
         </RightIconArabe>
-        <SmallText style={{ fontWeight: "600", textAlign: "right" }}>
+        <SmallText
+          style={{ fontWeight: "600", textAlign: "right", marginBottom: 5 }}
+        >
           {label}
         </SmallText>
         <InputField

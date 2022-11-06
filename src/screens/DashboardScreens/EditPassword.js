@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { colors } from "./../../components/colors";
 import { useDispatch, useSelector } from "react-redux";
-import { EditPasswordAction } from "./../../_actions/actions/userActions";
+import { EditPasswordAction } from "./../../_actions/actions/authActions";
 import { styles } from "../../styles/styles";
 const { primary } = colors;
 import * as Yup from "yup";
@@ -78,7 +78,7 @@ const EditPassword = ({ navigation }) => {
                 language={selectedLanguageCode}
                 icon="lock"
                 label={t("common:OldPassword")}
-                placeholder={t("common:Entrermotdepasse")}
+                placeholder={t("common:EnterOldPassword")}
                 secureTextEntry={true}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -94,7 +94,7 @@ const EditPassword = ({ navigation }) => {
                 language={selectedLanguageCode}
                 icon="lock"
                 label={t("common:NewPassword")}
-                placeholder={t("common:EnterNouveaumotdepasse")}
+                placeholder={t("common:EnterNewPassword")}
                 secureTextEntry={true}
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -110,7 +110,7 @@ const EditPassword = ({ navigation }) => {
                 language={selectedLanguageCode}
                 icon="lock"
                 label={t("common:ConfirmNewPassword")}
-                placeholder={t("common:ConfirmationduNouveaumotdepasse")}
+                placeholder={t("common:EnterConfirmNewPassword")}
                 secureTextEntry={true}
                 autoCapitalize="none"
                 autoCorrect={false}

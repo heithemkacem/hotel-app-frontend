@@ -39,7 +39,6 @@ const RootStack = () => {
   };
   const auth = useSelector((state) => state.auth);
   const { isConnected } = auth;
-  alert(isConnected);
   return (
     <NavigationContainer>
       <Stack.Navigator

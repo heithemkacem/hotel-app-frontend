@@ -35,7 +35,6 @@ export default {
   Digit: "أدخل رمز 4 أرقام تم إرساله إلى بريدك الإلكتروني",
   NewPassword: "كلمة السر الجديدة",
   Resend: "إعادة إرسال",
-  ConfirmNewPassword: "تأكيد كلمة المرور الجديدة",
   FillFields: "يرجى ملء جميع الحقول",
   Passwordsdonotmatch: "كلمات المرور غير متطابقة",
   PasswordRule:
@@ -53,4 +52,94 @@ export default {
   languageSelector: "اختر اللغة",
   English: "الإنجليزية",
   Arabe: "عربى",
+  Error: "خطأ",
+  Success: "نجاح",
+  Welcome: "أهلا بك",
+  SignupSuccess: "تم تسجيلك بنجاح",
+  verificationemailsent:
+    "تم إرسال رسالة تأكيد إلى بريدك الإلكتروني. يرجى التحقق من بريدك الإلكتروني",
+  Password_changed: "تم تغيير كلمة المرور بنجاح",
+  OTP_has_been_resent: "تم إعادة إرسال رمز التحقق",
+  Your_account_has_been_verified: "تم التحقق من حسابك",
+  You_can_set_your_new_password_now: "يمكنك تعيين كلمة المرور الجديدة الآن",
+  password_changed_successfully: "تم تغيير كلمة المرور بنجاح",
+  Enter_a_valid_hotel_name: "أدخل اسم فندق صالح",
+  Enter_a_valid_hotel_name_of_min_4_characters:
+    "أدخل اسم فندق صالح بحد أدنى 4 أحرف",
+  Enter_a_valid_hotel_name_of_max_26_characters:
+    "أدخل اسم فندق صالح بحد أقصى 26 حرفًا",
+  Enter_a_valid_hotel_address: "أدخل عنوان فندق صالح",
+  Enter_a_valid_hotel_address_of_min_4_characters:
+    "أدخل عنوان فندق صالح بحد أدنى 4 أحرف",
+  Enter_a_valid_hotel_address_of_max_26_characters:
+    " أدخل عنوان فندق صالح بحد أقصى 26 حرفًا",
+  Enter_a_valid_hotel_phone: "أدخل هاتف فندق صالح",
+  Enter_a_valid_hotel_city: "أدخل مدينة فندق صالحة",
+  Enter_a_valid_hotel_city_of_min_4_characters:
+    "أدخل مدينة فندق صالحة بحد أدنى 4 أحرف",
+  Enter_a_valid_hotel_city_of_max_26_characters:
+    " أدخل مدينة فندق صالحة بحد أقصى 26 حرفًا",
+  Enter_a_valid_hotel_stars: "أدخل نجوم فندق صالحة",
+  Enter_a_valid_hotel_start_of_min_1_star:
+    "أدخل نجوم فندق صالحة بحد أدنى 1 نجمة",
+  Enter_a_valid_hotel_start_of_max_5_star:
+    "أدخل نجوم فندق صالحة بحد أقصى 5 نجوم",
+  Enter_a_valid_hotel_rooms: "أدخل غرف فندق صالحة",
+  Enter_a_valid_hotel_price: "أدخل سعر فندق صالح",
+  Enter_a_valid_hotel_description: "أدخل وصف فندق صالح",
+  Enter_a_valid_hotel_image: "أدخل صورة فندق صالحة",
+  enter_valid_email: "أدخل بريد إلكتروني صالح",
+  enter_valid_password: "أدخل كلمة مرور صالحة",
+  enter_valid_password_min_8_characters: "أدخل كلمة مرور صالحة بحد أدنى 8 أحرف",
+  enter_valid_password_max_8_characters: "أدخل كلمة مرور صالحة بحد أقصى 8 أحرف",
+  password_does_not_match: "كلمة المرور غير متطابقة",
+  //if some of the above translations are not used in your app, you can remove them
+  //if some of the above translations are duplicated in your app, you can remove them
+  Enter_a_valid_username: "أدخل اسم مستخدم صالح",
+  Enter_a_valid_username_min_4_characters:
+    " أدخل اسم مستخدم صالح بحد أدنى 4 أحرف",
+  Enter_a_valid_username_max_26_characters:
+    "أدخل اسم مستخدم صالح بحد أقصى 26 حرفًا",
+  Enter_a_valid_first_name: " أدخل اسم صالح",
+  Enter_a_valid_first_name_min_4_characters: "أدخل اسم صالح بحد أدنى 4 أحرف",
+  Enter_a_valid_first_name_max_26_characters: "أدخل اسم صالح بحد أقصى 26 حرفًا",
+  Enter_a_valid_last_name: "أدخل اسم صالح",
+  Enter_a_valid_last_name_min_4_characters: " أدخل اسم صالح بحد أدنى 4 أحرف",
+  Enter_a_valid_last_name_max_26_characters: "أدخل اسم صالح بحد أقصى 26 حرفًا",
+  Enter_a_valid_email: "أدخل بريد إلكتروني صالح",
+  Enter_a_valid_phone: "أدخل هاتف صالح",
+  Enter_a_valid_password: "أدخل كلمة مرور صالحة",
+  Enter_a_valid_password_min_8_characters:
+    "أدخل كلمة مرور صالحة بحد أدنى 8 أحرف",
+  Enter_a_valid_password_max_26_characters:
+    "أدخل كلمة مرور صالحة بحد أقصى 26 حرفًا",
+  Enter_a_valid_confirm_password: "أدخل تأكيد كلمة مرور صالح",
+  Password_and_confirm_password_must_be_the_same:
+    "يجب أن تكون كلمة المرور وتأكيد كلمة المرور نفسها",
+  Enter_a_valid_password_min_8_characters_one_lowercase_one_uppercase_one_numeric_one_special_character:
+    "أدخل كلمة مرور صالحة بحد أدنى 8 أحرف واحدة صغيرة واحدة كبيرة واحدة رقمية واحدة حرف خاص",
+  empty_details_are_not_allowed: "لا يسمح بالتفاصيل الفارغة",
+  OTP_has_expired: "انتهت صلاحية رمز التحقق",
+  User_does_not_exist: "المستخدم غير موجود",
+  Invalid_verification_details_passed: "تم تمرير تفاصيل التحقق غير صالحة",
+  Account_reccord_doesnt_exist_signup_or_login:
+    "لا يوجد سجل حساب تسجيل الدخول أو تسجيل الدخول",
+  email_already_in_use: "البريد الإلكتروني مستخدم بالفعل",
+  email_does_not_exist: "البريد الإلكتروني غير موجود",
+  password_is_same: "كلمة المرور هي نفسها",
+  old_password_is_incorrect: "كلمة المرور القديمة غير صحيحة",
+  Invalid_credentials: "بيانات الاعتماد غير صالحة",
+  Verify_your_account: "تحقق من حسابك",
+  Hotel_not_found: "الفندق غير موجود",
+  Enter_the4digitcode_sent_to_your_email:
+    "أدخل رمز 4 أرقام أرسلته إلى بريدك الإلكتروني",
+  Didint_recieve_this_email: "لم تتلق هذا البريد الإلكتروني؟",
+  in: "في",
+  second: "ثانية",
+  Failed: "فشل",
+  Sent: "تم الإرسال بنجاح",
+  Confirm_New_Password: "تأكيد كلمة المرور الجديدة",
+  Dashboard: "لوحة القيادة",
+  EmailVerification: "التحقق من البريد الإلكتروني",
+  ResetPassword: "إعادة تعيين كلمة المرور",
 };

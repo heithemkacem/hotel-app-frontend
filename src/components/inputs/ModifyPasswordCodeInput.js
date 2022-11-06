@@ -11,6 +11,9 @@ const StyledCodeSection = styled.View`
   align-items: center;
   justify-content: center;
   margin-vertical: 35px;
+  ${(props) => {
+    return props.pinReady ? "opacity: 0.3;" : "opacity: 1;";
+  }}
 `;
 const CodeInputContainer = styled.Pressable`
   flex-direction: row;
@@ -39,7 +42,14 @@ const CodeInputInText = styled.Text`
 const CodeInputFocuced = styled(CodeInputText)`
   border-color: ${accent};
 `;
-const CodeInput = ({ route, code, setCode, maxLength, setPinReady }) => {
+const CodeInput = ({
+  route,
+  code,
+  setCode,
+  maxLength,
+  setPinReady,
+  pinReady,
+}) => {
   const [focused, setFocused] = useState(false);
 
   const codeDigitsArray = new Array(maxLength).fill(0);
@@ -63,7 +73,6 @@ const CodeInput = ({ route, code, setCode, maxLength, setPinReady }) => {
       setPinReady(false);
     };
   }, [code]);
-
   const toCodeDigitInput = (value, index) => {
     const emptyInputChar = " ";
     const digit = code[index] || emptyInputChar;
@@ -81,7 +90,7 @@ const CodeInput = ({ route, code, setCode, maxLength, setPinReady }) => {
     );
   };
   return (
-    <StyledCodeSection>
+    <StyledCodeSection pinReady={pinReady}>
       <CodeInputContainer onPress={handleOnPress}>
         {codeDigitsArray.map(toCodeDigitInput)}
       </CodeInputContainer>
@@ -92,6 +101,7 @@ const CodeInput = ({ route, code, setCode, maxLength, setPinReady }) => {
         textContentType="oneTimeCode"
         ref={textInputRef}
         value={code}
+        editable={!pinReady}
         onChangeText={setCode}
         maxLength={maxLength}
         onSubmitEditing={handleOnSubmitEditing}

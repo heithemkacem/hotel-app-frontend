@@ -14,7 +14,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 const EmailVerification = ({ navigation, route }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const selectedLanguageCode = i18n.language;
   // code input
   const MAX_CODE_LENGTH = 4;
   const [code, setCode] = useState("");
@@ -85,6 +86,7 @@ const EmailVerification = ({ navigation, route }) => {
         </RegularButton>
       )}
       <ResendTimer
+        language={selectedLanguageCode}
         activeResend={activeResend}
         setActiveResend={setActiveResend}
         resendStatus={resendStatus}
