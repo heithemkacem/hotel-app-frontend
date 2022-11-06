@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
-const localUrl = "http://localhost:5000";
+const localUrl = "https://hotel-app-1r94.onrender.com";
 const currentUrl = localUrl;
 
 //!Login Admin
