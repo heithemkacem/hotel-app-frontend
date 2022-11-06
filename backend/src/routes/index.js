@@ -9,6 +9,6 @@ const OTPRoutes = require("./../domains/otp_verification");
 router.use("/admin", AdminRoutes);
 router.use("/hotel", HotelRoutes);
 router.use("/client", ClientRoutes);
-router.use("/client", OTPRoutes);
+router.use("/otp", OTPRoutes);
 
 module.exports = router;

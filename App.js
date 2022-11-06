@@ -12,6 +12,7 @@ import jwt_decode from "jwt-decode";
 import Toast from "react-native-toast-message";
 export default function App() {
   //get jwt item from asynsStorage
+
   AsyncStorage.getItem("jwt").then((token) => {
     if (token) {
       const decode = jwt_decode(token);
@@ -21,9 +22,15 @@ export default function App() {
       if (decode.exp > currentDate) {
         store.dispatch(Logout());
       }
+      return (
+        <Provider store={store}>
+          <RootStack />
+          <StatusBar style="auto" />
+          <Toast />
+        </Provider>
+      );
     }
   });
-
   return (
     <Provider store={store}>
       <RootStack />

@@ -1,5 +1,7 @@
 const OTPVerification = require("./model");
-const User = require("../client/model");
+const Client = require("../client/model");
+const Hotel = require("../hotel/model");
+const Admin = require("../admin/model");
 const hashData = require("../../util/hashData");
 const verifyHashedData = require("../../util/verifyHashedData");
 const sendEmail = require("../../util/sendEmail");
@@ -51,8 +53,8 @@ const verifyOTPEmail = async ({ userID, otp }) => {
       //Empty details are not allowed
     } else {
       //transfor userId to a integer
-      const existingRecord = await OTPVerification.find({ userID });
-      if (existingRecord.length > 0) {
+      const existingRecord = await OTPVerification.findOne({ userID: userID });
+      if (existingRecord != null) {
         //todo User Verification Record Exist So We Procced
         const expiresAt = existingRecord.expiresAt;
         const hashedOTP = existingRecord.otp;
@@ -72,7 +74,21 @@ const verifyOTPEmail = async ({ userID, otp }) => {
           if (matchString) {
             await OTPVerification.deleteMany({ userID });
             //transform id to integer
-            await User.updateOne({ _id: userID }, { isVerified: true });
+            const fetchedHotel = await Hotel.findOne({ _id: userID });
+            const fetchedClient = await Client.findOne({ _id: userID });
+            const fetchedAdmin = await Admin.findOne({ _id: userID });
+            console.log(fetchedHotel);
+            console.log(fetchedClient);
+            console.log(fetchedAdmin);
+            if (fetchedClient != null) {
+              await Client.updateOne({ _id: userID }, { verified: true });
+            } else if (fetchedHotel != null) {
+              await Hotel.updateOne({ _id: userID }, { verified: true });
+            } else if (fetchedAdmin != null) {
+              await Admin.updateOne({ _id: userID }, { verified: true });
+            } else {
+              throw Error("common:User_does_not_exist");
+            }
           } else {
             throw Error("common:Invalid_verification_details_passed");
             //"Invalid verification details passed"

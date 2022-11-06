@@ -3,7 +3,7 @@ import { SET_USER } from "../types";
 import jwt_decode from "jwt-decode";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "react-native-root-toast";
+import Toast from "react-native-toast-message";
 const localUrl = "http://localhost:5000";
 const currentUrl = localUrl;
 
@@ -23,11 +23,11 @@ export const LoginAction =
             });
           } else if (response.data.status === "Success") {
             const { token } = response.data;
+            setAuth(token);
             AsyncStorage.setItem("jwt", token);
-            setSubmitting(false);
             const decode = jwt_decode(token);
             dispatch(setUser(decode));
-            setAuth(token);
+            setSubmitting(false);
             Toast.show({
               type: "success",
               text1: "Success",
@@ -219,7 +219,7 @@ export const ResendEmailAction =
       const id = route.params.id;
       // make request to backend
       await axios
-        .post(`${currentUrl}resendOTP`, { id, email })
+        .post(`${currentUrl}/otp/resendOTP`, { id, email })
         .then((response) => {
           if (response.data.status === "Failed") {
             Toast.show({
@@ -270,7 +270,7 @@ export const VerifyOTPAction =
       const { id } = route.params;
       // make request to backend
       await axios
-        .post(`${currentUrl}verify`, { otp, id })
+        .post(`${currentUrl}/otp/verify`, { otp, id })
         .then((response) => {
           if (response.data.status === "Failed") {
             Toast.show({
@@ -312,7 +312,7 @@ export const VerifyOTPlModifyPasswordAction =
       const { id } = route.params;
       // make request to backend
       await axios
-        .post(`${currentUrl}verify-modify-password`, { otp, id })
+        .post(`${currentUrl}/otp/verify-modify-password`, { otp, id })
         .then((response) => {
           if (response.data.status === "Failed") {
             Toast.show({

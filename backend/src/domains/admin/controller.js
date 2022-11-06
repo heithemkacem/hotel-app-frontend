@@ -58,7 +58,7 @@ const authenticate = async (email, password) => {
       if (passwordMatchClient === false) {
         throw Error("Incorrect credentials match");
       } else {
-        if (!fetchedClient.isVerified) {
+        if (!fetchedClient.verified) {
           await sendOTPVerificationEmail(fetchedClient);
           return {
             status: "Verify",
@@ -75,7 +75,7 @@ const authenticate = async (email, password) => {
           },
           process.env.SECRET,
           {
-            expiresIn: "7d",
+            expiresIn: "48h",
           }
         );
         fetchedClient.token = token;
@@ -114,7 +114,7 @@ const authenticate = async (email, password) => {
           },
           process.env.SECRET,
           {
-            expiresIn: "7d",
+            expiresIn: "48h",
           }
         );
         fetchedHotel.token = token;
@@ -147,7 +147,7 @@ const authenticate = async (email, password) => {
           },
           process.env.SECRET,
           {
-            expiresIn: "7d",
+            expiresIn: "48h",
           }
         );
         fetchedAdmin.token = token;

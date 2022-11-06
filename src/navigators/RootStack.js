@@ -38,7 +38,8 @@ const RootStack = () => {
     return i18n.changeLanguage(code);
   };
   const auth = useSelector((state) => state.auth);
-  const isConnected = auth.isConnected;
+  const { isConnected } = auth;
+  alert(isConnected);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -60,7 +61,6 @@ const RootStack = () => {
             paddingRight: 25,
           },
         }}
-        initialRouteName={Onboarding}
       >
         {isConnected ? (
           <>
@@ -214,6 +214,34 @@ const RootStack = () => {
               component={EmailVerification}
               options={{
                 headerTitle: t("common:EmailVerification"),
+                headerRight: () => (
+                  <>
+                    <View style={styles.containerRootStack}>
+                      {LANGUAGES.map((language) => {
+                        const selectedLanguage =
+                          language.code === selectedLanguageCode;
+                        return (
+                          <Pressable
+                            key={language.code}
+                            style={styles.buttonContainer}
+                            disabled={selectedLanguage}
+                            onPress={() => setLanguage(language.code)}
+                          >
+                            <Text
+                              style={[
+                                selectedLanguage
+                                  ? styles.selectedText
+                                  : styles.text,
+                              ]}
+                            >
+                              {language.label}
+                            </Text>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+                  </>
+                ),
               }}
             />
             <Stack.Screen
@@ -257,6 +285,34 @@ const RootStack = () => {
               component={ResetPassword}
               options={{
                 headerTitle: t("common:ResetPassword"),
+                headerRight: () => (
+                  <>
+                    <View style={styles.containerRootStack}>
+                      {LANGUAGES.map((language) => {
+                        const selectedLanguage =
+                          language.code === selectedLanguageCode;
+                        return (
+                          <Pressable
+                            key={language.code}
+                            style={styles.buttonContainer}
+                            disabled={selectedLanguage}
+                            onPress={() => setLanguage(language.code)}
+                          >
+                            <Text
+                              style={[
+                                selectedLanguage
+                                  ? styles.selectedText
+                                  : styles.text,
+                              ]}
+                            >
+                              {language.label}
+                            </Text>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+                  </>
+                ),
               }}
             />
             <Stack.Screen
