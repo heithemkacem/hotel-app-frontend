@@ -80,7 +80,7 @@ const ResetPassword = ({ navigation, route }) => {
   };
   return (
     <MainContainer>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <RegularText style={{ textAlign: "center", color: black }}>
           {t("common:Enter_the4digitcode_sent_to_your_email")}
         </RegularText>

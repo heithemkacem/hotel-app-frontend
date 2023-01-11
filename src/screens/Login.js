@@ -35,82 +35,84 @@ const Login = ({ navigation }) => {
 
   return (
     <MainContainer>
-      <RegularText style={{ marginBottom: 25, color: black }}>
-        {t("common:credential")}
-      </RegularText>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={LoginSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          dispatch(LoginAction(values, setSubmitting, moveTo, t));
-        }}
-      >
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isSubmitting,
-          errors,
-          touched,
-        }) => (
-          <>
-            <StyledTextInput
-              //style the place holder
-              language={selectedLanguageCode}
-              icon="email"
-              label={t("common:email")}
-              placeholder={t("common:enterEmail")}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              style={{ marginBottom: 25 }}
-              value={values.email}
-              errors={touched.email && errors.email}
-            />
-            <StyledTextInput
-              language={selectedLanguageCode}
-              icon="lock"
-              label={t("common:Password")}
-              placeholder={t("common:enterPassword")}
-              secureTextEntry={true}
-              autoCapitalize="none"
-              autoCorrect={false}
-              isPassword={true}
-              onChangeText={handleChange("password")}
-              value={values.password}
-              onBlur={handleBlur("password")}
-              style={{ marginBottom: 25 }}
-              errors={touched.password && errors.password}
-            />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <RegularText style={{ marginBottom: 25, color: black }}>
+          {t("common:credential")}
+        </RegularText>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={LoginSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            dispatch(LoginAction(values, setSubmitting, moveTo, t));
+          }}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            isSubmitting,
+            errors,
+            touched,
+          }) => (
+            <>
+              <StyledTextInput
+                //style the place holder
+                language={selectedLanguageCode}
+                icon="email"
+                label={t("common:email")}
+                placeholder={t("common:enterEmail")}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                style={{ marginBottom: 25 }}
+                value={values.email}
+                errors={touched.email && errors.email}
+              />
+              <StyledTextInput
+                language={selectedLanguageCode}
+                icon="lock"
+                label={t("common:Password")}
+                placeholder={t("common:enterPassword")}
+                secureTextEntry={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                isPassword={true}
+                onChangeText={handleChange("password")}
+                value={values.password}
+                onBlur={handleBlur("password")}
+                style={{ marginBottom: 25 }}
+                errors={touched.password && errors.password}
+              />
 
-            {!isSubmitting && (
-              <RegularButton onPress={handleSubmit}>
-                {t("common:Login")}
-              </RegularButton>
-            )}
-            {isSubmitting && (
-              <RegularButton disabled={true}>
-                <ActivityIndicator
-                  size="small"
-                  color={primary}
-                ></ActivityIndicator>
-              </RegularButton>
-            )}
+              {!isSubmitting && (
+                <RegularButton onPress={handleSubmit}>
+                  {t("common:Login")}
+                </RegularButton>
+              )}
+              {isSubmitting && (
+                <RegularButton disabled={true}>
+                  <ActivityIndicator
+                    size="small"
+                    color={primary}
+                  ></ActivityIndicator>
+                </RegularButton>
+              )}
 
-            <PressableText
-              style={{ marginBottom: 15 }}
-              onPress={() => moveTo("Signup")}
-            >
-              {t("common:NewAccount")}
-            </PressableText>
-            <PressableText onPress={() => moveTo("ForgotPassword")}>
-              {t("common:ForgetPassword")}
-            </PressableText>
-          </>
-        )}
-      </Formik>
+              <PressableText
+                style={{ marginBottom: 15 }}
+                onPress={() => moveTo("Signup")}
+              >
+                {t("common:NewAccount")}
+              </PressableText>
+              <PressableText onPress={() => moveTo("ForgotPassword")}>
+                {t("common:ForgetPassword")}
+              </PressableText>
+            </>
+          )}
+        </Formik>
+      </ScrollView>
     </MainContainer>
   );
 };

@@ -48,51 +48,53 @@ const EmailVerification = ({ navigation, route }) => {
   return (
     <MainContainer>
       <IconHeader name="lock-open" style={{ marginBottom: 30 }} />
-      <RegularText style={{ textAlign: "center", color: black }}>
-        {t("common:Digit")}
-      </RegularText>
-      <StyledCodeInput
-        moveto={moveTo}
-        code={code}
-        setCode={setCode}
-        maxLength={MAX_CODE_LENGTH}
-        setPinReady={setPinReady}
-        route={route}
-        navigation={navigation}
-      />
-      {!verifying && pinReady && (
-        <RegularButton
-          color={white}
-          onPress={handleEmailVerification}
-          disabled={pinReady}
-          loading={verifying}
-        >
-          {t("common:Verify")}
-        </RegularButton>
-      )}
-      {!verifying && !pinReady && (
-        <RegularButton
-          color={white}
-          style={{ backgroundColor: accent }}
-          disabled={true}
-          loading={verifying}
-        >
-          {t("common:Verify")}
-        </RegularButton>
-      )}
-      {verifying && (
-        <RegularButton disabled={true}>
-          <ActivityIndicator size={"small"} color={white} />
-        </RegularButton>
-      )}
-      <ResendTimer
-        language={selectedLanguageCode}
-        activeResend={activeResend}
-        setActiveResend={setActiveResend}
-        resendStatus={resendStatus}
-        resendingEmail={resendingEmail}
-        resendEmail={resendEmail}
-      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <RegularText style={{ textAlign: "center", color: black }}>
+          {t("common:Digit")}
+        </RegularText>
+        <StyledCodeInput
+          moveto={moveTo}
+          code={code}
+          setCode={setCode}
+          maxLength={MAX_CODE_LENGTH}
+          setPinReady={setPinReady}
+          route={route}
+          navigation={navigation}
+        />
+        {!verifying && pinReady && (
+          <RegularButton
+            color={white}
+            onPress={handleEmailVerification}
+            disabled={pinReady}
+            loading={verifying}
+          >
+            {t("common:Verify")}
+          </RegularButton>
+        )}
+        {!verifying && !pinReady && (
+          <RegularButton
+            color={white}
+            style={{ backgroundColor: accent }}
+            disabled={true}
+            loading={verifying}
+          >
+            {t("common:Verify")}
+          </RegularButton>
+        )}
+        {verifying && (
+          <RegularButton disabled={true}>
+            <ActivityIndicator size={"small"} color={white} />
+          </RegularButton>
+        )}
+        <ResendTimer
+          language={selectedLanguageCode}
+          activeResend={activeResend}
+          setActiveResend={setActiveResend}
+          resendStatus={resendStatus}
+          resendingEmail={resendingEmail}
+          resendEmail={resendEmail}
+        />
+      </ScrollView>
     </MainContainer>
   );
 };

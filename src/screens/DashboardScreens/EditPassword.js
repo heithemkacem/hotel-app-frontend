@@ -52,7 +52,7 @@ const EditPassword = ({ navigation }) => {
   };
   return (
     <View>
-      <ScrollView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <Formik
           initialValues={{
             oldPassword: "",
