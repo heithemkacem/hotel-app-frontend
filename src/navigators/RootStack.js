@@ -7,6 +7,8 @@ import EmailVerification from "../screens/EmailVerification";
 import ForgotPassword from "../screens/ForgotPassword";
 import ResetPassword from "../screens/ResetPassword";
 import Dashboard from "../screens/Dashboard";
+import ClientDashboard from "./../screens/ClientDashboard";
+import HotelDashboard from "./../screens/HotelDashboard";
 import HomePage from "../screens/HomePage";
 import Settings from "../screens/DashboardScreens/Settings";
 import EditPassword from "../screens/DashboardScreens/EditPassword";
@@ -87,7 +89,54 @@ const RootStack = () => {
                 ),
               }}
             />
-
+            <Stack.Screen
+              name="ClientDashboard"
+              //passing the user and the dahsboard component to the component prop inside a protected route
+              component={ClientDashboard}
+              options={{
+                headerLeft: () => null,
+                headerTitle: t("common:ClientDashboard"),
+                //logout button
+                headerRight: () => (
+                  <Pressable
+                    onPress={() => {
+                      //logout
+                      store.dispatch(Logout());
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="logout"
+                      size={25}
+                      color="black"
+                    />
+                  </Pressable>
+                ),
+              }}
+            />
+            <Stack.Screen
+              name="HotelDashboard"
+              //passing the user and the dahsboard component to the component prop inside a protected route
+              component={HotelDashboard}
+              options={{
+                headerLeft: () => null,
+                headerTitle: t("common:HotelDashboard"),
+                //logout button
+                headerRight: () => (
+                  <Pressable
+                    onPress={() => {
+                      //logout
+                      store.dispatch(Logout());
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="logout"
+                      size={25}
+                      color="black"
+                    />
+                  </Pressable>
+                ),
+              }}
+            />
             <Stack.Screen
               name="Settings"
               component={Settings}

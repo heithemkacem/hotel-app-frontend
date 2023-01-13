@@ -20,22 +20,25 @@ const Dashboard = ({ navigation }) => {
   ]);
 
   return (
-    <FlatGrid
-      itemDimension={130}
-      data={items}
-      style={styles.gridView}
-      // staticDimension={300}
-      // fixed
-      spacing={10}
-      renderItem={({ item }) => (
-        <View style={[styles.itemContainer]}>
-          <Text style={styles.itemName} onPress={() => moveTo(item.page)}>
-            {t(item.name)}
-          </Text>
-          <ImgComponent src={item.img} onPress={() => moveTo(item.page)} />
-        </View>
-      )}
-    />
+    <>
+      <Text>Dashboard Client</Text>
+      <FlatGrid
+        itemDimension={130}
+        data={items}
+        style={styles.gridView}
+        // staticDimension={300}
+        // fixed
+        spacing={10}
+        renderItem={({ item }) => (
+          <View style={[styles.itemContainer]}>
+            <Text style={styles.itemName} onPress={() => moveTo(item.page)}>
+              {t(item.name)}
+            </Text>
+            <ImgComponent src={item.img} onPress={() => moveTo(item.page)} />
+          </View>
+        )}
+      />
+    </>
   );
 };
 

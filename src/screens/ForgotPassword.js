@@ -4,7 +4,7 @@ import RegularText from "../components/texts/RegularText";
 import StyledTextInput from "../components/inputs/StyledTextInput";
 import { Formik } from "formik";
 import RegularButton from "../components/buttons/RegularButton";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../components/colors";
 import IconHeader from "../components/icons/IconHeader";
 import PressableText from "../components/texts/PressableText";

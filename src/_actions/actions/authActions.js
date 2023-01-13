@@ -33,7 +33,14 @@ export const LoginAction =
               text1: "Success",
               text2: t("common:Welcome"),
             });
-            moveTo("Dashboard");
+            console.log(response.data.whoami);
+            if (response.data.whoami === "Admin") {
+              moveTo("Dashboard");
+            } else if (response.data.whoami === "Hotel") {
+              moveTo("HotelDashboard");
+            } else {
+              moveTo("ClientDashboard");
+            }
           } else if (response.data.status === "Verify") {
             setSubmitting(false);
             moveTo("EmailVerification", {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../components/colors";
 const { white, black, accent } = colors;
 // custom components

@@ -22,13 +22,6 @@ export default function App() {
       if (decode.exp > currentDate) {
         store.dispatch(Logout());
       }
-      return (
-        <Provider store={store}>
-          <RootStack />
-          <StatusBar style="auto" />
-          <Toast />
-        </Provider>
-      );
     }
   });
   return (
