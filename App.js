@@ -19,7 +19,9 @@ export default function App() {
       store.dispatch(setUser(decode));
       setAuth(token);
       const currentDate = Date.now() / 1000;
-      if (decode.exp > currentDate) {
+      console.log(currentDate);
+      console.log(decode.exp);
+      if (decode.exp < currentDate) {
         store.dispatch(Logout());
       }
     }

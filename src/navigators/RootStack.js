@@ -12,6 +12,7 @@ import HotelDashboard from "./../screens/HotelDashboard";
 import HomePage from "../screens/HomePage";
 import Settings from "../screens/DashboardScreens/Settings";
 import EditPassword from "../screens/DashboardScreens/EditPassword";
+import CreateHotel from "../screens/DashboardScreens/CreateHotel";
 //!Other imports
 import { colors } from "../components/colors";
 import { NavigationContainer } from "@react-navigation/native";
@@ -148,6 +149,11 @@ const RootStack = () => {
               name="EditPassword"
               component={EditPassword}
               options={{ headerTitle: t("common:EditPassword") }}
+            />
+            <Stack.Screen
+              name="CreateHotel"
+              component={CreateHotel}
+              options={{ headerTitle: t("common:CreateHotel") }}
             />
           </>
         ) : (

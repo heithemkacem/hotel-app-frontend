@@ -17,6 +17,11 @@ const Dashboard = ({ navigation }) => {
       page: "Settings",
       img: require("../assets/imgDashboard/parametre.png"),
     },
+    {
+      name: "common:Create Hotel",
+      page: "CreateHotel",
+      img: require("../assets/imgDashboard/parametre.png"),
+    },
   ]);
 
   return (

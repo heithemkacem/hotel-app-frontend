@@ -13,26 +13,7 @@ const Onboarding = ({ navigation }) => {
     return i18n.changeLanguage(code);
   };
   const [showRealApp, setshowRealApp] = useState(false);
-  //  const [isFirstLauch, setIsFirstLaunch]= React.useState(null);
-  // useEffect(() => {
-  //   AsyncStorage.getItem('alreadyLaunched').then(value =>{
-  //     if(value == null){
-  //       AsyncStorage.getItem('alreadyLaunched', 'true');
-  //       setIsFirstLaunch(true);
-  //     }else{
-  //       setIsFirstLaunch(false);
-  //     }
-  //   });
 
-  // }, []);
-  //  if( isFirstLauch == null){
-  //    return null;
-  // }else if(isFirstLauch == true){
-  // return
-
-  //  }else{
-  //   return
-  //  }
   const onDone = () => {
     setshowRealApp(true);
   };

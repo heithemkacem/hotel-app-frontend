@@ -5,8 +5,8 @@ import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 const localUrl = "http://localhost:5000";
-const devUrl = "https://hotel-app-1r94.onrender.com";
-const currentUrl = localUrl;
+const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
+const currentUrl = devUrl;
 //!Login Admin
 export const LoginAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -24,9 +24,9 @@ export const LoginAction =
           } else if (response.data.status === "Success") {
             const { token } = response.data;
             setAuth(token);
-            AsyncStorage.setItem("jwt", token);
             const decode = jwt_decode(token);
             dispatch(setUser(decode));
+            AsyncStorage.setItem("jwt", token);
             setSubmitting(false);
             Toast.show({
               type: "success",
