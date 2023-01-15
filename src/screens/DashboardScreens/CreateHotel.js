@@ -8,7 +8,7 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../../components/colors";
 import PressableText from "../../components/texts/PressableText";
 import { useTranslation } from "react-i18next";
-import { SignupAction } from "../../_actions/actions/authActions";
+import { CreateHotelCall } from "../../_actions/actions/adminAction";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 const CreateHotelSchema = Yup.object().shape({
@@ -68,7 +68,7 @@ const CreateHotel = () => {
           }}
           validationSchema={CreateHotelSchema}
           onSubmit={(values, { setSubmitting }) => {
-            dispatch(SignupAction(values, setSubmitting, moveTo, t));
+            dispatch(CreateHotelCall(values, setSubmitting, moveTo, t));
           }}
         >
           {({
