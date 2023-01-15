@@ -11,8 +11,8 @@ import { useTranslation } from "react-i18next";
 import { SignupAction } from "../../_actions/actions/authActions";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-const CreateHotelSchema = Yup.object().shape({
-  hotelEmail: Yup.string()
+const SignupSchema = Yup.object().shape({
+  email: Yup.string()
     .email("Please enter a valid email address")
     .required("Please enter your email address"),
   password: Yup.string()
@@ -27,15 +27,10 @@ const CreateHotelSchema = Yup.object().shape({
     [Yup.ref("password"), null],
     "Passwords must match"
   ),
-  hotelName: Yup.string().required("Name Required"),
-  hotelAddress: Yup.string().required("Family name Required"),
-  hotelCity: Yup.string().required("Username Required"),
-  hotelStars: Yup.number().required(),
-  hotelRooms: Yup.number().required(),
-  hotelPrice: Yup.number().required(),
-  hotelDescription: Yup.string().required(),
-  hotelImage: Yup.string().required(),
-  hotelPhone: Yup.number().required(),
+  firstName: Yup.string().required("Name Required"),
+  lastName: Yup.string().required("Family name Required"),
+  username: Yup.string().required("Username Required"),
+  phone: Yup.number().required("Phone Required"),
 });
 const CreateHotel = () => {
   const { black } = colors;
@@ -53,20 +48,15 @@ const CreateHotel = () => {
         </RegularText>
         <Formik
           initialValues={{
-            hotelEmail: "", //
-            password: "", //
-            confirmPassword: "", //
-            hotelName: "", //
-            hotelAddress: "",
-            hotelCity: "", //
-            hotelStars: "", //
-            hotelRooms: "", //
-            hotelPrice: "", //
-            hotelDescription: "", //
-            hotelImage: "", //
-            hotelPhone: "", //
+            username: "",
+            firstName: "",
+            lastName: "",
+            phone: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
           }}
-          validationSchema={CreateHotelSchema}
+          validationSchema={SignupSchema}
           onSubmit={(values, { setSubmitting }) => {
             dispatch(SignupAction(values, setSubmitting, moveTo, t));
           }}
@@ -84,123 +74,63 @@ const CreateHotel = () => {
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="account"
-                label={t("common:HotelName")}
-                placeholder={t("common:EnterHotelName")}
+                label={t("common:Username")}
+                placeholder={t("common:EnterUserName")}
                 autoCapitalize="none"
-                onChangeText={handleChange("hotelName")}
-                onBlur={handleBlur("hotelName")}
+                onChangeText={handleChange("username")}
+                onBlur={handleBlur("username")}
                 style={{ marginBottom: 15 }}
-                value={values.hotelName}
-                errors={touched.hotelName && errors.hotelName}
+                value={values.username}
+                errors={touched.username && errors.username}
               />
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="account"
-                label={t("common:hotelCity")}
-                placeholder={t("common:hotelCity")}
+                label={t("common:Name")}
+                placeholder={t("common:EnterName")}
                 autoCapitalize="none"
-                onChangeText={handleChange("hotelCity")}
-                onBlur={handleBlur("hotelCity")}
+                onChangeText={handleChange("firstName")}
+                onBlur={handleBlur("firstName")}
                 style={{ marginBottom: 15 }}
-                value={values.hotelCity}
-                errors={touched.hotelCity && errors.hotelCity}
+                value={values.firstName}
+                errors={touched.firstName && errors.firstName}
               />
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="account"
-                label={t("common:hotelStars")}
-                placeholder={t("common:EnterhotelStars")}
+                label={t("common:FamilyName")}
+                placeholder={t("common:EnterFamillyName")}
                 autoCapitalize="none"
-                onChangeText={handleChange("hotelStars")}
-                onBlur={handleBlur("hotelStars")}
+                onChangeText={handleChange("lastName")}
+                onBlur={handleBlur("lastName")}
                 style={{ marginBottom: 15 }}
-                value={values.hotelStars}
-                errors={touched.hotelStars && errors.hotelStars}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:hotelAddress")}
-                placeholder={t("common:EnterhotelAdress")}
-                autoCapitalize="none"
-                onChangeText={handleChange("hotelAddress")}
-                onBlur={handleBlur("hotelAddress")}
-                style={{ marginBottom: 15 }}
-                value={values.hotelAddress}
-                errors={touched.hotelAddress && errors.hotelAddress}
+                value={values.lastName}
+                errors={touched.lastName && errors.lastName}
               />
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="email"
-                label={t("common:hotelEmail")}
-                placeholder={t("common:enterhotelEmail")}
+                label={t("common:email")}
+                placeholder={t("common:enterEmail")}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                onChangeText={handleChange("hotelEmail")}
-                onBlur={handleBlur("hotelEmail")}
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
                 style={{ marginBottom: 15 }}
-                value={values.hotelEmail}
-                errors={touched.hotelEmail && errors.hotelEmail}
+                value={values.email}
+                errors={touched.email && errors.email}
               />
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="phone"
-                label={t("common:hotelPhone")}
+                label={t("common:PhoneNumber")}
                 placeholder={t("common:EnterPhoneNumber")}
                 autoCapitalize="none"
-                onChangeText={handleChange("hotelPhone")}
-                onBlur={handleBlur("hotelPhone")}
+                onChangeText={handleChange("phone")}
+                onBlur={handleBlur("phone")}
                 style={{ marginBottom: 15 }}
-                value={values.hotelPhone}
-                errors={touched.hotelPhone && errors.hotelPhone}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:hotelRooms")}
-                placeholder={t("common:EnterhotelRooms")}
-                autoCapitalize="none"
-                onChangeText={handleChange("hotelRooms")}
-                onBlur={handleBlur("hotelRooms")}
-                style={{ marginBottom: 15 }}
-                value={values.hotelRooms}
-                errors={touched.hotelRooms && errors.hotelRooms}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:hotelPrice")}
-                placeholder={t("common:EnterhotelPrice")}
-                autoCapitalize="none"
-                onChangeText={handleChange("hotelPrice")}
-                onBlur={handleBlur("hotelPrice")}
-                style={{ marginBottom: 15 }}
-                value={values.hotelPrice}
-                errors={touched.hotelPrice && errors.hotelPrice}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:hotelDescription")}
-                placeholder={t("common:EnterhotelDescription")}
-                autoCapitalize="none"
-                onChangeText={handleChange("hotelDescription")}
-                onBlur={handleBlur("hotelDescription")}
-                style={{ marginBottom: 15 }}
-                value={values.hotelDescription}
-                errors={touched.hotelDescription && errors.hotelDescription}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:hotelImage")}
-                placeholder={t("common:EnterhotelImage")}
-                autoCapitalize="none"
-                onChangeText={handleChange("hotelImage")}
-                onBlur={handleBlur("hotelImage")}
-                style={{ marginBottom: 15 }}
-                value={values.hotelImage}
-                errors={touched.hotelImage && errors.hotelImage}
+                value={values.phone}
+                errors={touched.phone && errors.phone}
               />
               <StyledTextInput
                 language={selectedLanguageCode}
