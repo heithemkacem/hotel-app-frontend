@@ -55,7 +55,11 @@ const Hotels = ({ navigation }) => {
         }
       >
         <View>
-          {data.hotels?.length !== 0 ? (
+          {data.hotels?.length === 0 ? (
+            <Text style={styles.titleHotels}>
+              {t("common:No hotels found")}
+            </Text>
+          ) : (
             data.hotels?.map((hotel, index) => (
               <Pressable
                 key={index}
@@ -98,10 +102,6 @@ const Hotels = ({ navigation }) => {
                 </Card>
               </Pressable>
             ))
-          ) : (
-            <Text style={styles.titleHotels}>
-              {t("common:No hotels found")}
-            </Text>
           )}
         </View>
       </ScrollView>
