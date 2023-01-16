@@ -21,10 +21,7 @@ export const CreateHotelCall =
             });
           } else if (response.data.status === "Success") {
             setSubmitting(false);
-            moveTo("EmailVerification", {
-              id: response.data.id,
-              email: response.data.email,
-            });
+            moveTo("Dashboard");
             //make the error ""
             Toast.show({
               type: "success",

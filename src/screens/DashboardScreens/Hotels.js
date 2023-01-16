@@ -55,16 +55,13 @@ const Hotels = ({ navigation }) => {
         }
       >
         <View>
-          {data.hotels?.length === 0 ? (
-            <Text style={styles.titleHotels}>
-              {t("common:No hotels found")}
-            </Text>
-          ) : (
+          {data.hotels?.length !== 0 ? (
             data.hotels?.map((hotel, index) => (
               <Pressable
                 key={index}
                 onPress={() => moveTo("ModifyHotel", { id: hotel._id })}
               >
+                {console.log(hotel.hotelImage)}
                 <Card
                   key={index}
                   style={
@@ -102,6 +99,10 @@ const Hotels = ({ navigation }) => {
                 </Card>
               </Pressable>
             ))
+          ) : (
+            <Text style={styles.titleHotels}>
+              {t("common:No hotels found")}
+            </Text>
           )}
         </View>
       </ScrollView>
