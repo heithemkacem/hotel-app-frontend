@@ -37,7 +37,7 @@ const CreateHotelSchema = Yup.object().shape({
   hotelImage: Yup.string().required(),
   hotelPhone: Yup.number().required(),
 });
-const CreateHotel = () => {
+const CreateHotel = ({ navigation }) => {
   const { black, primary } = colors;
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -246,13 +246,6 @@ const CreateHotel = () => {
                   ></ActivityIndicator>
                 </RegularButton>
               )}
-
-              <PressableText
-                style={{ paddingTop: 15 }}
-                onPress={() => moveTo("Login")}
-              >
-                {t("common:credential")}
-              </PressableText>
             </>
           )}
         </Formik>
