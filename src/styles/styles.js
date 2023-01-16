@@ -1,34 +1,12 @@
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
+  //Slider
   container: {
     paddingLeft: 20,
     paddingRight: 20,
     top: 70,
   },
-  titleAr: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "right",
-  },
-  titleFr: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "left",
-  },
-  labelAr: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "right",
-    fontWeight: "bold",
-  },
-  labelFr: {
-    position: "relative",
-    top: 22.5,
-    fontSize: 13,
-    textAlign: "left",
-    fontWeight: "bold",
-  },
+
   containerOnBoarding: {
     flex: 1,
     backgroundColor: "#E1251B",
@@ -90,6 +68,7 @@ export const styles = StyleSheet.create({
     paddingTop: 30,
     lineHeight: 24,
   },
+  //RootStack
   containerRootStack: {
     backgroundColor: "#fff",
     display: "flex",
@@ -98,6 +77,7 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: 120,
   },
+  //Card
   title: {
     color: "#444",
     fontWeight: "600",
@@ -114,14 +94,7 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#E1251B",
   },
-  containerEditPassword: {
-    paddingLeft: 20,
-    paddingRight: 20,
-    top: 100,
-  },
-  textInputView: {
-    marginBottom: 30,
-  },
+  //TextInputs
   textInput: {
     backgroundColor: "#f6f6f8",
     top: 10,
@@ -142,34 +115,7 @@ export const styles = StyleSheet.create({
     textTransform: "none",
     color: "white",
   },
-
-  containerSettings: {
-    paddingTop: 60,
-    paddingHorizontal: 16,
-    backgroundColor: "#fff",
-  },
-  rowSettings: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  titleSettings: {
-    color: "#444",
-    fontWeight: "600",
-  },
-  buttonContainerSettings: {
-    marginTop: 10,
-  },
-  textSettings: {
-    fontSize: 14,
-    color: "#000",
-  },
-  selectedTextSettings: {
-    marginLeft: 5,
-    fontSize: 14,
-    fontWeight: "600",
-    color: "tomato",
-  },
+  //Settings
   textStyleSettings: {
     color: "#E1251B",
     fontWeight: "700",
@@ -213,6 +159,7 @@ export const styles = StyleSheet.create({
     top: 10,
     marginTop: 16,
   },
+  //Dashboards
   gridView: {
     marginTop: 10,
     flex: 1,
@@ -233,8 +180,48 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  //HotelsPage
   Loading: {
     flex: 1,
     justifyContent: "center",
+  },
+  titleHotels: {
+    color: "#000",
+    textAlign: "center",
+    fontWeight: "700",
+    fontSize: 16,
+    paddingTop: 20,
+    marginEnd: 10,
+  },
+  lastCardView: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 20,
+    padding: 35,
+    marginBottom: "25%",
+  },
+  cardView: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 20,
+    padding: 35,
+  },
+  TextHotels: {
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  DescriptionTextHotels: {
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 15,
   },
 });

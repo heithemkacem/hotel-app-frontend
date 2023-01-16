@@ -38,7 +38,7 @@ const CreateHotelSchema = Yup.object().shape({
   hotelPhone: Yup.number().required(),
 });
 const CreateHotel = () => {
-  const { black } = colors;
+  const { black, primary } = colors;
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
@@ -53,18 +53,18 @@ const CreateHotel = () => {
         </RegularText>
         <Formik
           initialValues={{
-            hotelEmail: "", //
-            password: "", //
-            confirmPassword: "", //
-            hotelName: "", //
+            hotelEmail: "",
+            password: "",
+            confirmPassword: "",
+            hotelName: "",
             hotelAddress: "",
-            hotelCity: "", //
-            hotelStars: "", //
-            hotelRooms: "", //
-            hotelPrice: "", //
-            hotelDescription: "", //
-            hotelImage: "", //
-            hotelPhone: "", //
+            hotelCity: "",
+            hotelStars: "",
+            hotelRooms: "",
+            hotelPrice: "",
+            hotelDescription: "",
+            hotelImage: "",
+            hotelPhone: "",
           }}
           validationSchema={CreateHotelSchema}
           onSubmit={(values, { setSubmitting }) => {

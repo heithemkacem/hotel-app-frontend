@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components/native";
 const StyledView = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   margin-top: 15px;
 `;
