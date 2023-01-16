@@ -6,7 +6,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 const localUrl = "http://localhost:5000";
 const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = localUrl; //!Login Admin
+const currentUrl = devUrl;
+//!Login Admin
 export const LoginAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {
