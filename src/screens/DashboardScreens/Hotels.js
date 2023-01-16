@@ -13,7 +13,7 @@ import {
 import { Card } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { SearchHotels } from "../../_actions/actions/adminAction";
+import { SearchHotels } from "../../_actions/actions/hotelAction";
 import { styles } from "./../../styles/styles";
 import RowContainer from "../../components/containers/RownContainer";
 const dimensions = Dimensions.get("window");
