@@ -1,7 +1,7 @@
 import axios from "axios";
-const localUrl = "http://localhost:5000";
+const localUrl = "http://192.168.1.128:5000";
 const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 import Toast from "react-native-toast-message";
 
 //!Signup User
@@ -44,6 +44,38 @@ export const CreateHotelCall =
         type: "error",
         text1: t("common:Error"),
         text2: t(error.message),
+      });
+    }
+  };
+  export const listUsersAction = (setData, t, setIsloading) => async (dispatch) => {
+    try {
+      //Call Backend
+      setIsloading(true);
+      await axios
+        .get(`${currentUrl}/admin/users`)
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          Toast.show(t(error.message), {
+            duration: 10000,
+            position: Toast.positions.BOTTOM,
+            shadow: true,
+            animation: true,
+            hideOnPress: true,
+            backgroundColor: "red",
+          });
+        })
+        .finally(() => setIsloading(false));
+    } catch (error) {
+      Toast.show(t(error.message), {
+        duration: 10000,
+        position: Toast.positions.BOTTOM,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        backgroundColor: "red",
       });
     }
   };

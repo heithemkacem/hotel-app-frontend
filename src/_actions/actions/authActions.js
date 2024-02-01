@@ -1,12 +1,65 @@
 import axios from "axios";
-import { SET_USER } from "../types";
+import { setRole,setUser} from "../types";
 import jwt_decode from "jwt-decode";
-import { setAuth } from "../../util/setAuth";
+
+import {setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CommonActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Toast from "react-native-toast-message";
-const localUrl = "http://localhost:5000";
+const localUrl = "http://192.168.1.128:5000";
 const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
+//otp find hotel 
+
+export const findHotelOtpAction =
+  (otp, setSubmitting, moveTo, t) => async (dispatch) => {
+    try {
+      //Call Backend
+      await axios
+        .post(`${currentUrl}/hotel/findHotelOtp`, otp)
+        .then(async (response) => {
+          if (response.data.status === "Failed") {
+            setSubmitting(false);
+            Toast.show({
+              type: "error",
+              text1: t("common:Error"),
+              text2: t(response.data.message),
+            });
+          } else if (response.data.status === "Success") {
+            setSubmitting(false);
+
+            Toast.show({
+              type: "success",
+              text1: t("common:Success"),
+              text2: t("common:verificationotpsent"),
+            });
+
+            moveTo("ClientDashboard", {
+              id: response.data.id,
+              otp:otp,
+              email: response.data.email,
+            });
+          }
+        })
+        .catch((error) => {
+          setSubmitting(false);
+          Toast.show({
+            type: "error",
+            text1: t("common:Error"),
+            text2: t(error.message),
+          });
+        });
+    } catch (error) {
+      setSubmitting(false);
+      Toast.show({
+        type: "error",
+        text1: t("common:Error"),
+        text2: t(error.message),
+      });
+    }
+  };
+
 //!Login Admin
 export const LoginAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -23,23 +76,32 @@ export const LoginAction =
             });
           } else if (response.data.status === "Success") {
             const { token } = response.data;
+           ;
             setAuth(token);
             const decode = jwt_decode(token);
-            dispatch(setUser(decode));
+            //dispatch(setUser(decode));
+           //dispatch(setRole(role));
+           dispatch({ type: setUser, payload: decode });
+           dispatch({ type: setRole, payload: response.data.whoami });
+       // dispatch({ type: setRole, payload: role });
             AsyncStorage.setItem("jwt", token);
             setSubmitting(false);
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:Welcome"),
             });
-            console.log(response.data.whoami);
-            if (response.data.whoami === "Admin") {
+            console.log('responseeee11111',response.data);
+            console.log('responseeee',response.data.whoami);
+            const role= response.data.whoami;
+                       if (response.data.whoami === "Admin") {
               moveTo("Dashboard");
+              console.log("hh",response.data.role);
             } else if (response.data.whoami === "Hotel") {
               moveTo("HotelDashboard");
             } else {
-              moveTo("ClientDashboard");
+              moveTo("Clientotp");
+              //moveTo("ClientDashboard");
             }
           } else if (response.data.status === "Verify") {
             setSubmitting(false);
@@ -66,7 +128,19 @@ export const LoginAction =
       });
     }
   };
-
+  const showAsyncStorage = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const items = await AsyncStorage.multiGet(keys);
+      console.log("AsyncStorage Content:", items);
+    } catch (error) {
+      console.error("Error reading AsyncStorage:", error);
+    }
+  };
+  
+  // Call the function to log AsyncStorage content
+  showAsyncStorage();
+  
 //!Signup User
 export const SignupAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -91,7 +165,7 @@ export const SignupAction =
             //make the error ""
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:SignupSuccess"),
             });
           }
@@ -134,7 +208,7 @@ export const ForgotPasswordAction =
 
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:verificationemailsent"),
             });
 
@@ -188,7 +262,7 @@ export const ResetPasswordAction =
 
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:Password_changed"),
             });
 
@@ -244,7 +318,7 @@ export const ResendEmailAction =
 
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:OTP_has_been_resent"),
             });
           }
@@ -295,7 +369,7 @@ export const VerifyOTPAction =
 
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:Your_account_has_been_verified"),
             });
             moveTo("Login");
@@ -337,7 +411,7 @@ export const VerifyOTPlModifyPasswordAction =
 
             Toast.show({
               type: "success",
-              text1: "Success",
+              text1: t("common:Success"),
               text2: t("common:You_can_set_your_new_password_now"),
             });
           }
@@ -405,14 +479,39 @@ export const EditPasswordAction =
   };
 
 //!Logout User
+// Inside your Logout action
+// export const Logout = ({ navigation }) => async (dispatch) => {
+//   await AsyncStorage.removeItem("jwt");
+//   await dispatch({
+//     type: SET_USER,
+//     payload: {},
+//   });
+
+//   // Check if navigation is available before dispatching actions
+//   if (navigation && navigation.dispatch) {
+//     navigation.dispatch(
+//       CommonActions.reset({
+//         index: 0,
+//         routes: [{ name: 'Onboarding' }] // or 'Login' screen
+//       })
+//     );
+//   } else {
+//     console.error("Navigation is not available.");
+//   }
+// };
+
 export const Logout = () => async (dispatch) => {
   await AsyncStorage.removeItem("jwt");
   await dispatch({
-    type: SET_USER,
+    type: setUser,
     payload: {},
   });
 };
-export const setUser = (decode) => ({
-  type: SET_USER,
+/*export const setUser = (decode) => ({
+  type: setUser,
   payload: decode,
 });
+export const setRole = (decode) => ({
+  type: setRole,
+  payload: decode,
+});*/

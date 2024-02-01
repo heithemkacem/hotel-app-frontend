@@ -5,8 +5,8 @@ import { ScreenHeight } from "../shared";
 import { Image } from "react-native";
 const IconBg = styled.View`
   display: flex;
-  width: ${ScreenHeight * 0.15}px;
-  height: ${ScreenHeight * 0.13}px;
+  width: ${ScreenHeight * 0.25}px;
+  height: ${ScreenHeight * 0.18}px;
   justify-content: center;
   align-items: center;
   align-self: center;
@@ -18,7 +18,7 @@ const ImgComponent = ({ src, ...props }) => {
   return (
     <StyledPressable {...props} onPress={props.onPress}>
       <IconBg style={{ ...props.style }}>
-        <Image style={{ width: 100, height: 100 }} source={src} />
+        <Image style={{ width: 170, height: 100 }} source={src} />
       </IconBg>
     </StyledPressable>
   );

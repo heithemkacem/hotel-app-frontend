@@ -13,25 +13,37 @@ const Dashboard = ({ navigation }) => {
   //context
   const [items, setItems] = React.useState([
     {
-      name: "common:Settings",
-      page: "Settings",
-      img: require("../assets/imgDashboard/parametre.png"),
-    },
-    {
-      name: "common:Create Hotel",
-      page: "CreateHotel",
-      img: require("../assets/imgDashboard/parametre.png"),
-    },
-    {
       name: "common:Hotels",
       page: "Hotels",
-      img: require("../assets/imgDashboard/parametre.png"),
+      img: require("../assets/imgDashboard/hotel.png"),
+    },
+    {
+      name: "common:Clients",
+      page: "Clients",
+      img: require("../assets/imgDashboard/client.png"),
+    }, 
+     
+    {
+      name: "common:CreateHotel",
+      page: "CreateHotel",
+      img: require("../assets/imgDashboard/create.png"),
+    },
+   
+    {
+      name: "common:Notifications",
+      page: "Notifications",
+      img: require("../assets/imgDashboard/notif.png"),
+    },
+    {
+      name: "common:Settings",
+      page: "Settings",
+      img: require("../assets/imgDashboard/setting.png"),
     },
   ]);
 
   return (
     <>
-      <Text>Dashboard Admin</Text>
+    
 
       <FlatGrid
         itemDimension={130}

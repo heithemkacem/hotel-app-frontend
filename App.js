@@ -20,7 +20,7 @@ export default function App() {
       setAuth(token);
       const currentDate = Date.now() / 1000;
       console.log(currentDate);
-      console.log(decode.exp);
+      console.log('dec',decode.exp);
       if (decode.exp < currentDate) {
         store.dispatch(Logout());
       }

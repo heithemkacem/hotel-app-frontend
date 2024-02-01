@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../components/colors";
+const { accent,black ,primary} = colors;
 export const styles = StyleSheet.create({
   //Slider
   container: {
@@ -9,7 +11,7 @@ export const styles = StyleSheet.create({
 
   containerOnBoarding: {
     flex: 1,
-    backgroundColor: "#E1251B",
+    backgroundColor: "#BF1FB1",
     padding: 10,
   },
 
@@ -92,7 +94,7 @@ export const styles = StyleSheet.create({
     marginLeft: 25,
     fontSize: 12,
     fontWeight: "600",
-    color: "#E1251B",
+    color: "#BF1FB1",
   },
   //TextInputs
   textInput: {
@@ -117,7 +119,7 @@ export const styles = StyleSheet.create({
   },
   //Settings
   textStyleSettings: {
-    color: "#E1251B",
+    color: "#BF1FB1",
     fontWeight: "700",
     fontSize: 16,
     marginLeft: 27,
@@ -126,7 +128,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonSettings: {
-    backgroundColor: "#E1251B",
+    backgroundColor: "#BF1FB1",
     borderRadius: 30,
     width: "90%",
     marginLeft: 20,
@@ -185,6 +187,20 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  searchInput1: {
+    backgroundColor: "white",
+    padding: 15,
+    marginTop:20,
+    border:10,
+    width:350,
+    marginLeft:15,
+    borderRadius: 10,
+    shadowColor: accent,
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 5, height: 5 },
+    elevation: 20,
+    },
+    
   titleHotels: {
     color: "#000",
     textAlign: "center",
@@ -193,7 +209,8 @@ export const styles = StyleSheet.create({
     paddingTop: 20,
     marginEnd: 10,
   },
-  lastCardView: {
+  lastCardView1: {
+    marginTop:40,
     flex: 1,
     height: "100%",
     justifyContent: "space-around",
@@ -203,7 +220,8 @@ export const styles = StyleSheet.create({
     padding: 35,
     marginBottom: "25%",
   },
-  cardView: {
+  cardView1: {
+    marginTop:50,
     flex: 1,
     height: "100%",
     justifyContent: "space-around",
@@ -224,4 +242,202 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 15,
   },
+  // chatscreen
+  containerChatScreen: {
+    flex: 1,
+    backgroundColor: "white",
+   
+  },
+  chatContainer: {
+    flexGrow: 1,
+    padding: 16,
+  },
+  messageContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 8,
+    maxWidth: "70%",
+  },
+  oddMessage: {
+    alignSelf: "flex-start",
+    backgroundColor: "#3D3B40",
+ 
+  },
+  evenMessage: {
+    alignSelf: "flex-end",
+   backgroundColor: "#525CEB",
+  
+  },
+  messageText: {
+    fontSize: 16,
+    color: "white",
+    marginLeft: 10,
+    paddingRight:30,
+  },
+  userIcon: {
+    marginRight: 10,
+    color:"white",
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    //borderTopWidth: 1,
+    borderTopColor: "black",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    marginBottom:20,
+  },
+  input: {
+    flex: 1,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginRight: 10,
+    color: 'black',
+  },
+  sendButton: {
+    backgroundColor: accent,
+    borderRadius: 8,
+    height: 45,
+    display:'flex',
+    alignItems:'center',
+  
+    padding:15,
+  },
+  sendButtonText: {
+    color: "white",
+    fontSize: 16,
+    //textAlign: "center",
+  },
+  // clientscreen
+  title: {
+    flexDirection: "row",
+    alignItems: "center",
+   
+    marginBottom: 16,
+  },
+  titleText: {
+    fontSize: 20,
+    color: black,
+  },
+  titleIcon: {
+    marginRight: 10,
+    color: accent,
+  },
+containerClient: {
+flex: 1,
+backgroundColor:"#6B720",
+padding: 20,
+},
+cardView: {
+  marginTop:50,
+  marginVertical: 10,
+  borderRadius: 15,
+  elevation: 3,
+  backgroundColor: '#ffffff',
+  shadowColor: accent,
+  shadowOpacity: 0.3,
+  shadowRadius: 5,
+  shadowOffset: { width: 1, height: 2 },
+  borderWidth: 1,
+  borderColor:'white', 
+},
+
+lastCardView: {
+  marginVertical: 10,
+  borderRadius: 15,
+  elevation: 3,
+  backgroundColor: '#ffffff',
+  shadowColor: accent,
+  shadowOpacity: 0.3,
+  shadowRadius: 5,
+  shadowOffset: { width: 0, height: 3 },
+  borderWidth: 1,
+  borderColor: 'white', // You can change the border color as needed
+},
+
+
+
+textHotels: {
+fontSize: 16,
+
+marginBottom: 8,
+color: "#333",
+},
+descriptionTextHotels1: {
+fontSize: 16,
+marginBottom: 5,
+marginLeft:20,
+color: black,
+},
+
+loading: {
+flex: 1,
+justifyContent: "center",
+alignItems: "center",
+},
+searchInput: {
+  backgroundColor: "white",
+  padding: 20,
+  marginTop:20,
+  border:10,
+  borderRadius: 10,
+  shadowColor: accent,
+  shadowOpacity: 0.4,
+  shadowOffset: { width: 5, height: 5 },
+  elevation: 20,
+  },
+
+
+
+// Notifications
+containerNotifi: {
+  flex: 1,
+  backgroundColor: "white",
+  padding: 16,
+},
+markAsUnreadButton: {
+  flexDirection: "row",
+  alignItems: "center",
+ 
+  marginBottom: 16,
+},
+markAsUnreadIcon: {
+  marginRight: 10,
+  color: accent,
+},
+markAsUnreadText: {
+  fontSize: 16,
+  color: black,
+},
+notificationList: {
+  flexGrow: 1,
+},
+notificationContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  padding: 12,
+  borderRadius: 8,
+  marginVertical: 8,
+  backgroundColor: accent,
+},
+dot: {
+  width: 8,
+  height: 8,
+  borderRadius: 4,
+  backgroundColor: "white", 
+  marginLeft: 150,
+},
+notificationText: {
+  fontSize: 16,
+  color: "white",
+},
+icon: {
+  marginRight: 10,
+  color: "white",
+},
 });

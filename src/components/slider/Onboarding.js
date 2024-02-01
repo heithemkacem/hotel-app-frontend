@@ -81,21 +81,21 @@ const Onboarding = ({ navigation }) => {
         data={[
           {
             key: "s1",
-            backgroundColor: "#E1251B",
+            backgroundColor: "#BF1FB1",
             image: require("../../assets/slider-image/bienvenue.png"),
             title: t("common:SlideOneTitle"),
             subtitle: t("common:SlideOneSubtitle"),
           },
           {
             key: "s2",
-            backgroundColor: "#E1251B",
+            backgroundColor: "#BF1FB1",
             image: require("../../assets/slider-image/solution.png"),
             title: t("common:SlideTwoTitle"),
             subtitle: t("common:SlideTwoSubtitle"),
           },
           {
             key: "s3",
-            backgroundColor: "#E1251B",
+            backgroundColor: "#BF1FB1",
             image: require("../../assets/slider-image/maps.png"),
             title: t("common:SlideThreeTitle"),
             subtitle: t("common:SlideThreeSubtitle"),

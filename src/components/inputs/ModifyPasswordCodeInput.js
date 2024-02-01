@@ -31,7 +31,7 @@ const CodeInputText = styled.View`
   min-width: 15px;
   padding: 12px;
   border-bottom-width: 3px;
-  border-color: ${secondary};
+  border-color: ${accent};
 `;
 const CodeInputInText = styled.Text`
   font-size: 22px;
