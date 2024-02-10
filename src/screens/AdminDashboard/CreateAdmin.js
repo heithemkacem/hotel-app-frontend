@@ -11,32 +11,37 @@ import { useTranslation } from "react-i18next";
 import { SignupAction } from "../../_actions/actions/authActions";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-const SignupSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter a valid email address")
-    .required("Please enter your email address"),
-  password: Yup.string()
-    .required("Required")
-    .min(8, "Too Short!")
-    .max(24, "Too Long!")
-    .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    .matches(/(?=.*[a-z])/, "Password must contain a lowercase letter.")
-    .matches(/(?=.*[A-Z])/, "Password must contain a uppercase letter.")
-    .matches(/(?=.*[!@#$%^&*])/, "Password must contain a special character."),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-  firstName: Yup.string().required("Name Required"),
-  lastName: Yup.string().required("Family name Required"),
-  username: Yup.string().required("Username Required"),
-  phone: Yup.number().required("Phone Required"),
-});
+
 const CreateHotel = () => {
   const { black } = colors;
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t("common:Pleaseenteravalidemailaddress"))
+      .required(t("common:Pleaseenteryouremailaddress")),
+    password: Yup.string()
+      .required(t("common:Required"))
+      .min(8, t("common:TooShort"))
+      .max(24, t("common:TooLong"))
+      .matches(/(?=.*[0-9])/, t("common:Passwordmustcontainanumber"))
+      .matches(/(?=.*[a-z])/, t("common:Passwordmustcontainalowercaseletter"))
+      .matches(/(?=.*[A-Z])/, t("common:Passwordmustcontainauppercaseletter"))
+      .matches(
+        /(?=.*[!@#$%^&*])/,
+        t("common:Passwordmustcontainaspecialcharacter")
+      ),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      t("common:Passwordsmustmatch")
+    ),
+    firstName: Yup.string().required(t("common:NameRequired")),
+    lastName: Yup.string().required(t("common:FamilynameRequired")),
+    username: Yup.string().required(t("common:UsernameRequired")),
+    phone: Yup.number().required(t("common:PhoneRequired")),
+  });
+
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };

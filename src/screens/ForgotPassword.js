@@ -12,14 +12,15 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { ForgotPasswordAction } from "../_actions/actions/authActions";
 import * as Yup from "yup";
-const ForgetPassSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter a valid email address")
-    .required("Please enter your email address"),
-});
+
 const { primary, black } = colors;
 const ForgotPassword = ({ navigation }) => {
   const { t, i18n } = useTranslation();
+  const ForgetPassSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t("common:Pleaseenteravalidemailaddress"))
+      .required(t("common:Pleaseenteryouremailaddress")),
+  });
   const selectedLanguageCode = i18n.language;
   const dispatch = useDispatch();
   const moveTo = (screen, payLoad) => {

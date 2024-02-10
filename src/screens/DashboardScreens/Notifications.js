@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../styles/styles";
+import { useTranslation } from "react-i18next";
 
 const Notifications = () => {
   const notificationData = [
@@ -28,7 +29,7 @@ const Notifications = () => {
   const handleMarkAllAsUnread = () => {
     // Handle the logic for marking all notifications as unread
   };
-
+  const { t } = useTranslation();
   return (
     <View style={styles.containerNotifi}>
       <TouchableOpacity
@@ -41,7 +42,7 @@ const Notifications = () => {
           color="accent"
           style={styles.markAsUnreadIcon}
         />
-        <Text style={styles.markAsUnreadText}>Mark as Unread</Text>
+        <Text style={styles.markAsUnreadText}>{t("common:mark")}</Text>
       </TouchableOpacity>
       <FlatList
         showsVerticalScrollIndicator={false}

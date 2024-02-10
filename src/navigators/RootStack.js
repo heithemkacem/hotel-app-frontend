@@ -112,7 +112,7 @@ const RootStack = () => {
               name="Clients"
               component={Clients}
               options={{
-                headerTitle: "List of clients",
+                headerTitle: t("common:listofclients"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -147,7 +147,7 @@ const RootStack = () => {
               name="Settings"
               component={Settings}
               options={{
-                headerTitle: "Settings",
+                headerTitle: t("common:Settings"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -181,7 +181,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
-                headerTitle: "Notification",
+                headerTitle: t("common:Notifications"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -214,23 +214,23 @@ const RootStack = () => {
             <Stack.Screen
               name="EditPassword"
               component={EditPassword}
-              options={{ headerTitle: "Edit Password" }}
+              options={{ headerTitle: t("common:EditPassword") }}
             />
             <Stack.Screen
               name="CreateHotel"
               component={CreateHotel}
-              options={{ headerTitle: "Create Hotel" }}
+              options={{ headerTitle: t("common:CreateHotel") }}
             />
             <Stack.Screen
               name="Hotels"
               component={Hotels}
-              options={{ headerTitle: "List of Hotels" }}
+              options={{ headerTitle: t("common:List_of_Hotels") }}
             />
             <Stack.Screen
               name="ModifyHotel"
               component={ModifyHotel}
               options={{
-                headerTitle: "Hotel Informations",
+                headerTitle: t("common:hotelinfo"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -337,7 +337,7 @@ const RootStack = () => {
               name="ModifyHotel"
               component={ModifyHotel}
               options={{
-                headerTitle: "Hotel Informations",
+                headerTitle: t("common:hotelinfo"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -371,13 +371,13 @@ const RootStack = () => {
             <Stack.Screen
               name="EditPassword"
               component={EditPassword}
-              options={{ headerTitle: "Edit Password" }}
+              options={{ headerTitle: t("common:EditPassword") }}
             />
             <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
-                headerTitle: "Settings",
+                headerTitle: t("common:Settings"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -411,7 +411,7 @@ const RootStack = () => {
               name="ChatScreen"
               component={ChatScreen}
               options={{
-                headerTitle: "Chat",
+                headerTitle: t("common:Chat"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -446,7 +446,7 @@ const RootStack = () => {
               name="Reservation"
               component={Reservation}
               options={{
-                headerTitle: "Reservation",
+                headerTitle: t("common:Reservation"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -480,7 +480,7 @@ const RootStack = () => {
               name="RoomService"
               component={RoomService}
               options={{
-                headerTitle: "Room Service",
+                headerTitle: t("common:RoomService"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -515,7 +515,7 @@ const RootStack = () => {
               name="Hotelotp"
               component={Hotelotp}
               options={{
-                headerTitle: "Your Hotel",
+                headerTitle: t("common:Yourhotel"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -549,7 +549,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
-                headerTitle: "Notifications",
+                headerTitle: t("common:Notifications"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -607,13 +607,13 @@ const RootStack = () => {
             <Stack.Screen
               name="EditPassword"
               component={EditPassword}
-              options={{ headerTitle: "Edit Password" }}
+              options={{ headerTitle: t("common:EditPassword") }}
             />
             <Stack.Screen
               name="ChatScreen"
               component={ChatScreen}
               options={{
-                headerTitle: "Chats",
+                headerTitle: t("common:Chat"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -648,7 +648,7 @@ const RootStack = () => {
               name="ClientHotel"
               component={ClientHotel}
               options={{
-                headerTitle: "List of Clients",
+                headerTitle: t("common:listofclients"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -682,7 +682,7 @@ const RootStack = () => {
               name="Settings"
               component={Settings}
               options={{
-                headerTitle: "Settings",
+                headerTitle: t("common:Settings"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -716,7 +716,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
-                headerTitle: "Notifications",
+                headerTitle: t("common:Notifications"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -786,7 +786,7 @@ const RootStack = () => {
               name="HomePage"
               component={HomePage}
               options={{
-                headerTitle: "Home",
+                headerTitle: t("common:HomePage"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -821,7 +821,7 @@ const RootStack = () => {
               name="Signup"
               component={Signup}
               options={{
-                headerTitle: "Signup",
+                headerTitle: t("common:SignUp"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -856,7 +856,7 @@ const RootStack = () => {
               name="Login"
               component={Login}
               options={{
-                headerTitle: "Login",
+                headerTitle: t("common:Login"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -886,7 +886,7 @@ const RootStack = () => {
               name="EmailVerification"
               component={EmailVerification}
               options={{
-                headerTitle: "Email Verification",
+                headerTitle: t("common:EmailVerification"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -921,7 +921,7 @@ const RootStack = () => {
               name="ForgotPassword"
               component={ForgotPassword}
               options={{
-                headerTitle: "Forgot Password",
+                headerTitle: t("common:forgotPassword"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -956,7 +956,7 @@ const RootStack = () => {
               name="ResetPassword"
               component={ResetPassword}
               options={{
-                headerTitle: "Reset Password",
+                headerTitle: t("common:ResetPassword"),
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>

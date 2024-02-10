@@ -37,24 +37,18 @@ const ResetPassword = ({ navigation, route }) => {
   const ResetSchema = Yup.object().shape({
     newPassword: Yup.string()
       .required(t("common:EnterNouveaumotdepasse"))
-      .min(8, t("common:Too_Short"))
-      .max(24, t("common:Too_Long"))
-      .matches(/(?=.*[0-9])/, t("common:Password_must_contain_a_number"))
-      .matches(
-        /(?=.*[a-z])/,
-        t("common:Password_must_contain_a_lowercase_letter")
-      )
-      .matches(
-        /(?=.*[A-Z])/,
-        t("common:Password_must_contain_a_uppercase_letter")
-      )
+      .min(8, t("common:TooShort"))
+      .max(24, t("common:TooLong"))
+      .matches(/(?=.*[0-9])/, t("common:Passwordmustcontainanumber"))
+      .matches(/(?=.*[a-z])/, t("common:Passwordmustcontainalowercaseletter"))
+      .matches(/(?=.*[A-Z])/, t("common:Passwordmustcontainauppercaseletter"))
       .matches(
         /(?=.*[!@#$%^&*])/,
-        t("common:Password_must_contain_a_special_character")
+        t("common:Passwordmustcontainaspecialcharacter")
       ),
     confirmNewPassword: Yup.string().oneOf(
       [Yup.ref("newPassword"), null],
-      t("common:Passwords_must_match")
+      t("common:Passwordsmustmatch")
     ),
   });
   //code

@@ -28,7 +28,6 @@ const wait = (timeout) => {
 
 const Hotelotp = ({ navigation, route }) => {
   const { otp } = route.params;
-  console.log("otttttttttppp444", otp.otp);
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
@@ -128,7 +127,7 @@ const Hotelotp = ({ navigation, route }) => {
             ))
           ) : (
             <Text style={styles.titleHotels}>
-              {t("common:No hotels found")}
+              {t("common:No_hotels_found")}
             </Text>
           )}
         </View>

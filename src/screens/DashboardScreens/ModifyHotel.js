@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, FlatList, StyleSheet, ImageBackground } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { colors } from "./../../components/colors";
@@ -21,7 +27,10 @@ const ModifyHotel = ({ navigator, route }) => {
     { label: t("common:HotelName"), value: data.hotel?.hotelName },
     { label: t("common:HotelAddress"), value: data.hotel?.hotelAddress },
     { label: t("common:HotelCity"), value: data.hotel?.hotelCity },
-    { label: t("common:HotelDescription"), value: data.hotel?.hotelDescription },
+    {
+      label: t("common:HotelDescription"),
+      value: data.hotel?.hotelDescription,
+    },
     { label: t("common:HotelEmail"), value: data.hotel?.hotelEmail },
     { label: t("common:HotelPhone"), value: data.hotel?.hotelPhone },
     { label: t("common:HotelPrice"), value: data.hotel?.hotelPrice },
@@ -37,28 +46,22 @@ const ModifyHotel = ({ navigator, route }) => {
   );
 
   return (
-    <ImageBackground
-      source={require("./../../assets/hot6.jpg")}  
-      style={styles.backgroundImage}
-    >
-      <View style={styles.container}>
-      
-        <FlatList
-         showsVerticalScrollIndicator={false}
-          data={hotelData}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={renderItem}
-          style={styles.flatList}
-        />
-      </View>
-    </ImageBackground>
+    <View style={styles.container}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={hotelData}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={renderItem}
+        style={styles.flatList}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",  
+    resizeMode: "cover",
   },
   container: {
     flex: 1,
@@ -68,14 +71,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   itemContainer: {
-    flexDirection: 'row',  
-    justifyContent: 'space-between', 
-    alignItems: 'center',  
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 16,
     paddingVertical: 12,
     paddingHorizontal: 16,
-   // backgroundColor: "rgba(255, 0, 0, 0.6)",
-   backgroundColor: "rgba(191, 31, 177, 0.6)",
+    // backgroundColor: "rgba(255, 0, 0, 0.6)",
+    backgroundColor: "rgba(191, 31, 177, 0.6)",
     borderRadius: 5,
     shadowColor: accent,
     shadowOffset: {
@@ -90,13 +93,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     marginBottom: 6,
-    color: primary, 
-    
+    color: primary,
   },
   value: {
     fontSize: 16,
     color: primary,
-    
   },
 });
 

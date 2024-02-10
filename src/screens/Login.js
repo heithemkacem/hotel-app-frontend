@@ -12,12 +12,6 @@ import { useDispatch } from "react-redux";
 import { LoginAction } from "../_actions/actions/authActions";
 import * as Yup from "yup";
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Please enter a valid email address")
-    .required("Please enter your email address"),
-  password: Yup.string().required("Required"),
-});
 const { primary, black } = colors;
 
 const Login = ({ navigation }) => {
@@ -25,6 +19,13 @@ const Login = ({ navigation }) => {
   const dispatch = useDispatch();
   //Translating FR-AR
   const { t, i18n } = useTranslation();
+
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t("common:Pleaseenteravalidemailaddress"))
+      .required(t("common:Pleaseenteryouremailaddress")),
+    password: Yup.string().required(t("common:Required")),
+  });
   const selectedLanguageCode = i18n.language;
 
   //Move to an other Screen

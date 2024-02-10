@@ -11,36 +11,41 @@ import { useTranslation } from "react-i18next";
 import { CreateHotelCall } from "../../_actions/actions/adminAction";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-const CreateHotelSchema = Yup.object().shape({
-  hotelEmail: Yup.string()
-    .email("Please enter a valid email address")
-    .required("Please enter your email address"),
-  password: Yup.string()
-    .required("Required")
-    .min(8, "Too Short!")
-    .max(24, "Too Long!")
-    .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    .matches(/(?=.*[a-z])/, "Password must contain a lowercase letter.")
-    .matches(/(?=.*[A-Z])/, "Password must contain a uppercase letter.")
-    .matches(/(?=.*[!@#$%^&*])/, "Password must contain a special character."),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-  hotelName: Yup.string().required("Name Required"),
-  hotelAddress: Yup.string().required("Family name Required"),
-  hotelCity: Yup.string().required("Username Required"),
-  hotelStars: Yup.number().required(),
-  hotelRooms: Yup.number().required(),
-  hotelPrice: Yup.number().required(),
-  hotelDescription: Yup.string().required(),
-  hotelImage: Yup.string().required(),
-  hotelPhone: Yup.number().required(),
-});
 const CreateHotel = ({ navigation }) => {
   const { black, primary } = colors;
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+  const CreateHotelSchema = Yup.object().shape({
+    hotelEmail: Yup.string()
+
+      .email(t("common:Pleaseenteravalidemailaddress"))
+      .required(t("common:Pleaseenteryouremailaddress")),
+    password: Yup.string()
+      .required(t("common:Required"))
+      .min(8, t("common:TooShort"))
+      .max(24, t("common:TooLong"))
+      .matches(/(?=.*[0-9])/, t("common:Passwordmustcontainanumber"))
+      .matches(/(?=.*[a-z])/, t("common:Passwordmustcontainalowercaseletter"))
+      .matches(/(?=.*[A-Z])/, t("common:Passwordmustcontainauppercaseletter"))
+      .matches(
+        /(?=.*[!@#$%^&*])/,
+        t("common:Passwordmustcontainaspecialcharacter")
+      ),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      t("common:Passwordsmustmatch")
+    ),
+    hotelName: Yup.string().required(t("common:hotelName")),
+    hotelAddress: Yup.string().required(t("common:hotelAddress")),
+    hotelCity: Yup.string().required(t("common:hotelCity")),
+    hotelStars: Yup.number().required(t("common:hotelStars")),
+    hotelRooms: Yup.number().required(t("common:hotelRooms")),
+    hotelPrice: Yup.number().required(t("common:hotelPrice")),
+    hotelDescription: Yup.string().required(t("common:hotelDescription")),
+    hotelImage: Yup.string().required(t("common:hotelImage")),
+    hotelPhone: Yup.number().required(t("common:hotelPhone")),
+  });
+
   const selectedLanguageCode = i18n.language;
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });

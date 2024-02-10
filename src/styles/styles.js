@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../components/colors";
-const { accent,black ,primary} = colors;
+const { accent, black, primary, lightGray } = colors;
 export const styles = StyleSheet.create({
   //Slider
   container: {
@@ -190,17 +190,17 @@ export const styles = StyleSheet.create({
   searchInput1: {
     backgroundColor: "white",
     padding: 15,
-    marginTop:20,
-    border:10,
-    width:350,
-    marginLeft:15,
+    marginTop: 20,
+    border: 10,
+    width: 350,
+    marginLeft: 15,
     borderRadius: 10,
     shadowColor: accent,
     shadowOpacity: 0.4,
     shadowOffset: { width: 5, height: 5 },
     elevation: 20,
-    },
-    
+  },
+
   titleHotels: {
     color: "#000",
     textAlign: "center",
@@ -210,7 +210,7 @@ export const styles = StyleSheet.create({
     marginEnd: 10,
   },
   lastCardView1: {
-    marginTop:40,
+    marginTop: 40,
     flex: 1,
     height: "100%",
     justifyContent: "space-around",
@@ -221,7 +221,7 @@ export const styles = StyleSheet.create({
     marginBottom: "25%",
   },
   cardView1: {
-    marginTop:50,
+    marginTop: 50,
     flex: 1,
     height: "100%",
     justifyContent: "space-around",
@@ -245,12 +245,12 @@ export const styles = StyleSheet.create({
   // chatscreen
   containerChatScreen: {
     flex: 1,
-    backgroundColor: "white",
-   
+    backgroundColor: "#6B720",
   },
   chatContainer: {
     flexGrow: 1,
     padding: 16,
+    //backgroundColor: lightGray,
   },
   messageContainer: {
     flexDirection: "row",
@@ -263,22 +263,20 @@ export const styles = StyleSheet.create({
   oddMessage: {
     alignSelf: "flex-start",
     backgroundColor: "#3D3B40",
- 
   },
   evenMessage: {
     alignSelf: "flex-end",
-   backgroundColor: "#525CEB",
-  
+    backgroundColor: "#525CEB",
   },
   messageText: {
     fontSize: 16,
     color: "white",
     marginLeft: 10,
-    paddingRight:30,
+    paddingRight: 30,
   },
   userIcon: {
     marginRight: 10,
-    color:"white",
+    color: "white",
   },
   inputContainer: {
     flexDirection: "row",
@@ -287,7 +285,7 @@ export const styles = StyleSheet.create({
     borderTopColor: "black",
     paddingVertical: 12,
     paddingHorizontal: 16,
-    marginBottom:20,
+    marginBottom: 20,
   },
   input: {
     flex: 1,
@@ -297,16 +295,16 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     paddingHorizontal: 15,
     marginRight: 10,
-    color: 'black',
+    color: "black",
   },
   sendButton: {
     backgroundColor: accent,
     borderRadius: 8,
     height: 45,
-    display:'flex',
-    alignItems:'center',
-  
-    padding:15,
+    display: "flex",
+    alignItems: "center",
+
+    padding: 15,
   },
   sendButtonText: {
     color: "white",
@@ -317,7 +315,7 @@ export const styles = StyleSheet.create({
   title: {
     flexDirection: "row",
     alignItems: "center",
-   
+
     marginBottom: 16,
   },
   titleText: {
@@ -328,116 +326,112 @@ export const styles = StyleSheet.create({
     marginRight: 10,
     color: accent,
   },
-containerClient: {
-flex: 1,
-backgroundColor:"#6B720",
-padding: 20,
-},
-cardView: {
-  marginTop:50,
-  marginVertical: 10,
-  borderRadius: 15,
-  elevation: 3,
-  backgroundColor: '#ffffff',
-  shadowColor: accent,
-  shadowOpacity: 0.3,
-  shadowRadius: 5,
-  shadowOffset: { width: 1, height: 2 },
-  borderWidth: 1,
-  borderColor:'white', 
-},
-
-lastCardView: {
-  marginVertical: 10,
-  borderRadius: 15,
-  elevation: 3,
-  backgroundColor: '#ffffff',
-  shadowColor: accent,
-  shadowOpacity: 0.3,
-  shadowRadius: 5,
-  shadowOffset: { width: 0, height: 3 },
-  borderWidth: 1,
-  borderColor: 'white', // You can change the border color as needed
-},
-
-
-
-textHotels: {
-fontSize: 16,
-
-marginBottom: 8,
-color: "#333",
-},
-descriptionTextHotels1: {
-fontSize: 16,
-marginBottom: 5,
-marginLeft:20,
-color: black,
-},
-
-loading: {
-flex: 1,
-justifyContent: "center",
-alignItems: "center",
-},
-searchInput: {
-  backgroundColor: "white",
-  padding: 20,
-  marginTop:20,
-  border:10,
-  borderRadius: 10,
-  shadowColor: accent,
-  shadowOpacity: 0.4,
-  shadowOffset: { width: 5, height: 5 },
-  elevation: 20,
+  containerClient: {
+    flex: 1,
+    backgroundColor: "#6B720",
+    padding: 20,
+  },
+  cardView: {
+    marginTop: 50,
+    marginVertical: 10,
+    borderRadius: 15,
+    elevation: 3,
+    backgroundColor: "#ffffff",
+    shadowColor: accent,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 2 },
+    borderWidth: 1,
+    borderColor: "white",
   },
 
+  lastCardView: {
+    marginVertical: 10,
+    borderRadius: 15,
+    elevation: 3,
+    backgroundColor: "#ffffff",
+    shadowColor: accent,
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    shadowOffset: { width: 0, height: 3 },
+    borderWidth: 1,
+    borderColor: "white", // You can change the border color as needed
+  },
 
+  textHotels: {
+    fontSize: 16,
 
-// Notifications
-containerNotifi: {
-  flex: 1,
-  backgroundColor: "white",
-  padding: 16,
-},
-markAsUnreadButton: {
-  flexDirection: "row",
-  alignItems: "center",
- 
-  marginBottom: 16,
-},
-markAsUnreadIcon: {
-  marginRight: 10,
-  color: accent,
-},
-markAsUnreadText: {
-  fontSize: 16,
-  color: black,
-},
-notificationList: {
-  flexGrow: 1,
-},
-notificationContainer: {
-  flexDirection: "row",
-  alignItems: "center",
-  padding: 12,
-  borderRadius: 8,
-  marginVertical: 8,
-  backgroundColor: accent,
-},
-dot: {
-  width: 8,
-  height: 8,
-  borderRadius: 4,
-  backgroundColor: "white", 
-  marginLeft: 150,
-},
-notificationText: {
-  fontSize: 16,
-  color: "white",
-},
-icon: {
-  marginRight: 10,
-  color: "white",
-},
+    marginBottom: 8,
+    color: "#333",
+  },
+  descriptionTextHotels1: {
+    fontSize: 16,
+    marginBottom: 5,
+    marginLeft: 20,
+    color: black,
+  },
+
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  searchInput: {
+    backgroundColor: "white",
+    padding: 20,
+    marginTop: 20,
+    border: 10,
+    borderRadius: 10,
+    shadowColor: accent,
+    shadowOpacity: 0.4,
+    shadowOffset: { width: 5, height: 5 },
+    elevation: 20,
+  },
+
+  // Notifications
+  containerNotifi: {
+    flex: 1,
+    backgroundColor: "white",
+    padding: 16,
+  },
+  markAsUnreadButton: {
+    flexDirection: "row",
+    alignItems: "center",
+
+    marginBottom: 16,
+  },
+  markAsUnreadIcon: {
+    marginRight: 10,
+    color: accent,
+  },
+  markAsUnreadText: {
+    fontSize: 16,
+    color: black,
+  },
+  notificationList: {
+    flexGrow: 1,
+  },
+  notificationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 8,
+    backgroundColor: accent,
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "white",
+    marginLeft: 150,
+  },
+  notificationText: {
+    fontSize: 16,
+    color: "white",
+  },
+  icon: {
+    marginRight: 10,
+    color: "white",
+  },
 });

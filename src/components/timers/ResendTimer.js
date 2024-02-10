@@ -36,7 +36,7 @@ const ResendTimer = ({
   `;
   if (resendStatus == t("common:Sent")) {
     setTimeout(() => {
-      setResendStatus(t("Resend"));
+      setResendStatus(t("common:Resend"));
     }, 30000);
   }
 
