@@ -15,7 +15,7 @@ import { Card } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { SearchHotels } from "../../_actions/actions/hotelAction";
-import { styles } from "./../../styles/styles";
+import { styles } from "../../styles/styles";
 import RowContainer from "../../components/containers/RownContainer";
 
 const dimensions = Dimensions.get("window");
@@ -35,7 +35,7 @@ const Hotels = ({ navigation }) => {
   const [isLoading, setIsloading] = useState(false);
   const { t } = useTranslation();
   const [data, setData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
   const dispatch = useDispatch();
@@ -57,37 +57,38 @@ const Hotels = ({ navigation }) => {
   };
 
   const renderHotels = () => {
-    const hotelsToRender = filteredData && filteredData.length > 0 ? filteredData : data.hotels;
-  
-    return hotelsToRender ? (
-      hotelsToRender.map((hotel, index) => (
-        <Pressable
-          key={index}
-          onPress={() => moveTo("ModifyHotel", { id: hotel._id })}
-        >
-          <Card
+    const hotelsToRender =
+      filteredData && filteredData.length > 0 ? filteredData : data.hotels;
+
+    return hotelsToRender
+      ? hotelsToRender.map((hotel, index) => (
+          <Pressable
             key={index}
-            style={
-              index === hotelsToRender.length - 1
-                ? styles.lastCardView1
-                : styles.cardView1
-            }
+            onPress={() => moveTo("ModifyHotel", { id: hotel._id })}
           >
-            <TouchableOpacity>
-              <Image
-                resizeMode={"contain"}
-                source={{ uri: hotel.hotelImage }}
-                style={{
-                  height: imageHeight,
-                  width: imageWidth,
-                  alignSelf: "center",
-                }}
-              />
-            </TouchableOpacity>
-            <Text style={styles.TextHotels}>{hotel.hotelName}</Text>
-            <Text style={styles.TextHotels}> hotelotp:{hotel.otp}</Text>
-            {/* Additional hotel information */}
-            {/* <RowContainer>
+            <Card
+              key={index}
+              style={
+                index === hotelsToRender.length - 1
+                  ? styles.lastCardView1
+                  : styles.cardView1
+              }
+            >
+              <TouchableOpacity>
+                <Image
+                  resizeMode={"contain"}
+                  source={{ uri: hotel.hotelImage }}
+                  style={{
+                    height: imageHeight,
+                    width: imageWidth,
+                    alignSelf: "center",
+                  }}
+                />
+              </TouchableOpacity>
+              <Text style={styles.TextHotels}>{hotel.hotelName}</Text>
+              <Text style={styles.TextHotels}> hotelotp:{hotel.otp}</Text>
+              {/* Additional hotel information */}
+              {/* <RowContainer>
               <Text style={styles.DescriptionTextHotels}>
                 Stars: {hotel.hotelStars}
               </Text>
@@ -101,12 +102,12 @@ const Hotels = ({ navigation }) => {
                 City : {hotel.hotelCity}
               </Text>
             </RowContainer> */}
-          </Card>
-        </Pressable>
-      ))
-    ) : null;
+            </Card>
+          </Pressable>
+        ))
+      : null;
   };
-  
+
   const handleSearchChange = (query) => {
     setSearchQuery(query);
     searchHotels(query);
@@ -116,23 +117,23 @@ const Hotels = ({ navigation }) => {
     <ActivityIndicator style={styles.Loading} size="large" color="#5f9ea0" />
   ) : (
     <View>
-          <Text style={styles.titleHotels}>
+      <Text style={styles.titleHotels}>
         {t(
           "common:You_find_all_the_hotels_in_our_database_you_can_search_for_a_hotel_by_name_or_by_city"
         )}
       </Text>
-      
+
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
         <TextInput
-        style={styles.searchInput1}
-        placeholder={t("common:Searchhotels")}
-        value={searchQuery}
-        onChangeText={handleSearchChange}
-      />
+          style={styles.searchInput1}
+          placeholder={t("common:Searchhotels")}
+          value={searchQuery}
+          onChangeText={handleSearchChange}
+        />
         <View>
           {data.hotels?.length !== 0 ? (
             renderHotels()

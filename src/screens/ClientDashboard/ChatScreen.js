@@ -12,8 +12,8 @@ import {
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { styles } from "./../styles/styles";
-import { colors } from "../components/colors";
+import { styles } from "../../styles/styles";
+import { colors } from "../../components/colors";
 const { accent } = colors;
 const ChatScreen = () => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const ChatScreen = () => {
   return (
     <View style={styles.containerChatScreen}>
       <FlatList
-       showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         data={chatData}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
@@ -81,9 +81,5 @@ const ChatScreen = () => {
     </View>
   );
 };
-
-
-
-
 
 export default ChatScreen;

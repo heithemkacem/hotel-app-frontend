@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 //!Importing all the screens in our project
 import Onboarding from "./../components/slider/Onboarding";
@@ -7,23 +7,23 @@ import Signup from "./../screens/Signup";
 import EmailVerification from "../screens/EmailVerification";
 import ForgotPassword from "../screens/ForgotPassword";
 import ResetPassword from "../screens/ResetPassword";
-import Dashboard from "../screens/Dashboard";
-import ClientDashboard from "./../screens/ClientDashboard";
-import HotelDashboard from "./../screens/HotelDashboard";
+import Dashboard from "../screens/AdminDashboard/Dashboard";
+import ClientDashboard from "../screens/ClientDashboard/ClientDashboard";
+import HotelDashboard from "../screens/HotelDashboard/HotelDashboard";
 import HomePage from "../screens/HomePage";
 import Settings from "../screens/DashboardScreens/Settings";
 import EditPassword from "../screens/DashboardScreens/EditPassword";
-import CreateHotel from "../screens/DashboardScreens/CreateHotel";
-import Hotels from "../screens/DashboardScreens/Hotels";
-import Clients from "../screens/DashboardScreens/Clients";
+import CreateHotel from "../screens/AdminDashboard/CreateHotel";
+import Hotels from "../screens/AdminDashboard/Hotels";
+import Clients from "../screens/AdminDashboard/Clients";
 import ModifyHotel from "../screens/DashboardScreens/ModifyHotel";
-import Clientotp from "../screens/Clientotp";
-import ClientHotel from "../screens/ClientHotel";
-import Hotelotp from "../screens/Hotelotp";
-import Reservation from "../screens/Reservation";
-import RoomService from "../screens/RoomService";
-import ChatScreen from "../screens/ChatScreen";
-import Notifications from "../screens/Notifications";
+import Clientotp from "../screens/ClientDashboard/ClientOTP";
+import ClientHotel from "../screens/HotelDashboard/ClientHotel";
+import Hotelotp from "../screens/ClientDashboard/HotelOTP";
+import Reservation from "../screens/ClientDashboard/Reservation";
+import RoomService from "../screens/ClientDashboard/RoomService";
+import ChatScreen from "../screens/ClientDashboard/ChatScreen";
+import Notifications from "../screens/DashboardScreens/Notifications";
 //!Other imports
 import { colors } from "../components/colors";
 import { NavigationContainer } from "@react-navigation/native";
@@ -66,9 +66,7 @@ const RootStack = () => {
         // initialRouteName={initialRoute}
         screenOptions={{
           headerTitle: () => null,
-          headerLeft: (props) => {
-            <HeaderBackButton {...props} />;
-          },
+          headerBackTitle: "Back",
           headerTintColor: black,
           headerStyle: {
             height: 110,
@@ -78,7 +76,6 @@ const RootStack = () => {
             shadowOpacity: 0,
             elevation: 0,
           },
-          headerBackTitle: "Back",
           headerLeftContainerStyle: {
             paddingLeft: 20,
           },
@@ -115,6 +112,7 @@ const RootStack = () => {
               name="Clients"
               component={Clients}
               options={{
+                headerTitle: "List of clients",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -149,6 +147,7 @@ const RootStack = () => {
               name="Settings"
               component={Settings}
               options={{
+                headerTitle: "Settings",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -182,6 +181,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
+                headerTitle: "Notification",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -211,13 +211,26 @@ const RootStack = () => {
                 ),
               }}
             />
-            <Stack.Screen name="EditPassword" component={EditPassword} />
-            <Stack.Screen name="CreateHotel" component={CreateHotel} />
-            <Stack.Screen name="Hotels" component={Hotels} />
+            <Stack.Screen
+              name="EditPassword"
+              component={EditPassword}
+              options={{ headerTitle: "Edit Password" }}
+            />
+            <Stack.Screen
+              name="CreateHotel"
+              component={CreateHotel}
+              options={{ headerTitle: "Create Hotel" }}
+            />
+            <Stack.Screen
+              name="Hotels"
+              component={Hotels}
+              options={{ headerTitle: "List of Hotels" }}
+            />
             <Stack.Screen
               name="ModifyHotel"
               component={ModifyHotel}
               options={{
+                headerTitle: "Hotel Informations",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -324,6 +337,7 @@ const RootStack = () => {
               name="ModifyHotel"
               component={ModifyHotel}
               options={{
+                headerTitle: "Hotel Informations",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -354,11 +368,16 @@ const RootStack = () => {
               }}
             />
 
-            <Stack.Screen name="EditPassword" component={EditPassword} />
+            <Stack.Screen
+              name="EditPassword"
+              component={EditPassword}
+              options={{ headerTitle: "Edit Password" }}
+            />
             <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
+                headerTitle: "Settings",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -392,6 +411,7 @@ const RootStack = () => {
               name="ChatScreen"
               component={ChatScreen}
               options={{
+                headerTitle: "Chat",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -426,6 +446,7 @@ const RootStack = () => {
               name="Reservation"
               component={Reservation}
               options={{
+                headerTitle: "Reservation",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -459,6 +480,7 @@ const RootStack = () => {
               name="RoomService"
               component={RoomService}
               options={{
+                headerTitle: "Room Service",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -493,6 +515,7 @@ const RootStack = () => {
               name="Hotelotp"
               component={Hotelotp}
               options={{
+                headerTitle: "Your Hotel",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -526,6 +549,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
+                headerTitle: "Notifications",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -580,11 +604,16 @@ const RootStack = () => {
                 ),
               }}
             />
-            <Stack.Screen name="EditPassword" component={EditPassword} />
+            <Stack.Screen
+              name="EditPassword"
+              component={EditPassword}
+              options={{ headerTitle: "Edit Password" }}
+            />
             <Stack.Screen
               name="ChatScreen"
               component={ChatScreen}
               options={{
+                headerTitle: "Chats",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -619,6 +648,7 @@ const RootStack = () => {
               name="ClientHotel"
               component={ClientHotel}
               options={{
+                headerTitle: "List of Clients",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -652,6 +682,7 @@ const RootStack = () => {
               name="Settings"
               component={Settings}
               options={{
+                headerTitle: "Settings",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -685,6 +716,7 @@ const RootStack = () => {
               name="Notifications"
               component={Notifications}
               options={{
+                headerTitle: "Notifications",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -754,6 +786,7 @@ const RootStack = () => {
               name="HomePage"
               component={HomePage}
               options={{
+                headerTitle: "Home",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -788,6 +821,7 @@ const RootStack = () => {
               name="Signup"
               component={Signup}
               options={{
+                headerTitle: "Signup",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -822,6 +856,7 @@ const RootStack = () => {
               name="Login"
               component={Login}
               options={{
+                headerTitle: "Login",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -851,6 +886,7 @@ const RootStack = () => {
               name="EmailVerification"
               component={EmailVerification}
               options={{
+                headerTitle: "Email Verification",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -885,6 +921,7 @@ const RootStack = () => {
               name="ForgotPassword"
               component={ForgotPassword}
               options={{
+                headerTitle: "Forgot Password",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>
@@ -919,6 +956,7 @@ const RootStack = () => {
               name="ResetPassword"
               component={ResetPassword}
               options={{
+                headerTitle: "Reset Password",
                 headerRight: () => (
                   <>
                     <View style={styles.containerRootStack}>

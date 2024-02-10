@@ -1,14 +1,14 @@
 import React from "react";
 import { Formik } from "formik";
-import StyledTextInput from "./../components/inputs/StyledTextInput";
-import RegularText from "../components/texts/RegularText";
-import ButtonStyle from "./../components/buttons/ButtonStyle";
+import StyledTextInput from "../../components/inputs/StyledTextInput";
+import RegularText from "../../components/texts/RegularText";
+import ButtonStyle from "../../components/buttons/ButtonStyle";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView, View, Switch } from "react-native";
-import { colors } from "./../components/colors";
+import { colors } from "../../components/colors";
 import { useDispatch } from "react-redux";
-import { roomServiceAction } from "./../_actions/actions/RoomAction";
-import { styles } from "./../styles/styles";
+import { roomServiceAction } from "../../_actions/actions/RoomAction";
+import { styles } from "../../styles/styles";
 
 const { primary, black } = colors;
 
@@ -33,10 +33,8 @@ const RoomService = ({ navigation }) => {
         </RegularText>
         <Formik
           initialValues={{
-        
-          
             RoomNumber: "",
-            RoomServiceComments:"",
+            RoomServiceComments: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             handleOnSubmit(values, setSubmitting);
@@ -52,7 +50,6 @@ const RoomService = ({ navigation }) => {
             touched,
           }) => (
             <>
-          
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="bed"
@@ -61,9 +58,7 @@ const RoomService = ({ navigation }) => {
                 component={
                   <Switch
                     value={values.RoomNumber}
-                    onValueChange={(value) =>
-                      handleChange("RoomNumber")(value)
-                    }
+                    onValueChange={(value) => handleChange("RoomNumber")(value)}
                   />
                 }
                 style={{ marginBottom: 25 }}
@@ -83,10 +78,10 @@ const RoomService = ({ navigation }) => {
                   touched.RoomServiceComments && errors.RoomServiceComments
                 }
               />
-            
+
               {!isSubmitting && (
                 <ButtonStyle onPress={handleSubmit}>
-                 {t("common:Submit")}
+                  {t("common:Submit")}
                 </ButtonStyle>
               )}
               {isSubmitting && (

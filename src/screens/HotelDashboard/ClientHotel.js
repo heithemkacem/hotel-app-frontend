@@ -15,19 +15,18 @@ import {
 import { Card } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { findUsersHotel } from  "../_actions/actions/hotelAction";
+import { findUsersHotel } from "../../_actions/actions/hotelAction";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { styles } from "../styles/styles";
-import { colors } from "../components/colors";
-const { accent ,black} = colors;
+import { styles } from "../../styles/styles";
+import { colors } from "../../components/colors";
+const { accent, black } = colors;
 const dimensions = Dimensions.get("window");
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const ClientHotel = ({ navigation}) => {
-
+const ClientHotel = ({ navigation }) => {
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
@@ -40,24 +39,22 @@ const ClientHotel = ({ navigation}) => {
 
   const [isLoading, setIsloading] = useState(false);
   const { t } = useTranslation();
-  
+
   const [searchText, setSearchText] = useState("");
-  const [filteredData, setFilteredData] = useState([]); 
+  const [filteredData, setFilteredData] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(findUsersHotel(setFilteredData, t, '65ac2e483aac661bcd55af49'));
+    dispatch(findUsersHotel(setFilteredData, t, "65ac2e483aac661bcd55af49"));
   }, []); // Use empty dependency array for one-time effect
 
   // Use nullish coalescing operator to handle undefined or null
   const filteredUsers = (filteredData ?? []).filter((user) => {
-    
     const lowerCaseSearch = searchText.toLowerCase();
     return (
-      
       user.firstName.toLowerCase().includes(lowerCaseSearch) ||
       user.firstName.toLowerCase().includes(lowerCaseSearch) ||
-      user.clientEmail.toLowerCase().includes(lowerCaseSearch) 
+      user.clientEmail.toLowerCase().includes(lowerCaseSearch)
     );
   });
 
@@ -72,17 +69,18 @@ const ClientHotel = ({ navigation}) => {
         }
       >
         <Card>
-         
-          
-        <Text style={styles.descriptionTextHotels1}>client id: {item._id}</Text>
+          <Text style={styles.descriptionTextHotels1}>
+            client id: {item._id}
+          </Text>
           <Text style={styles.descriptionTextHotels1}>
             Firstname: {item.firstName}
           </Text>
           <Text style={styles.descriptionTextHotels1}>
             Lastname: {item.lastName}
           </Text>
-          <Text style={styles.descriptionTextHotels1}>email: {item.clientEmail}</Text>
-  
+          <Text style={styles.descriptionTextHotels1}>
+            email: {item.clientEmail}
+          </Text>
         </Card>
       </Card>
     </Pressable>
@@ -99,7 +97,7 @@ const ClientHotel = ({ navigation}) => {
       <TextInput
         style={styles.searchInput}
         placeholder="Search"
-        placeholderTextColor={'black'}
+        placeholderTextColor={"black"}
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
       />

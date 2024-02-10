@@ -289,17 +289,8 @@ export const ResetPasswordAction =
 //! Not tested
 //!User Resend Password
 export const ResendEmailAction =
-  (
-    route,
-    setResendingEmail,
-    setResendStatus,
-    setActiveResend,
-    triggerTimer,
-    t
-  ) =>
-  async (dispatch) => {
+  (route, setResendStatus, t) => async (dispatch) => {
     try {
-      setResendingEmail(true);
       const email = route.params.email;
       const id = route.params.id;
       // make request to backend
@@ -312,14 +303,14 @@ export const ResendEmailAction =
               text1: t("common:Error"),
               text2: t(response.data.message),
             });
+            setResendStatus(t("common:Failed"));
           } else if (response.data.status === "Success") {
-            setResendStatus(t("common:Sent"));
-
             Toast.show({
               type: "success",
               text1: t("common:Success"),
               text2: t("common:OTP_has_been_resent"),
             });
+            setResendStatus(t("common:Sent"));
           }
         })
         .catch((error) => {
@@ -328,22 +319,15 @@ export const ResendEmailAction =
             text1: t("common:Error"),
             text2: t(error.message),
           });
+          setResendStatus(t("common:Failed"));
         });
-      setResendingEmail(false);
-      // hold on briefly
-      setTimeout(() => {
-        setResendStatus(t("common:Resend"));
-        setActiveResend(false);
-        triggerTimer();
-      }, 5000);
     } catch (error) {
-      setResendingEmail(false);
-      setResendStatus(t("common:Failed"));
       Toast.show({
         type: "error",
         text1: t("common:Error"),
         text2: t(error.message),
       });
+      setResendStatus(t("common:Failed"));
     }
   };
 

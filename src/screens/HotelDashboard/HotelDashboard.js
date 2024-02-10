@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
-import ImgComponent from "../components/imageComponent/ImgComponent";
+import ImgComponent from "../../components/imageComponent/ImgComponent";
 import { useTranslation } from "react-i18next";
-import { styles } from "../styles/styles";
+import { styles } from "../../styles/styles";
 
 const Dashboard = ({ navigation }) => {
   const moveTo = (screen, payLoad) => {
@@ -13,38 +13,31 @@ const Dashboard = ({ navigation }) => {
   //context
   const [items, setItems] = React.useState([
     {
-      name: "common:Hotels",
-      page: "Hotels",
-      img: require("../assets/imgDashboard/hotel.png"),
-    },
-    {
       name: "common:Clients",
-      page: "Clients",
-      img: require("../assets/imgDashboard/client.png"),
-    }, 
-     
-    {
-      name: "common:CreateHotel",
-      page: "CreateHotel",
-      img: require("../assets/imgDashboard/create.png"),
+      page: "ClientHotel",
+      img: require("../../assets/imgDashboard/client.png"),
     },
-   
+
     {
       name: "common:Notifications",
       page: "Notifications",
-      img: require("../assets/imgDashboard/notif.png"),
+      img: require("../../assets/imgDashboard/notif.png"),
     },
+    {
+      name: "common:Communication",
+      page: "ChatScreen",
+      img: require("../../assets/imgDashboard/message.png"),
+    },
+
     {
       name: "common:Settings",
       page: "Settings",
-      img: require("../assets/imgDashboard/setting.png"),
+      img: require("../../assets/imgDashboard/setting.png"),
     },
   ]);
 
   return (
     <>
-    
-
       <FlatGrid
         itemDimension={130}
         data={items}

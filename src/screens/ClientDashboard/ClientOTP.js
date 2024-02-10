@@ -1,14 +1,14 @@
 import React from "react";
-import MainContainer from "../components/containers/MainContainer";
-import StyledTextInput from "../components/inputs/StyledTextInput";
+import MainContainer from "../../components/containers/MainContainer";
+import StyledTextInput from "../../components/inputs/StyledTextInput";
 import { Formik } from "formik";
-import RegularButton from "../components/buttons/RegularButton";
+import RegularButton from "../../components/buttons/RegularButton";
 import { ActivityIndicator, ScrollView } from "react-native";
-import { colors } from "../components/colors";
-import IconHeader from "../components/icons/IconHeader";
+import { colors } from "../../components/colors";
+import IconHeader from "../../components/icons/IconHeader";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { findHotelOtpAction } from "../_actions/actions/authActions";
+import { findHotelOtpAction } from "../../_actions/actions/authActions";
 
 const { primary, black } = colors;
 const Clientotp = ({ navigation }) => {

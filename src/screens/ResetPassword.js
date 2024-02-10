@@ -61,22 +61,10 @@ const ResetPassword = ({ navigation, route }) => {
   const MAX_CODE_LENGTH = 4;
   const [code, setCode] = useState("");
   const [pinReady, setPinReady] = useState(false);
-  // resending email
-  const [activeResend, setActiveResend] = useState(false);
   const [resendStatus, setResendStatus] = useState(t("common:Resend"));
-  const [resendingEmail, setResendingEmail] = useState(false);
 
-  const resendEmail = async (triggerTimer) => {
-    dispatch(
-      ResendEmailAction(
-        route,
-        setResendingEmail,
-        setResendStatus,
-        setActiveResend,
-        triggerTimer,
-        t
-      )
-    );
+  const resendEmail = async () => {
+    dispatch(ResendEmailAction(route, setResendStatus, t));
   };
   return (
     <MainContainer>
@@ -95,10 +83,8 @@ const ResetPassword = ({ navigation, route }) => {
         <ResendTimer
           language={selectedLanguageCode}
           pinReady={pinReady}
-          activeResend={activeResend}
-          setActiveResend={setActiveResend}
+          setResendStatus={setResendStatus}
           resendStatus={resendStatus}
-          resendingEmail={resendingEmail}
           resendEmail={resendEmail}
           style={{ marginBottom: 25 }}
         />

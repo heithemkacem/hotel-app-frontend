@@ -22,25 +22,14 @@ const EmailVerification = ({ navigation, route }) => {
   const [pinReady, setPinReady] = useState(false);
   const [verifying, setVerifying] = useState(false);
   // resending email
-  const [activeResend, setActiveResend] = useState(false);
   const [resendStatus, setResendStatus] = useState(t("common:Resend"));
-  const [resendingEmail, setResendingEmail] = useState(false);
 
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
   const dispatch = useDispatch();
   const resendEmail = async (triggerTimer) => {
-    dispatch(
-      ResendEmailAction(
-        route,
-        setResendingEmail,
-        setResendStatus,
-        setActiveResend,
-        triggerTimer,
-        t
-      )
-    );
+    dispatch(ResendEmailAction(route, setResendStatus, t));
   };
   const handleEmailVerification = async () => {
     setVerifying(true);
@@ -88,11 +77,9 @@ const EmailVerification = ({ navigation, route }) => {
         )}
         <ResendTimer
           language={selectedLanguageCode}
-          activeResend={activeResend}
-          setActiveResend={setActiveResend}
           resendStatus={resendStatus}
-          resendingEmail={resendingEmail}
           resendEmail={resendEmail}
+          setResendStatus={setResendStatus}
         />
       </ScrollView>
     </MainContainer>

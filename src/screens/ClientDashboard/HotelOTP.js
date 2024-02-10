@@ -13,10 +13,10 @@ import {
 import { Card } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { findHotelByOtp } from "../_actions/actions/hotelAction";
-import { styles } from "./../styles/styles";
-import RowContainer from "../components/containers/RownContainer";
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { findHotelByOtp } from "../../_actions/actions/hotelAction";
+import { styles } from "../../styles/styles";
+import RowContainer from "../../components/containers/RownContainer";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 
 const dimensions = Dimensions.get("window");
 const imageHeight = Math.round((dimensions.width * 9) / 16);
@@ -26,9 +26,8 @@ const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const Hotelotp = ({ navigation ,route}) => {
-  
-  const { otp } = route.params; 
+const Hotelotp = ({ navigation, route }) => {
+  const { otp } = route.params;
   console.log("otttttttttppp444", otp.otp);
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
@@ -109,19 +108,21 @@ const Hotelotp = ({ navigation ,route}) => {
                       }}
                     />
                   </TouchableOpacity>
-                 
-                  <View style={{ marginTop:20}}>
-                  <Text style={styles.TextHotels}>{hotel.hotelName}</Text>
-                    
+
+                  <View style={{ marginTop: 20 }}>
+                    <Text style={styles.TextHotels}>{hotel.hotelName}</Text>
                   </View>
                   {/* Render star rating based on hotel's star count */}
-                 
-                  <View style={{ flexDirection: "row",marginLeft:140 ,marginTop:30}}>
-                  
+
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      marginLeft: 140,
+                      marginTop: 30,
+                    }}
+                  >
                     {renderStars(hotel.hotelStars)}
                   </View>
-
-                 
                 </Card>
               </Pressable>
             ))

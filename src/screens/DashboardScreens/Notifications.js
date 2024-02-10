@@ -1,8 +1,13 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { styles } from "./../styles/styles";
-
+import { styles } from "../../styles/styles";
 
 const Notifications = () => {
   const notificationData = [
@@ -26,8 +31,16 @@ const Notifications = () => {
 
   return (
     <View style={styles.containerNotifi}>
-      <TouchableOpacity onPress={handleMarkAllAsUnread} style={styles.markAsUnreadButton}>
-        <Icon name="list" size={20} color="accent" style={styles.markAsUnreadIcon} />
+      <TouchableOpacity
+        onPress={handleMarkAllAsUnread}
+        style={styles.markAsUnreadButton}
+      >
+        <Icon
+          name="list"
+          size={20}
+          color="accent"
+          style={styles.markAsUnreadIcon}
+        />
         <Text style={styles.markAsUnreadText}>Mark as Unread</Text>
       </TouchableOpacity>
       <FlatList
@@ -46,9 +59,5 @@ const Notifications = () => {
     </View>
   );
 };
-
-
-
-
 
 export default Notifications;

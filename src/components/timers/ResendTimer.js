@@ -9,15 +9,14 @@ import RownContainer from "./../containers/RownContainer";
 const { accent, fail, success, black } = colors;
 
 const ResendTimer = ({
-  activeResend,
-  setActiveResend,
+  setResendStatus,
   resendStatus,
   resendEmail,
-  targetTimeInSeconds,
   pinReady,
   language,
   ...props
 }) => {
+  const { t } = useTranslation();
   const StyledView = styled.View`
     align-content: center;
     ${(props) => {
@@ -28,7 +27,6 @@ const ResendTimer = ({
     color: ${accent}
       ${(props) => {
         const { resendStatus } = props;
-
         if (resendStatus == t("common:Failed")) {
           return `color : ${fail}`;
         } else if (resendStatus == t("common:Sent")) {
@@ -36,45 +34,20 @@ const ResendTimer = ({
         }
       }};
   `;
-  const { t } = useTranslation();
-  const [timeLeft, setTimeLeft] = useState(null);
-  const [targetTime, setTargetTime] = useState(null);
-  let resendTimerInterval;
-  const triggerTimer = (targetTimeInSeconds = 30) => {
-    setTargetTime(targetTimeInSeconds);
-    setActiveResend(false);
-    const finalTime = +new Date() + targetTimeInSeconds * 1000;
-    const resendTimerInterval = setInterval(
-      () => calculateTimeLeft(finalTime),
-      1000
-    );
-  };
-
-  const calculateTimeLeft = (finalTime) => {
-    const difference = finalTime - +new Date();
-    if (difference >= 0) {
-      setTimeLeft(Math.round(difference / 1000));
-    } else {
-      clearInterval(resendTimerInterval);
-      setActiveResend(true);
-      setTimeLeft(null);
-    }
-  };
-  useEffect(() => {
-    triggerTimer(targetTimeInSeconds);
-    return () => {
-      clearInterval(resendTimerInterval);
-    };
-  }, []);
+  if (resendStatus == t("common:Sent")) {
+    setTimeout(() => {
+      setResendStatus(t("Resend"));
+    }, 30000);
+  }
 
   if (language == "ar") {
     return (
       <StyledView {...props} pinReady={pinReady}>
         <RownContainer>
           <PressableText
-            onPress={() => resendEmail(triggerTimer)}
-            disabled={pinReady}
-            style={{ opacity: activeResend ? 1 : 0.5 }}
+            onPress={() => resendEmail()}
+            disabled={pinReady || resendStatus == t("common:Sent")}
+            style={{ opacity: !pinReady ? 1 : 0.5 }}
           >
             <ResendText resendStatus={resendStatus}>{resendStatus}</ResendText>
           </PressableText>
@@ -82,18 +55,6 @@ const ResendTimer = ({
             {t("common:Didint_recieve_this_email")}
           </SmallText>
         </RownContainer>
-        {!activeResend && (
-          <SmallText style={{ color: black, alignText: "right" }}>
-            {t("common:in")}
-            <SmallText
-              style={{ color: black, alignText: "right", fontWeight: "600" }}
-            >
-              {" "}
-              {timeLeft || targetTime}{" "}
-            </SmallText>
-            {t("common:second")}
-          </SmallText>
-        )}
       </StyledView>
     );
   } else {
@@ -104,23 +65,13 @@ const ResendTimer = ({
             {t("common:Didint_recieve_this_email")}
           </SmallText>
           <PressableText
-            onPress={() => resendEmail(triggerTimer)}
-            disabled={pinReady}
-            style={{ opacity: activeResend ? 1 : 0.5 }}
+            onPress={() => resendEmail()}
+            disabled={pinReady || resendStatus == t("common:Sent")}
+            style={{ opacity: !pinReady ? 1 : 0.5 }}
           >
             <ResendText resendStatus={resendStatus}>{resendStatus}</ResendText>
           </PressableText>
         </RownContainer>
-        {!activeResend && (
-          <SmallText style={{ color: black }}>
-            {t("common:in")}
-            <SmallText style={{ fontWeight: "600", color: black }}>
-              {" "}
-              {timeLeft || targetTime}{" "}
-            </SmallText>
-            {t("common:second")}
-          </SmallText>
-        )}
       </StyledView>
     );
   }
