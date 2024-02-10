@@ -1,12 +1,8 @@
 import axios from "axios";
-import { SET_USER } from "../types";
-import jwt_decode from "jwt-decode";
-import { setAuth } from "../../util/setAuth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.1.128:5000";
 const devUrl = "https://tame-red-boa-sari.cyclic.app/";
-const currentUrl = devUr;
+const currentUrl = devUrl;
 export const reserveHotelAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {

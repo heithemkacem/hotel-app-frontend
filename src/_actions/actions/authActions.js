@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.1.128:5000";
 const devUrl = "https://tame-red-boa-sari.cyclic.app/";
-const currentUrl = devUr;
+const currentUrl = devUrl;
 //otp find hotel
 
 export const findHotelOtpAction =

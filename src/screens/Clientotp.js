@@ -1,17 +1,14 @@
 import React from "react";
 import MainContainer from "../components/containers/MainContainer";
-import RegularText from "../components/texts/RegularText";
 import StyledTextInput from "../components/inputs/StyledTextInput";
 import { Formik } from "formik";
 import RegularButton from "../components/buttons/RegularButton";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../components/colors";
 import IconHeader from "../components/icons/IconHeader";
-import PressableText from "../components/texts/PressableText";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { findHotelOtpAction } from "../_actions/actions/authActions";
-import * as Yup from "yup";
 
 const { primary, black } = colors;
 const Clientotp = ({ navigation }) => {
@@ -25,10 +22,9 @@ const Clientotp = ({ navigation }) => {
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
         <IconHeader name="check" style={{ marginBottom: 30 }} />
-        
+
         <Formik
           initialValues={{ otp: "" }}
-         
           onSubmit={(values, { setSubmitting }) => {
             dispatch(findHotelOtpAction(values, setSubmitting, moveTo, t));
           }}
@@ -70,8 +66,7 @@ const Clientotp = ({ navigation }) => {
                   ></ActivityIndicator>
                 </RegularButton>
               )}
-             
-                         </>
+            </>
           )}
         </Formik>
       </ScrollView>

@@ -36,7 +36,7 @@ import { styles } from "../styles/styles";
 //Redux
 import store from "../_actions/store";
 import { Logout } from "./../_actions/actions/authActions";
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 const LANGUAGES = [
   { code: "en", label: "English" },
   { code: "ar", label: "العربية" },
@@ -55,18 +55,20 @@ const RootStack = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { isConnected, role } = auth;
-  console.log('Auth:', auth);
-  console.log('roooooo',role);
+  console.log("Auth:", auth);
+  console.log("roooooo", role);
 
-  const initialRoute = 'Onboarding';
+  const initialRoute = "Onboarding";
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-       // initialRouteName={initialRoute}
+        // initialRouteName={initialRoute}
         screenOptions={{
           headerTitle: () => null,
-          headerLeft: (props) => <HeaderBackButton {...props} />,
+          headerLeft: (props) => {
+            <HeaderBackButton {...props} />;
+          },
           headerTintColor: black,
           headerStyle: {
             height: 110,
@@ -108,9 +110,7 @@ const RootStack = () => {
                 ),
               }}
             />
-            
-           
-           
+
             <Stack.Screen
               name="Clients"
               component={Clients}
@@ -145,7 +145,7 @@ const RootStack = () => {
               }}
             />
 
-              <Stack.Screen
+            <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
@@ -178,10 +178,9 @@ const RootStack = () => {
                 ),
               }}
             />
-           <Stack.Screen
+            <Stack.Screen
               name="Notifications"
               component={Notifications}
-              
               options={{
                 headerRight: () => (
                   <>
@@ -212,19 +211,9 @@ const RootStack = () => {
                 ),
               }}
             />
- <Stack.Screen
-              name="EditPassword"
-              component={EditPassword}
-            />
-            <Stack.Screen
-              name="CreateHotel"
-              component={CreateHotel}
-             
-            />
-            <Stack.Screen
-              name="Hotels"
-              component={Hotels}
-            />
+            <Stack.Screen name="EditPassword" component={EditPassword} />
+            <Stack.Screen name="CreateHotel" component={CreateHotel} />
+            <Stack.Screen name="Hotels" component={Hotels} />
             <Stack.Screen
               name="ModifyHotel"
               component={ModifyHotel}
@@ -257,14 +246,59 @@ const RootStack = () => {
                   </>
                 ),
               }}
-
             />
-  
+
             {/* Add more Admin screens here */}
           </>
         ) : isConnected && role === "Client" ? (
           <>
-            {/* Client Screens */}
+            <Stack.Screen
+              name="Clientotp"
+              component={Clientotp}
+              options={{
+                headerLeft: () => (
+                  <Pressable
+                    onPress={() => {
+                      //logout
+                      store.dispatch(Logout());
+                    }}
+                  >
+                    <MaterialCommunityIcons
+                      name="logout"
+                      size={25}
+                      color="black"
+                    />
+                  </Pressable>
+                ),
+                headerRight: () => (
+                  <>
+                    <View style={styles.containerRootStack}>
+                      {LANGUAGES.map((language) => {
+                        const selectedLanguage =
+                          language.code === selectedLanguageCode;
+                        return (
+                          <Pressable
+                            key={language.code}
+                            disabled={selectedLanguage}
+                            onPress={() => setLanguage(language.code)}
+                          >
+                            <Text
+                              style={[
+                                selectedLanguage
+                                  ? styles.selectedText
+                                  : styles.text,
+                              ]}
+                            >
+                              {language.label}
+                            </Text>
+                          </Pressable>
+                        );
+                      })}
+                    </View>
+                  </>
+                ),
+              }}
+            />
             <Stack.Screen
               name="ClientDashboard"
               component={ClientDashboard}
@@ -285,40 +319,8 @@ const RootStack = () => {
                 ),
               }}
             />
-           <Stack.Screen
-              name="Clientotp"
-              component={Clientotp}
-              options={{
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
-              }}
-            />
-           <Stack.Screen
+
+            <Stack.Screen
               name="ModifyHotel"
               component={ModifyHotel}
               options={{
@@ -350,14 +352,10 @@ const RootStack = () => {
                   </>
                 ),
               }}
-
             />
 
-<Stack.Screen
-              name="EditPassword"
-              component={EditPassword}
-            />
-              <Stack.Screen
+            <Stack.Screen name="EditPassword" component={EditPassword} />
+            <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
@@ -424,7 +422,7 @@ const RootStack = () => {
               }}
             />
 
-<Stack.Screen
+            <Stack.Screen
               name="Reservation"
               component={Reservation}
               options={{
@@ -491,43 +489,9 @@ const RootStack = () => {
               }}
             />
 
-<Stack.Screen
+            <Stack.Screen
               name="Hotelotp"
               component={Hotelotp}
-              options={{
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
-              }}
-            />
- 
-             <Stack.Screen
-              name="Clientotp"
-              component={Clientotp}
               options={{
                 headerRight: () => (
                   <>
@@ -561,7 +525,6 @@ const RootStack = () => {
             <Stack.Screen
               name="Notifications"
               component={Notifications}
-              
               options={{
                 headerRight: () => (
                   <>
@@ -593,7 +556,6 @@ const RootStack = () => {
               }}
             />
 
-            
             {/* Add more Client screens here */}
           </>
         ) : isConnected && role === "Hotel" ? (
@@ -606,7 +568,6 @@ const RootStack = () => {
                 headerRight: () => (
                   <Pressable
                     onPress={() => {
-                      //logout
                       store.dispatch(Logout());
                     }}
                   >
@@ -619,11 +580,8 @@ const RootStack = () => {
                 ),
               }}
             />
+            <Stack.Screen name="EditPassword" component={EditPassword} />
             <Stack.Screen
-              name="EditPassword"
-              component={EditPassword}
-            />
-           < Stack.Screen
               name="ChatScreen"
               component={ChatScreen}
               options={{
@@ -690,7 +648,7 @@ const RootStack = () => {
                 ),
               }}
             />
-              <Stack.Screen
+            <Stack.Screen
               name="Settings"
               component={Settings}
               options={{
@@ -726,7 +684,6 @@ const RootStack = () => {
             <Stack.Screen
               name="Notifications"
               component={Notifications}
-              
               options={{
                 headerRight: () => (
                   <>
@@ -827,7 +784,7 @@ const RootStack = () => {
                 ),
               }}
             />
-             <Stack.Screen
+            <Stack.Screen
               name="Signup"
               component={Signup}
               options={{
@@ -890,7 +847,7 @@ const RootStack = () => {
                 ),
               }}
             />
-             <Stack.Screen
+            <Stack.Screen
               name="EmailVerification"
               component={EmailVerification}
               options={{
