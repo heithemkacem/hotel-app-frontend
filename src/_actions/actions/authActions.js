@@ -1,16 +1,16 @@
 import axios from "axios";
-import { setRole,setUser} from "../types";
+import { setRole, setUser } from "../types";
 import jwt_decode from "jwt-decode";
 
-import {setAuth } from "../../util/setAuth";
+import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { CommonActions } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.1.128:5000";
-const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = localUrl;
-//otp find hotel 
+const devUrl = "https://tame-red-boa-sari.cyclic.app/";
+const currentUrl = devUr;
+//otp find hotel
 
 export const findHotelOtpAction =
   (otp, setSubmitting, moveTo, t) => async (dispatch) => {
@@ -37,7 +37,7 @@ export const findHotelOtpAction =
 
             moveTo("ClientDashboard", {
               id: response.data.id,
-              otp:otp,
+              otp: otp,
               email: response.data.email,
             });
           }
@@ -76,14 +76,13 @@ export const LoginAction =
             });
           } else if (response.data.status === "Success") {
             const { token } = response.data;
-           ;
             setAuth(token);
             const decode = jwt_decode(token);
             //dispatch(setUser(decode));
-           //dispatch(setRole(role));
-           dispatch({ type: setUser, payload: decode });
-           dispatch({ type: setRole, payload: response.data.whoami });
-       // dispatch({ type: setRole, payload: role });
+            //dispatch(setRole(role));
+            dispatch({ type: setUser, payload: decode });
+            dispatch({ type: setRole, payload: response.data.whoami });
+            // dispatch({ type: setRole, payload: role });
             AsyncStorage.setItem("jwt", token);
             setSubmitting(false);
             Toast.show({
@@ -91,12 +90,12 @@ export const LoginAction =
               text1: t("common:Success"),
               text2: t("common:Welcome"),
             });
-            console.log('responseeee11111',response.data);
-            console.log('responseeee',response.data.whoami);
-            const role= response.data.whoami;
-                       if (response.data.whoami === "Admin") {
+            console.log("responseeee11111", response.data);
+            console.log("responseeee", response.data.whoami);
+            const role = response.data.whoami;
+            if (response.data.whoami === "Admin") {
               moveTo("Dashboard");
-              console.log("hh",response.data.role);
+              console.log("hh", response.data.role);
             } else if (response.data.whoami === "Hotel") {
               moveTo("HotelDashboard");
             } else {
@@ -128,19 +127,19 @@ export const LoginAction =
       });
     }
   };
-  const showAsyncStorage = async () => {
-    try {
-      const keys = await AsyncStorage.getAllKeys();
-      const items = await AsyncStorage.multiGet(keys);
-      console.log("AsyncStorage Content:", items);
-    } catch (error) {
-      console.error("Error reading AsyncStorage:", error);
-    }
-  };
-  
-  // Call the function to log AsyncStorage content
-  showAsyncStorage();
-  
+const showAsyncStorage = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const items = await AsyncStorage.multiGet(keys);
+    console.log("AsyncStorage Content:", items);
+  } catch (error) {
+    console.error("Error reading AsyncStorage:", error);
+  }
+};
+
+// Call the function to log AsyncStorage content
+showAsyncStorage();
+
 //!Signup User
 export const SignupAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {

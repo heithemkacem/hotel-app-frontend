@@ -1,7 +1,7 @@
 import axios from "axios";
 const localUrl = "http://192.168.1.128:5000";
-const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = localUrl;
+const devUrl = "https://tame-red-boa-sari.cyclic.app/";
+const currentUrl = devUr;
 import Toast from "react-native-toast-message";
 
 //!Signup User
@@ -47,7 +47,8 @@ export const CreateHotelCall =
       });
     }
   };
-  export const listUsersAction = (setData, t, setIsloading) => async (dispatch) => {
+export const listUsersAction =
+  (setData, t, setIsloading) => async (dispatch) => {
     try {
       //Call Backend
       setIsloading(true);

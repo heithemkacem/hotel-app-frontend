@@ -5,8 +5,8 @@ import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.1.128:5000";
-const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = localUrl;
+const devUrl = "https://tame-red-boa-sari.cyclic.app/";
+const currentUrl = devUr;
 export const roomServiceAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {
@@ -54,4 +54,3 @@ export const roomServiceAction =
       });
     }
   };
-

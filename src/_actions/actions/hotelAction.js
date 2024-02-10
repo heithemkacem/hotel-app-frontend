@@ -1,7 +1,7 @@
 import axios from "axios";
 const localUrl = "http://192.168.1.128:5000";
-const devUrl = "https://sore-red-gopher-wear.cyclic.app/";
-const currentUrl = localUrl;
+const devUrl = "https://tame-red-boa-sari.cyclic.app/";
+const currentUrl = devUr;
 import Toast from "react-native-toast-message";
 
 export const SearchHotels = (setData, t, setIsloading) => async (dispatch) => {
@@ -70,36 +70,35 @@ export const findHotelById = (setData, t, id) => async (dispatch) => {
 
 export const findHotelByOtp = (setData, t, otp) => async (dispatch) => {
   try {
-// Call Backend
-const response = await axios.post(`${currentUrl}/hotel/findHotelOtp`, { otp });
+    // Call Backend
+    const response = await axios.post(`${currentUrl}/hotel/findHotelOtp`, {
+      otp,
+    });
 
-const responseData = response.data;
+    const responseData = response.data;
 
-if (responseData.hotel) {
-  
-  const hotelsData = { hotels: [responseData.hotel] };
-  setData(hotelsData);
-  console.log(hotelsData);
-} else {
-  
-  setData(responseData);
-  console.log(responseData);
-}
-
-} catch (error) {
-Toast.show(t(error.message), {
-  duration: 10000,
-  position: Toast.positions.BOTTOM,
-  shadow: true,
-  animation: true,
-  hideOnPress: true,
-  backgroundColor: "red",
-});
-}
+    if (responseData.hotel) {
+      const hotelsData = { hotels: [responseData.hotel] };
+      setData(hotelsData);
+      console.log(hotelsData);
+    } else {
+      setData(responseData);
+      console.log(responseData);
+    }
+  } catch (error) {
+    Toast.show(t(error.message), {
+      duration: 10000,
+      position: Toast.positions.BOTTOM,
+      shadow: true,
+      animation: true,
+      hideOnPress: true,
+      backgroundColor: "red",
+    });
+  }
 };
 
 // find users
-export const findUsersHotel = ( setFilteredData, t, otp) => async (dispatch) => {
+export const findUsersHotel = (setFilteredData, t, otp) => async (dispatch) => {
   try {
     // Call Backend
     const response = await axios.post(`${currentUrl}/hotel/userHotel`, { otp });
@@ -124,5 +123,3 @@ export const findUsersHotel = ( setFilteredData, t, otp) => async (dispatch) => 
     });
   }
 };
-
-
