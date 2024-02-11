@@ -19,8 +19,6 @@ import { listUsersAction } from "../../_actions/actions/adminAction";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../styles/styles";
 import { colors } from "../../components/colors";
-const { accent ,black} = colors;
-const dimensions = Dimensions.get("window");
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -54,11 +52,8 @@ const Clients = ({ navigation }) => {
       user.username.toLowerCase().includes(lowerCaseSearch) ||
       user.firstName.toLowerCase().includes(lowerCaseSearch) ||
       user.lastName.toLowerCase().includes(lowerCaseSearch) ||
-      
       user.email.toLowerCase().includes(lowerCaseSearch) ||
-      user._id.toLowerCase().includes(lowerCaseSearch) 
-      
-
+      user._id.toLowerCase().includes(lowerCaseSearch)
     );
   });
 
@@ -72,20 +67,23 @@ const Clients = ({ navigation }) => {
             : styles.cardView
         }
       >
-       
         <Card>
-        <Text style={styles.descriptionTextHotels1}>username:{item.username}</Text>
-       
-  
           <Text style={styles.descriptionTextHotels1}>
-            Firstname: {item.firstName}
+            {t("common:Username")}:{item.username}
+          </Text>
+
+          <Text style={styles.descriptionTextHotels1}>
+            {t("common:firstName")} : {item.firstName}
           </Text>
           <Text style={styles.descriptionTextHotels1}>
-            Lastname: {item.lastName}
+            {t("common:lastName")} : {item.lastName}
           </Text>
-          <Text style={styles.descriptionTextHotels1}>email: {item.email}</Text>
-        <Text style={styles.descriptionTextHotels1}>phone: {item.phone}</Text>
-       
+          <Text style={styles.descriptionTextHotels1}>
+            {t("common:Email")}: {item.email}
+          </Text>
+          <Text style={styles.descriptionTextHotels1}>
+            {t("common:PhoneNumber")}: {item.phone}
+          </Text>
         </Card>
       </Card>
     </Pressable>
@@ -95,21 +93,20 @@ const Clients = ({ navigation }) => {
     <ActivityIndicator style={styles.loading} size="large" color="#5f9ea0" />
   ) : (
     <View style={styles.containerClient}>
-        
-        <View style={styles.title}>
-            <Icon name="list" size={30} style={styles.titleIcon} />
-      <Text style={styles.titleText}>{t("common:listofusers")}</Text>
+      <View style={styles.title}>
+        <Icon name="users" size={30} style={styles.titleIcon} />
+        <Text style={styles.titleText}>{t("common:listofusers")}</Text>
       </View>
       <TextInput
         style={styles.searchInput}
         placeholder="Search"
-        placeholderTextColor={'black'}
+        placeholderTextColor={"black"}
         value={searchText}
         onChangeText={(text) => setSearchText(text)}
       />
 
       <FlatList
-       showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         data={filteredData}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
@@ -120,7 +117,5 @@ const Clients = ({ navigation }) => {
     </View>
   );
 };
-
-
 
 export default Clients;

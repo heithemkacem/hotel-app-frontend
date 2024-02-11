@@ -21,7 +21,7 @@ const Clientotp = ({ navigation }) => {
   return (
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <IconHeader name="check" style={{ marginBottom: 30 }} />
+        <IconHeader name="key" style={{ marginBottom: 30 }} />
 
         <Formik
           initialValues={{ otp: "" }}
@@ -41,7 +41,7 @@ const Clientotp = ({ navigation }) => {
             <>
               <StyledTextInput
                 language={selectedLanguageCode}
-                icon="check"
+                icon="key"
                 label={t("common:enteryourcode")}
                 placeholder={t("common:enteryourcode")}
                 keyboardType="otp"
@@ -55,7 +55,7 @@ const Clientotp = ({ navigation }) => {
 
               {!isSubmitting && (
                 <RegularButton onPress={handleSubmit}>
-                  {t("common:Verify")}
+                  {t("common:Enter")}
                 </RegularButton>
               )}
               {isSubmitting && (

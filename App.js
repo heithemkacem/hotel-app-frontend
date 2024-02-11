@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import "./src/localization/DCSLocalize";
@@ -11,11 +11,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwt_decode from "jwt-decode";
 import Toast from "react-native-toast-message";
 import { setUser, setRole } from "./src/_actions/types";
+import { useFonts } from "expo-font";
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "Roboto-Regular": require("./src/assets/Fonts/Poppins-Regular.ttf"),
+  });
+
   AsyncStorage.getItem("jwt").then((token) => {
     if (token) {
       const decode = jwt_decode(token);
-      console.log(decode, "decode");
       setAuth(token);
       store.dispatch({ type: setRole, payload: decode.role });
       store.dispatch({ type: setUser, payload: decode });
@@ -26,11 +30,15 @@ export default function App() {
       }
     }
   });
-  return (
-    <Provider store={store}>
-      <RootStack />
-      <StatusBar style="auto" />
-      <Toast />
-    </Provider>
-  );
+  if (fontsLoaded) {
+    return (
+      <Provider store={store}>
+        <RootStack />
+        <StatusBar style="auto" />
+        <Toast />
+      </Provider>
+    );
+  } else {
+    null;
+  }
 }

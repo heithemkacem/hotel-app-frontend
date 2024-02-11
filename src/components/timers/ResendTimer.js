@@ -61,7 +61,7 @@ const ResendTimer = ({
     return (
       <StyledView {...props} pinReady={pinReady}>
         <RownContainer>
-          <SmallText style={{ color: black }}>
+          <SmallText style={{ color: black, fontFamily: "Roboto-Regular" }}>
             {t("common:Didint_recieve_this_email")}
           </SmallText>
           <PressableText

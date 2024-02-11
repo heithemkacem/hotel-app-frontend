@@ -8,13 +8,17 @@ const PressableText = (props) => {
   if (props.language === "en") {
     return (
       <Pressable {...props} onPress={props.onPress}>
-        <SmallText style={{ color: accent }}>{props.children}</SmallText>
+        <SmallText style={{ color: accent, fontFamily: "Roboto-Regular" }}>
+          {props.children}
+        </SmallText>
       </Pressable>
     );
   } else {
     return (
       <Pressable {...props} onPress={props.onPress}>
-        <SmallText style={{ color: accent }}>{props.children}</SmallText>
+        <SmallText style={{ color: accent, fontFamily: "Roboto-Regular" }}>
+          {props.children}
+        </SmallText>
       </Pressable>
     );
   }

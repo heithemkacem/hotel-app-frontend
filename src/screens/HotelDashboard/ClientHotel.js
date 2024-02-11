@@ -18,35 +18,26 @@ import { useTranslation } from "react-i18next";
 import { findUsersHotel } from "../../_actions/actions/hotelAction";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../styles/styles";
-import { colors } from "../../components/colors";
-const { accent, black } = colors;
-const dimensions = Dimensions.get("window");
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const ClientHotel = ({ navigation }) => {
-  const moveTo = (screen, payLoad) => {
-    navigation.navigate(screen, { ...payLoad });
-  };
-
+const ClientHotel = ({ route, navigation }) => {
+  const { otp } = route.params;
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
   }, []);
-
   const [isLoading, setIsloading] = useState(false);
   const { t } = useTranslation();
-
   const [searchText, setSearchText] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(findUsersHotel(setFilteredData, t, "65ac2e483aac661bcd55af49"));
-  }, []); // Use empty dependency array for one-time effect
+    dispatch(findUsersHotel(setFilteredData, t, otp));
+    setRefreshing(false);
+  }, [refreshing]); // Use empty dependency array for one-time effect
 
   // Use nullish coalescing operator to handle undefined or null
   const filteredUsers = (filteredData ?? []).filter((user) => {
@@ -70,16 +61,13 @@ const ClientHotel = ({ navigation }) => {
       >
         <Card>
           <Text style={styles.descriptionTextHotels1}>
-            client id: {item._id}
+            {t("common:firstName")} : {item.firstName}
           </Text>
           <Text style={styles.descriptionTextHotels1}>
-            Firstname: {item.firstName}
+            {t("common:lastName")}: {item.lastName}
           </Text>
           <Text style={styles.descriptionTextHotels1}>
-            Lastname: {item.lastName}
-          </Text>
-          <Text style={styles.descriptionTextHotels1}>
-            email: {item.clientEmail}
+            {t("common:email")}: {item.clientEmail}
           </Text>
         </Card>
       </Card>
@@ -91,7 +79,7 @@ const ClientHotel = ({ navigation }) => {
   ) : (
     <View style={styles.containerClient}>
       <View style={styles.title}>
-        <Icon name="list" size={30} style={styles.titleIcon} />
+        <Icon name="users" size={30} style={styles.titleIcon} />
         <Text style={styles.titleText}>{t("common:listofclients")}</Text>
       </View>
       <TextInput

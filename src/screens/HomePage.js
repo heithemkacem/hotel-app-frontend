@@ -24,6 +24,7 @@ const HomePage = ({ navigation }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          fontFamily: "Roboto-Regular",
         }}
       >
         <RegularButton onPress={() => moveTo("Login")}>

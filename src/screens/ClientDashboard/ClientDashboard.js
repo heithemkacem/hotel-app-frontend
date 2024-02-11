@@ -24,19 +24,17 @@ const Dashboard = ({ navigation, route }) => {
     }
     fetchGroups();
   }, []);
-  console.log(rooms, "rroms");
 
   useEffect(() => {
     //check if group name aleady exists in the rooms.name list
     if (rooms.length > 0) {
       rooms.map((room) =>
         room.name.includes(groupName)
-          ? console.log(room.name)
+          ? null
           : socket.emit("createRoom", groupName)
       );
     } else {
       socket.emit("createRoom", groupName);
-      console.log("hahaha");
     }
   }, []);
   const { t } = useTranslation();

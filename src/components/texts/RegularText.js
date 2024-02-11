@@ -5,7 +5,10 @@ const { tertiary } = colors;
 
 const RegularText = (props) => {
   return (
-    <Text style={{ fontSize: 15, color: tertiary }} {...props}>
+    <Text
+      style={{ fontSize: 15, fontFamily: "Roboto-Regular", color: tertiary }}
+      {...props}
+    >
       {props.children}
     </Text>
   );

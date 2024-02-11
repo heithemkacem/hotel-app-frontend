@@ -11,8 +11,9 @@ import { useTranslation } from "react-i18next";
 import { SignupAction } from "../_actions/actions/authActions";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
-const { primary, black } = colors;
+
 const SignUp = ({ navigation }) => {
+  const { primary, accent } = colors;
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
@@ -48,7 +49,13 @@ const SignUp = ({ navigation }) => {
   return (
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <RegularText style={{ marginBottom: 25, color: black }}>
+        <RegularText
+          style={{
+            marginBottom: 25,
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:credential")}
         </RegularText>
         <Formik
@@ -186,7 +193,7 @@ const SignUp = ({ navigation }) => {
                 style={{ paddingTop: 15 }}
                 onPress={() => moveTo("Login")}
               >
-                {t("common:credential")}
+                {t("common:HaveAccount")}
               </PressableText>
             </>
           )}

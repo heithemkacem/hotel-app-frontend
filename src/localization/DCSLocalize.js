@@ -16,7 +16,7 @@ const LANGUAGE_DETECTOR = {
         if (err) {
           console.log("Error fetching Languages from asyncstorage ", err);
         } else {
-          console.log("No language is set, choosing FRENCH as fallback");
+          console.log("No language is set, choosing English as fallback");
           callback(en);
         }
         return;

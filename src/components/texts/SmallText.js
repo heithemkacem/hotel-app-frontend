@@ -7,6 +7,7 @@ const StyledText = styled.Text`
   font-size: 13px;
   color: ${black};
   text-align: left;
+  font-family: "Roboto-Regular";
 `;
 const SmallText = (props) => {
   return <Text {...props}>{props.children}</Text>;

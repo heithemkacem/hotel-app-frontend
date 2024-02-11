@@ -9,18 +9,27 @@ import { colors } from "../../components/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { reserveHotelAction } from "../../_actions/actions/ReservAction";
 import { styles } from "../../styles/styles";
-const { primary, black } = colors;
+import * as Yup from "yup";
+const { primary, accent } = colors;
 
 const Reservation = ({ navigation, route }) => {
   const { otp } = route.params;
-  console.log("otttttttttppp2", otp);
-  console.log("otttttttt2", otp.otp);
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
   const dispatch = useDispatch();
+  const ReserveationSchema = Yup.object().shape({
+    personNumber: Yup.string().required(t("common:PersonNumberRequired")),
+    numberOfRooms: Yup.string().required(t("common:NumberOfRoomsRequired")),
+    checkInDate: Yup.string().required(t("common:CheckInDateRequired")),
+    checkOutDate: Yup.string().required(t("common:CheckOutDateRequired")),
+  });
+  const auth = useSelector((state) => state.auth);
+  const { user } = auth;
+  const { email, firstName, lastName } = user;
+  console.log(user);
   const handleOnSubmit = async (values, setSubmitting) => {
     //Call Backend
 
@@ -29,20 +38,27 @@ const Reservation = ({ navigation, route }) => {
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        <RegularText style={{ marginBottom: 25, color: black }}>
+        <RegularText
+          style={{
+            marginBottom: 25,
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:enteryourinformations")}
         </RegularText>
         <Formik
           initialValues={{
             otp: otp.otp,
             personNumber: "",
-            firstName: "",
-            lastName: "",
-            clientEmail: "",
+            firstName: firstName,
+            lastName: lastName,
+            clientEmail: email,
             checkInDate: "",
             checkOutDate: "",
             numberOfRooms: "",
           }}
+          validationSchema={ReserveationSchema}
           onSubmit={(values, { setSubmitting }) => {
             handleOnSubmit(values, setSubmitting);
           }}
@@ -60,45 +76,6 @@ const Reservation = ({ navigation, route }) => {
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="account"
-                label={t("common:firstName")}
-                placeholder={t("common:EnterfirstName")}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={handleChange("firstName")}
-                onBlur={handleBlur("firstName")}
-                value={values.firstName}
-                style={{ marginBottom: 25 }}
-                errors={touched.firstName && errors.firstName}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
-                label={t("common:lastName")}
-                placeholder={t("common:EnterlastName")}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={handleChange("lastName")}
-                onBlur={handleBlur("lastName")}
-                value={values.lastName}
-                style={{ marginBottom: 25 }}
-                errors={touched.lastName && errors.lastName}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="email"
-                label={t("common:Email")}
-                placeholder={t("common:Enteremail")}
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={handleChange("clientEmail")}
-                onBlur={handleBlur("clientEmail")}
-                value={values.clientEmail}
-                style={{ marginBottom: 25 }}
-                errors={touched.clientEmail && errors.clientEmail}
-              />
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="account"
                 label={t("common:Numberofpersons")}
                 placeholder={t("common:Enternumberperson")}
                 autoCapitalize="none"
@@ -109,7 +86,20 @@ const Reservation = ({ navigation, route }) => {
                 style={{ marginBottom: 25 }}
                 errors={touched.personNumber && errors.personNumber}
               />
-
+              <StyledTextInput
+                language={selectedLanguageCode}
+                icon="bed"
+                label={t("common:NumberOfRooms")}
+                placeholder={t("common:EnterNumberOfRooms")}
+                keyboardType="numeric"
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={handleChange("numberOfRooms")}
+                onBlur={handleBlur("numberOfRooms")}
+                value={values.numberOfRooms}
+                style={{ marginBottom: 25 }}
+                errors={touched.numberOfRooms && errors.numberOfRooms}
+              />
               <StyledTextInput
                 language={selectedLanguageCode}
                 icon="calendar"
@@ -136,21 +126,6 @@ const Reservation = ({ navigation, route }) => {
                 value={values.checkOutDate}
                 style={{ marginBottom: 25 }}
                 errors={touched.checkOutDate && errors.checkOutDate}
-              />
-
-              <StyledTextInput
-                language={selectedLanguageCode}
-                icon="bed"
-                label={t("common:NumberOfRooms")}
-                placeholder={t("common:EnterNumberOfRooms")}
-                keyboardType="numeric"
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={handleChange("numberOfRooms")}
-                onBlur={handleBlur("numberOfRooms")}
-                value={values.numberOfRooms}
-                style={{ marginBottom: 25 }}
-                errors={touched.numberOfRooms && errors.numberOfRooms}
               />
 
               {!isSubmitting && (

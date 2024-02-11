@@ -11,9 +11,11 @@ const RowContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   position: relative;
+  fontfamily: "Roboto-Regular";
   top: -10px;
 `;
 const InputField = styled.TextInput`
+  font-family: "Roboto-Regular";
   background-color: ${primary};
   padding-left: 65px;
   padding-right: 65px;
@@ -26,7 +28,7 @@ const InputField = styled.TextInput`
 
 const LeftIcon = styled.View`
   position: absolute;
-  top: 35px;
+  top: 43px;
   left: 15px;
   z-index: 1;
   border-right-width: 2px;
@@ -35,14 +37,16 @@ const LeftIcon = styled.View`
 `;
 const RightIcon = styled.TouchableOpacity`
   position: absolute;
-  top: 35px;
+
+  top: 43px;
   right: 15px;
   z-index: 1;
 `;
 
 const RightIconArabe = styled.View`
+  fontfamily: "Roboto-Regular";
   position: absolute;
-  top: 35px;
+  top: 43px;
   right: 5px;
   z-index: 1;
   border-left-width: 2px;
@@ -51,8 +55,9 @@ const RightIconArabe = styled.View`
   padding-right: 10px;
 `;
 const LeftIconArabe = styled.TouchableOpacity`
+  fontfamily: "Roboto-Regular";
   position: absolute;
-  top: 35px;
+  top: 43px;
   left: 15px;
   z-index: 1;
 `;
@@ -81,13 +86,20 @@ const StyledTextInput = ({
         <LeftIcon>
           <MaterialCommunityIcons name={icon} size={30} color={accent} />
         </LeftIcon>
-        <SmallText style={{ fontWeight: "600", marginBottom: 5 }}>
+        <SmallText
+          style={{
+            fontWeight: "600",
+            marginBottom: 5,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {label}
         </SmallText>
         <InputField
           {...props}
           placeholderTextColor={lightGray}
           style={{
+            fontFamily: "Roboto-Regular",
             backgroundColor: inputBackgroundColor,
             ...props?.style,
             borderRadius: 20,

@@ -10,4 +10,5 @@ export const colors = {
   black: "#000",
   success: "#22C55E",
   fail: "#EF4444",
+  primarygray: "#6B720",
 };

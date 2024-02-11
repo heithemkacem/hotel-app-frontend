@@ -6,6 +6,7 @@ const StyledView = styled.View`
   justify-content: space-evenly;
   align-items: center;
   margin-top: 15px;
+  fontfamily: "Roboto-Regular";
 `;
 const RowContainer = (props) => {
   return <StyledView {...props}>{props.children}</StyledView>;

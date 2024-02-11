@@ -12,9 +12,9 @@ import { useDispatch } from "react-redux";
 import { LoginAction } from "../_actions/actions/authActions";
 import * as Yup from "yup";
 
-const { primary, black } = colors;
-
 const Login = ({ navigation }) => {
+  const { primary, accent } = colors;
+
   //Redux
   const dispatch = useDispatch();
   //Translating FR-AR
@@ -37,7 +37,13 @@ const Login = ({ navigation }) => {
   return (
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <RegularText style={{ marginBottom: 25, color: black }}>
+        <RegularText
+          style={{
+            marginBottom: 25,
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:credential")}
         </RegularText>
         <Formik

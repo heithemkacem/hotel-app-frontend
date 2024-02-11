@@ -15,8 +15,7 @@ import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { findHotelByOtp } from "../../_actions/actions/hotelAction";
 import { styles } from "../../styles/styles";
-import RowContainer from "../../components/containers/RownContainer";
-import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 const dimensions = Dimensions.get("window");
 const imageHeight = Math.round((dimensions.width * 9) / 16);
@@ -44,22 +43,17 @@ const Hotelotp = ({ navigation, route }) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("Fetching hotel data...");
     dispatch(findHotelByOtp(setHotelData, t, otp.otp));
   }, []);
-
-  useEffect(() => {
-    console.log("Hotel data updated:", hotelData);
-  }, [hotelData]);
 
   const renderStars = (stars) => {
     const starIcons = [];
     for (let i = 0; i < stars; i++) {
       starIcons.push(
-        <FontAwesome5Icon
+        <AntDesign
           key={i}
           name="star"
-          size={15}
+          size={20}
           color="#BF1FB1" // You can customize the color
         />
       );
@@ -71,11 +65,6 @@ const Hotelotp = ({ navigation, route }) => {
     <ActivityIndicator style={styles.Loading} size="large" color="#5f9ea0" />
   ) : (
     <View>
-      <Text style={styles.titleHotels}>
-        {t(
-          "common:You_find_all_the_hotels_in_our_database_you_can_search_for_a_hotel_by_name_or_by_city"
-        )}
-      </Text>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -86,7 +75,7 @@ const Hotelotp = ({ navigation, route }) => {
             hotelData.hotels.map((hotel, index) => (
               <Pressable
                 key={index}
-                onPress={() => moveTo("ModifyHotel", { id: hotel._id })}
+                onPress={() => moveTo("HotelScreen", { id: hotel._id })}
               >
                 <Card
                   key={index}
@@ -116,8 +105,10 @@ const Hotelotp = ({ navigation, route }) => {
                   <View
                     style={{
                       flexDirection: "row",
-                      marginLeft: 140,
-                      marginTop: 30,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginTop: 20,
                     }}
                   >
                     {renderStars(hotel.hotelStars)}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../components/colors";
-const { white, black, accent } = colors;
+
 // custom components
 import MainContainer from "../components/containers/MainContainer";
 import RegularText from "../components/texts/RegularText";
@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
 const EmailVerification = ({ navigation, route }) => {
+  const { white, black, accent } = colors;
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
   // code input
@@ -38,7 +39,13 @@ const EmailVerification = ({ navigation, route }) => {
     <MainContainer>
       <IconHeader name="lock-open" style={{ marginBottom: 30 }} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <RegularText style={{ textAlign: "center", color: black }}>
+        <RegularText
+          style={{
+            textAlign: "center",
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:Digit")}
         </RegularText>
         <StyledCodeInput

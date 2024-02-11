@@ -8,7 +8,6 @@ const ClientCommunicationList = ({ navigation }) => {
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
-  // //👇🏻 Runs when the component mounts
   useLayoutEffect(() => {
     function fetchGroups() {
       fetch("http://192.168.251.104:5000/chat")
@@ -25,7 +24,6 @@ const ClientCommunicationList = ({ navigation }) => {
       setRooms(rooms);
     });
   }, [socket]);
-  console.log(rooms);
   return (
     <View style={{ marginTop: 5 }}>
       {rooms?.map((room) => (

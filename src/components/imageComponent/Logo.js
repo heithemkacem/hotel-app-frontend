@@ -12,6 +12,7 @@ const IconBg = styled.View`
   align-self: center;
   margin-top: 25px;
   margin-bottom: 50px;
+  fontfamily: "Roboto-Regular";
 `;
 const Logo = ({ src, ...props }) => {
   return (

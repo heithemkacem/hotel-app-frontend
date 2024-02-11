@@ -10,9 +10,11 @@ const IconBg = styled.View`
   justify-content: center;
   align-items: center;
   align-self: center;
+  fontfamily: "Roboto-Regular";
 `;
 const StyledPressable = styled.Pressable`
   align-self: center;
+  fontfamily: "Roboto-Regular";
 `;
 const ImgComponent = ({ src, ...props }) => {
   return (

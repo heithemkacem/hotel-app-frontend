@@ -13,6 +13,7 @@ const IconBg = styled.View`
   justify-content: center;
   align-items: center;
   align-self: center;
+  fontfamily: "Roboto-Regular";
 `;
 const IconHeader = ({ name, color, ...props }) => {
   return (

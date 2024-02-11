@@ -11,6 +11,7 @@ const StyledCodeSection = styled.View`
   align-items: center;
   justify-content: center;
   margin-vertical: 35px;
+  fontfamily: "Roboto-Regular";
   ${(props) => {
     return props.pinReady ? "opacity: 0.3;" : "opacity: 1;";
   }}

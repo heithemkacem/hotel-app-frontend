@@ -7,6 +7,7 @@ const StyledView = styled.View`
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
+  fontfamily: "Roboto-Regular";
   @media (min-width: 375px) {
     flex-direction: column;
   }

@@ -42,11 +42,11 @@ const Hotels = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(SearchHotels(setData, t, setIsloading));
-  }, []);
+    setRefreshing(false);
+  }, [refreshing]);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
   }, []);
 
   const searchHotels = (query) => {
@@ -64,17 +64,18 @@ const Hotels = ({ navigation }) => {
       ? hotelsToRender.map((hotel, index) => (
           <Pressable
             key={index}
-            onPress={() => moveTo("ModifyHotel", { id: hotel._id })}
+            onPress={() => moveTo("HotelScreen", { id: hotel._id })}
           >
             <Card
-              key={index}
               style={
                 index === hotelsToRender.length - 1
                   ? styles.lastCardView1
                   : styles.cardView1
               }
             >
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => moveTo("HotelScreen", { id: hotel._id })}
+              >
                 <Image
                   resizeMode={"contain"}
                   source={{ uri: hotel.hotelImage }}
@@ -86,22 +87,9 @@ const Hotels = ({ navigation }) => {
                 />
               </TouchableOpacity>
               <Text style={styles.TextHotels}>{hotel.hotelName}</Text>
-              <Text style={styles.TextHotels}> hotelotp:{hotel.otp}</Text>
-              {/* Additional hotel information */}
-              {/* <RowContainer>
-              <Text style={styles.DescriptionTextHotels}>
-                Stars: {hotel.hotelStars}
+              <Text style={styles.TextHotels}>
+                {t("common:hotelotp")}:{hotel.otp}
               </Text>
-              <Text style={styles.DescriptionTextHotels}>
-                Rooms :{hotel.hotelRooms}
-              </Text>
-              <Text style={styles.DescriptionTextHotels}>
-                Price :{hotel.hotelPrice} TND/Day
-              </Text>
-              <Text style={styles.DescriptionTextHotels}>
-                City : {hotel.hotelCity}
-              </Text>
-            </RowContainer> */}
             </Card>
           </Pressable>
         ))
@@ -117,12 +105,6 @@ const Hotels = ({ navigation }) => {
     <ActivityIndicator style={styles.Loading} size="large" color="#5f9ea0" />
   ) : (
     <View>
-      <Text style={styles.titleHotels}>
-        {t(
-          "common:You_find_all_the_hotels_in_our_database_you_can_search_for_a_hotel_by_name_or_by_city"
-        )}
-      </Text>
-
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

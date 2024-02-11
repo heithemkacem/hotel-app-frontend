@@ -9,6 +9,7 @@ const MsgBox = (props) => {
       {...props}
       style={{
         fontSize: 13,
+        fontFamily: "Roboto-Regular",
         color: props.success ? success : fail,
         textAlign: center,
       }}

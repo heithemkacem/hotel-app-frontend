@@ -9,6 +9,7 @@ import RegularText from "./../texts/RegularText";
 import RegularButton from "./../buttons/RegularButton";
 const { primary, black, success, fail, tertiary } = colors;
 const ModalPressableContainer = styled.Pressable`
+  fontfamily: "Roboto-Regular";
   flex: 1;
   padding: 25px;
   background-color: rgba(0, 0, 0, 0.7);

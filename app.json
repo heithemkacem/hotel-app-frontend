@@ -6,6 +6,14 @@
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./src/assets/Fonts/Poppins-Regular.ttf"]
+        }
+      ]
+    ],
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
@@ -15,9 +23,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/114344c5-934b-484c-aec6-31d0cb9f72f0"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ukps.hotelapp"

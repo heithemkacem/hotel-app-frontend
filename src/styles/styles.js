@@ -1,27 +1,31 @@
 import { StyleSheet } from "react-native";
 import { colors } from "../components/colors";
-const { accent, black, primary, lightGray } = colors;
+const { accent, black, primary, primarygray } = colors;
 export const styles = StyleSheet.create({
   //Slider
   container: {
+    fontFamily: "Roboto-Regular",
     paddingLeft: 20,
     paddingRight: 20,
     top: 70,
   },
 
   containerOnBoarding: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
     backgroundColor: "#BF1FB1",
     padding: 10,
   },
 
   titleStyle: {
+    fontFamily: "Roboto-Regular",
     padding: 10,
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
   },
   introTitleStyle: {
+    fontFamily: "Roboto-Regular",
     marginTop: 30,
     fontSize: 25,
     color: "white",
@@ -32,6 +36,7 @@ export const styles = StyleSheet.create({
     paddingRight: 5,
   },
   introTitleStyleAr: {
+    fontFamily: "Roboto-Regular",
     marginTop: 30,
     fontSize: 25,
     color: "white",
@@ -51,6 +56,7 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
   },
   introTextStyle: {
+    fontFamily: "Roboto-Regular",
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 10,
@@ -61,6 +67,7 @@ export const styles = StyleSheet.create({
     lineHeight: 24,
   },
   introTextStyleAr: {
+    fontFamily: "Roboto-Regular",
     marginTop: 10,
     paddingLeft: 10,
     paddingRight: 30,
@@ -72,6 +79,7 @@ export const styles = StyleSheet.create({
   },
   //RootStack
   containerRootStack: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#fff",
     display: "flex",
     flexDirection: "row",
@@ -81,16 +89,19 @@ export const styles = StyleSheet.create({
   },
   //Card
   title: {
+    fontFamily: "Roboto-Regular",
     color: "#444",
     fontWeight: "600",
   },
   text: {
+    fontFamily: "Roboto-Regular",
     fontSize: 12,
     color: "#000",
     marginLeft: 25,
     fontWeight: "600",
   },
   selectedText: {
+    fontFamily: "Roboto-Regular",
     marginLeft: 25,
     fontSize: 12,
     fontWeight: "600",
@@ -98,6 +109,7 @@ export const styles = StyleSheet.create({
   },
   //TextInputs
   textInput: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#f6f6f8",
     top: 10,
     height: 60,
@@ -106,6 +118,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
   button: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#0872c3",
     borderRadius: 30,
     width: "90%",
@@ -114,11 +127,13 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
   textButton: {
+    fontFamily: "Roboto-Regular",
     textTransform: "none",
     color: "white",
   },
   //Settings
   textStyleSettings: {
+    fontFamily: "Roboto-Regular",
     color: "#BF1FB1",
     fontWeight: "700",
     fontSize: 16,
@@ -128,6 +143,7 @@ export const styles = StyleSheet.create({
   },
 
   buttonSettings: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#BF1FB1",
     borderRadius: 30,
     width: "90%",
@@ -138,11 +154,13 @@ export const styles = StyleSheet.create({
     marginTop: 16,
   },
   textButtonSettings: {
+    fontFamily: "Roboto-Regular",
     textTransform: "none",
     color: "white",
     fontSize: 16,
   },
   textButtonNavigateSettings: {
+    fontFamily: "Roboto-Regular",
     textTransform: "none",
     color: "#000000",
     fontSize: 16,
@@ -152,6 +170,7 @@ export const styles = StyleSheet.create({
     paddingTop: 15,
   },
   buttonNavigateSettings: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "#fff",
     borderRadius: 30,
     width: "90%",
@@ -163,11 +182,13 @@ export const styles = StyleSheet.create({
   },
   //Dashboards
   gridView: {
+    fontFamily: "Roboto-Regular",
     marginTop: 10,
     flex: 1,
   },
 
   itemContainer: {
+    fontFamily: "Roboto-Regular",
     justifyContent: "center",
     borderRadius: 5,
     height: 180,
@@ -176,6 +197,7 @@ export const styles = StyleSheet.create({
       "rgb(0 0 0 / 10%) 0px 0px 5px 0px, rgb(0 0 0 / 10%) 0px 0px 1px 0px",
   },
   itemName: {
+    fontFamily: "Roboto-Regular",
     fontSize: 13,
     color: "#000",
     fontWeight: "bold",
@@ -184,24 +206,23 @@ export const styles = StyleSheet.create({
 
   //HotelsPage
   Loading: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
     justifyContent: "center",
   },
   searchInput1: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "white",
-    padding: 15,
+    padding: 20,
     marginTop: 20,
+    marginLeft: 10,
     border: 10,
-    width: 350,
-    marginLeft: 15,
     borderRadius: 10,
-    shadowColor: accent,
-    shadowOpacity: 0.4,
-    shadowOffset: { width: 5, height: 5 },
-    elevation: 20,
+    width: "94%",
   },
 
   titleHotels: {
+    fontFamily: "Roboto-Regular",
     color: "#000",
     textAlign: "center",
     fontWeight: "700",
@@ -210,6 +231,7 @@ export const styles = StyleSheet.create({
     marginEnd: 10,
   },
   lastCardView1: {
+    fontFamily: "Roboto-Regular",
     marginTop: 40,
     flex: 1,
     height: "100%",
@@ -221,6 +243,7 @@ export const styles = StyleSheet.create({
     marginBottom: "25%",
   },
   cardView1: {
+    fontFamily: "Roboto-Regular",
     marginTop: 50,
     flex: 1,
     height: "100%",
@@ -231,6 +254,7 @@ export const styles = StyleSheet.create({
     padding: 35,
   },
   TextHotels: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
@@ -238,21 +262,25 @@ export const styles = StyleSheet.create({
     paddingRight: 10,
   },
   DescriptionTextHotels: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     textAlign: "center",
     marginTop: 15,
   },
   // chatscreen
   containerChatScreen: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
-    backgroundColor: "#6B720",
+    backgroundColor: primarygray,
   },
   chatContainer: {
+    fontFamily: "Roboto-Regular",
     flexGrow: 1,
     padding: 16,
     //backgroundColor: lightGray,
   },
   messageContainer: {
+    fontFamily: "Roboto-Regular",
     flexDirection: "row",
     alignItems: "center",
     padding: 12,
@@ -261,14 +289,17 @@ export const styles = StyleSheet.create({
     maxWidth: "70%",
   },
   oddMessage: {
+    fontFamily: "Roboto-Regular",
     alignSelf: "flex-start",
     backgroundColor: "#3D3B40",
   },
   evenMessage: {
+    fontFamily: "Roboto-Regular",
     alignSelf: "flex-end",
     backgroundColor: "#525CEB",
   },
   messageText: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     color: "white",
     marginLeft: 10,
@@ -279,6 +310,7 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   inputContainer: {
+    fontFamily: "Roboto-Regular",
     flexDirection: "row",
     alignItems: "center",
     //borderTopWidth: 1,
@@ -288,6 +320,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   input: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
     height: 50,
     borderWidth: 1,
@@ -298,6 +331,7 @@ export const styles = StyleSheet.create({
     color: "black",
   },
   sendButton: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: accent,
     borderRadius: 8,
     height: 45,
@@ -307,31 +341,37 @@ export const styles = StyleSheet.create({
     padding: 15,
   },
   sendButtonText: {
+    fontFamily: "Roboto-Regular",
     color: "white",
     fontSize: 16,
     //textAlign: "center",
   },
   // clientscreen
   title: {
+    fontFamily: "Roboto-Regular",
     flexDirection: "row",
     alignItems: "center",
 
     marginBottom: 16,
   },
   titleText: {
+    fontFamily: "Roboto-Regular",
     fontSize: 20,
     color: black,
   },
   titleIcon: {
+    fontFamily: "Roboto-Regular",
     marginRight: 10,
     color: accent,
   },
   containerClient: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
-    backgroundColor: "#6B720",
+    backgroundColor: primarygray,
     padding: 20,
   },
   cardView: {
+    fontFamily: "Roboto-Regular",
     marginTop: 50,
     marginVertical: 10,
     borderRadius: 15,
@@ -346,6 +386,7 @@ export const styles = StyleSheet.create({
   },
 
   lastCardView: {
+    fontFamily: "Roboto-Regular",
     marginVertical: 10,
     borderRadius: 15,
     elevation: 3,
@@ -359,12 +400,14 @@ export const styles = StyleSheet.create({
   },
 
   textHotels: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
 
     marginBottom: 8,
     color: "#333",
   },
   descriptionTextHotels1: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     marginBottom: 5,
     marginLeft: 20,
@@ -372,47 +415,54 @@ export const styles = StyleSheet.create({
   },
 
   loading: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   searchInput: {
+    fontFamily: "Roboto-Regular",
     backgroundColor: "white",
     padding: 20,
     marginTop: 20,
     border: 10,
     borderRadius: 10,
-    shadowColor: accent,
-    shadowOpacity: 0.4,
-    shadowOffset: { width: 5, height: 5 },
-    elevation: 20,
+    width: "100%",
   },
 
   // Notifications
   containerNotifi: {
+    fontFamily: "Roboto-Regular",
     flex: 1,
-    backgroundColor: "white",
     padding: 16,
   },
   markAsUnreadButton: {
+    fontFamily: "Roboto-Regular",
     flexDirection: "row",
     alignItems: "center",
 
     marginBottom: 16,
   },
   markAsUnreadIcon: {
+    fontFamily: "Roboto-Regular",
     marginRight: 10,
+    textAlign: "center",
     color: accent,
   },
   markAsUnreadText: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     color: black,
   },
   notificationList: {
+    fontFamily: "Roboto-Regular",
     flexGrow: 1,
   },
   notificationContainer: {
+    fontFamily: "Roboto-Regular",
+    display: "flex",
     flexDirection: "row",
+    textAlign: "center",
     alignItems: "center",
     padding: 12,
     borderRadius: 8,
@@ -420,6 +470,7 @@ export const styles = StyleSheet.create({
     backgroundColor: accent,
   },
   dot: {
+    fontFamily: "Roboto-Regular",
     width: 8,
     height: 8,
     borderRadius: 4,
@@ -427,10 +478,12 @@ export const styles = StyleSheet.create({
     marginLeft: 150,
   },
   notificationText: {
+    fontFamily: "Roboto-Regular",
     fontSize: 16,
     color: "white",
   },
   icon: {
+    fontFamily: "Roboto-Regular",
     marginRight: 10,
     color: "white",
   },

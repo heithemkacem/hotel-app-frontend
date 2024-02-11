@@ -18,18 +18,17 @@ import {
 
 import * as Yup from "yup";
 
-const FormWrapper = styled.View`
-  ${(props) => {
-    return props.pinReady ? "opacity: 1;" : "opacity: 0.3;";
-  }}
-`;
-
-const { primary, black } = colors;
 const ResetPassword = ({ navigation, route }) => {
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
+  const FormWrapper = styled.View`
+    ${(props) => {
+      return props.pinReady ? "opacity: 1;" : "opacity: 0.3;";
+    }}
+  `;
 
+  const { primary, accent } = colors;
   const dispatch = useDispatch();
 
   const { t, i18n } = useTranslation();
@@ -63,7 +62,13 @@ const ResetPassword = ({ navigation, route }) => {
   return (
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <RegularText style={{ textAlign: "center", color: black }}>
+        <RegularText
+          style={{
+            textAlign: "center",
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:Enter_the4digitcode_sent_to_your_email")}
         </RegularText>
         <StyledCodeInput

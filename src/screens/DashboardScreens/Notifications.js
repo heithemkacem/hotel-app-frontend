@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/AntDesign";
 import { styles } from "../../styles/styles";
 import { useTranslation } from "react-i18next";
 
@@ -36,13 +36,22 @@ const Notifications = () => {
         onPress={handleMarkAllAsUnread}
         style={styles.markAsUnreadButton}
       >
-        <Icon
-          name="list"
-          size={20}
-          color="accent"
-          style={styles.markAsUnreadIcon}
-        />
-        <Text style={styles.markAsUnreadText}>{t("common:mark")}</Text>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Icon
+            name="infocirlce"
+            size={30}
+            color="accent"
+            style={styles.markAsUnreadIcon}
+          />
+          <Text style={styles.markAsUnreadText}>{t("common:mark")}</Text>
+        </View>
       </TouchableOpacity>
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -50,7 +59,7 @@ const Notifications = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.notificationContainer}>
-            <Icon name="bell" size={20} color="#333" style={styles.icon} />
+            <Icon name="bells" size={20} color="#333" style={styles.icon} />
             <Text style={styles.notificationText}>{item.message}</Text>
             <View style={styles.dot} />
           </View>

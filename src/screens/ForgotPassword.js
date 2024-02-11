@@ -13,8 +13,9 @@ import { useDispatch } from "react-redux";
 import { ForgotPasswordAction } from "../_actions/actions/authActions";
 import * as Yup from "yup";
 
-const { primary, black } = colors;
 const ForgotPassword = ({ navigation }) => {
+  const { primary, accent } = colors;
+
   const { t, i18n } = useTranslation();
   const ForgetPassSchema = Yup.object().shape({
     email: Yup.string()
@@ -30,7 +31,13 @@ const ForgotPassword = ({ navigation }) => {
     <MainContainer>
       <ScrollView showsVerticalScrollIndicator={false}>
         <IconHeader name="key" style={{ marginBottom: 30 }} />
-        <RegularText style={{ marginBottom: 25, color: black }}>
+        <RegularText
+          style={{
+            marginBottom: 25,
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:ProvideDetails")}
         </RegularText>
         <Formik

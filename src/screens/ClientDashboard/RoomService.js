@@ -9,10 +9,10 @@ import { colors } from "../../components/colors";
 import { useDispatch } from "react-redux";
 import { roomServiceAction } from "../../_actions/actions/RoomAction";
 import { styles } from "../../styles/styles";
-
-const { primary, black } = colors;
+import * as Yup from "yup";
 
 const RoomService = ({ navigation }) => {
+  const { primary, accent } = colors;
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad });
   };
@@ -24,11 +24,23 @@ const RoomService = ({ navigation }) => {
   const handleOnSubmit = async (values, setSubmitting) => {
     dispatch(roomServiceAction(values, setSubmitting, moveTo, t));
   };
+  const RoomServiceSchema = Yup.object().shape({
+    RoomNumber: Yup.string().required(t("common:RoomNumberRequired")),
+    RoomServiceComments: Yup.string().required(
+      t("common:RoomServiceCommentsRequired")
+    ),
+  });
 
   return (
     <View>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-        <RegularText style={{ marginBottom: 25, color: black }}>
+        <RegularText
+          style={{
+            marginBottom: 25,
+            color: accent,
+            fontFamily: "Roboto-Regular",
+          }}
+        >
           {t("common:enteryourinformations")}
         </RegularText>
         <Formik
@@ -36,6 +48,7 @@ const RoomService = ({ navigation }) => {
             RoomNumber: "",
             RoomServiceComments: "",
           }}
+          validationSchema={RoomServiceSchema}
           onSubmit={(values, { setSubmitting }) => {
             handleOnSubmit(values, setSubmitting);
           }}
@@ -55,6 +68,7 @@ const RoomService = ({ navigation }) => {
                 icon="bed"
                 label={t("common:RoomNumber")}
                 placeholder={t("common:EnterRoomNumber")}
+                errors={touched.RoomNumber && errors.RoomNumber}
                 component={
                   <Switch
                     value={values.RoomNumber}

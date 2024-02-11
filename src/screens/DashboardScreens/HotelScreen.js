@@ -8,12 +8,12 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { colors } from "./../../components/colors";
+import { colors } from "../../components/colors";
 const { accent, primary, textDark } = colors;
 import RegularText from "../../components/texts/RegularText";
 import { findHotelById } from "../../_actions/actions/hotelAction";
 
-const ModifyHotel = ({ navigator, route }) => {
+const HotelScreen = ({ navigator, route }) => {
   const { id } = route.params;
   const { t } = useTranslation();
   const [data, setData] = useState({});
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ModifyHotel;
+export default HotelScreen;

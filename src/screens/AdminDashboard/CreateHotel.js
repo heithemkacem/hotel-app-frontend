@@ -6,7 +6,6 @@ import { Formik } from "formik";
 import RegularButton from "../../components/buttons/RegularButton";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { colors } from "../../components/colors";
-import PressableText from "../../components/texts/PressableText";
 import { useTranslation } from "react-i18next";
 import { CreateHotelCall } from "../../_actions/actions/adminAction";
 import { useDispatch } from "react-redux";
@@ -35,15 +34,15 @@ const CreateHotel = ({ navigation }) => {
       [Yup.ref("password"), null],
       t("common:Passwordsmustmatch")
     ),
-    hotelName: Yup.string().required(t("common:hotelName")),
-    hotelAddress: Yup.string().required(t("common:hotelAddress")),
-    hotelCity: Yup.string().required(t("common:hotelCity")),
-    hotelStars: Yup.number().required(t("common:hotelStars")),
-    hotelRooms: Yup.number().required(t("common:hotelRooms")),
-    hotelPrice: Yup.number().required(t("common:hotelPrice")),
-    hotelDescription: Yup.string().required(t("common:hotelDescription")),
-    hotelImage: Yup.string().required(t("common:hotelImage")),
-    hotelPhone: Yup.number().required(t("common:hotelPhone")),
+    hotelName: Yup.string().required(t("common:EnterHotelName")),
+    hotelAddress: Yup.string().required(t("common:EnterhotelAdress")),
+    hotelCity: Yup.string().required(t("common:EnterHotelCity")),
+    hotelStars: Yup.number().required(t("common:EnterhotelStars")),
+    hotelRooms: Yup.number().required(t("common:EnterhotelRooms")),
+    hotelPrice: Yup.number().required(t("common:EnterhotelPrice")),
+    hotelDescription: Yup.string().required(t("common:EnterhotelDescription")),
+    hotelImage: Yup.string().required(t("common:EnterhotelImage")),
+    hotelPhone: Yup.number().required(t("common:EnterPhoneNumber")),
   });
 
   const selectedLanguageCode = i18n.language;

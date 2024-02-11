@@ -46,7 +46,9 @@
     "socket.io-client": "^4.7.4",
     "styled-components": "^5.3.6",
     "yarn": "^1.22.19",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "expo-font": "~11.10.2",
+    "expo-splash-screen": "~0.26.4"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3"

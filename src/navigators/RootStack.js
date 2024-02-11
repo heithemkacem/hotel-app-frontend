@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 //!Importing all the screens in our project
 import Onboarding from "./../components/slider/Onboarding";
 import Login from "./../screens/Login";
@@ -16,23 +15,22 @@ import EditPassword from "../screens/DashboardScreens/EditPassword";
 import CreateHotel from "../screens/AdminDashboard/CreateHotel";
 import Hotels from "../screens/AdminDashboard/Hotels";
 import Clients from "../screens/AdminDashboard/Clients";
-import ModifyHotel from "../screens/DashboardScreens/ModifyHotel";
+import HotelScreen from "../screens/DashboardScreens/HotelScreen";
 import Clientotp from "../screens/ClientDashboard/ClientOTP";
 import ClientHotel from "../screens/HotelDashboard/ClientHotel";
 import Hotelotp from "../screens/ClientDashboard/HotelOTP";
 import Reservation from "../screens/ClientDashboard/Reservation";
 import RoomService from "../screens/ClientDashboard/RoomService";
-import ChatScreen from "../screens/ClientDashboard/ChatScreen";
+import ChatScreen from "../screens/DashboardScreens/ChatScreen";
 import Notifications from "../screens/DashboardScreens/Notifications";
 import ClientCommunicationList from "../screens/HotelDashboard/ClientCommunicationList";
 //!Other imports
 import { colors } from "../components/colors";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HeaderBackButton } from "@react-navigation/elements";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { styles } from "../styles/styles";
 //Redux
 import store from "../_actions/store";
@@ -53,13 +51,38 @@ const RootStack = () => {
     return i18n.changeLanguage(code);
   };
 
-  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const { isConnected, role } = auth;
-  console.log("Auth:", auth);
-  console.log("roooooo", role);
-
-  const initialRoute = "Onboarding";
+  const LogoutUI = () => (
+    <Pressable
+      onPress={() => {
+        //logout
+        store.dispatch(Logout());
+      }}
+    >
+      <AntDesign name="logout" size={25} color="black" />
+    </Pressable>
+  );
+  const languageUI = () => (
+    <View style={styles.containerRootStack}>
+      {LANGUAGES.map((language) => {
+        const selectedLanguage = language.code === selectedLanguageCode;
+        return (
+          <Pressable
+            key={language.code}
+            disabled={selectedLanguage}
+            onPress={() => setLanguage(language.code)}
+          >
+            <Text
+              style={[selectedLanguage ? styles.selectedText : styles.text]}
+            >
+              {language.label}
+            </Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
 
   return (
     <NavigationContainer>
@@ -67,8 +90,10 @@ const RootStack = () => {
         // initialRouteName={initialRoute}
         screenOptions={{
           headerTitle: () => null,
+          headerRight: languageUI,
           headerBackTitle: "Back",
           headerTintColor: black,
+
           headerStyle: {
             height: 110,
             borderBottomWidth: 0,
@@ -92,20 +117,8 @@ const RootStack = () => {
               name="Dashboard"
               component={Dashboard}
               options={{
-                headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      //logout
-                      store.dispatch(Logout());
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="logout"
-                      size={25}
-                      color="black"
-                    />
-                  </Pressable>
-                ),
+                headerRight: LogoutUI,
+                headerTitle: t("common:Dashboard"),
               }}
             />
 
@@ -114,33 +127,6 @@ const RootStack = () => {
               component={Clients}
               options={{
                 headerTitle: t("common:listofclients"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
 
@@ -149,33 +135,6 @@ const RootStack = () => {
               component={Settings}
               options={{
                 headerTitle: t("common:Settings"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -183,33 +142,6 @@ const RootStack = () => {
               component={Notifications}
               options={{
                 headerTitle: t("common:Notifications"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -228,41 +160,12 @@ const RootStack = () => {
               options={{ headerTitle: t("common:List_of_Hotels") }}
             />
             <Stack.Screen
-              name="ModifyHotel"
-              component={ModifyHotel}
+              name="HotelScreen"
+              component={HotelScreen}
               options={{
                 headerTitle: t("common:hotelinfo"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-
-            {/* Add more Admin screens here */}
           </>
         ) : isConnected && role === "CLIENT" ? (
           <>
@@ -270,102 +173,22 @@ const RootStack = () => {
               name="Clientotp"
               component={Clientotp}
               options={{
-                headerLeft: () => (
-                  <Pressable
-                    onPress={() => {
-                      //logout
-                      store.dispatch(Logout());
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="logout"
-                      size={25}
-                      color="black"
-                    />
-                  </Pressable>
-                ),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
+                headerLeft: LogoutUI,
               }}
             />
             <Stack.Screen
               name="ClientDashboard"
               component={ClientDashboard}
               options={{
-                headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      //logout
-                      store.dispatch(Logout());
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="logout"
-                      size={25}
-                      color="black"
-                    />
-                  </Pressable>
-                ),
+                headerRight: LogoutUI,
+                headerTitle: t("common:Dashboard"),
               }}
             />
-
             <Stack.Screen
-              name="ModifyHotel"
-              component={ModifyHotel}
+              name="HotelScreen"
+              component={HotelScreen}
               options={{
                 headerTitle: t("common:hotelinfo"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
 
@@ -379,33 +202,6 @@ const RootStack = () => {
               component={Settings}
               options={{
                 headerTitle: t("common:Settings"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -413,68 +209,13 @@ const RootStack = () => {
               component={ChatScreen}
               options={{
                 headerTitle: t("common:Chat"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-
             <Stack.Screen
               name="Reservation"
               component={Reservation}
               options={{
                 headerTitle: t("common:Reservation"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -482,33 +223,6 @@ const RootStack = () => {
               component={RoomService}
               options={{
                 headerTitle: t("common:RoomService"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
 
@@ -517,33 +231,6 @@ const RootStack = () => {
               component={Hotelotp}
               options={{
                 headerTitle: t("common:Yourhotel"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -551,58 +238,17 @@ const RootStack = () => {
               component={Notifications}
               options={{
                 headerTitle: t("common:Notifications"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-
-            {/* Add more Client screens here */}
           </>
         ) : isConnected && role === "HOTEL" ? (
           <>
-            {/* Hotel Screens */}
             <Stack.Screen
               name="HotelDashboard"
               component={HotelDashboard}
               options={{
-                headerRight: () => (
-                  <Pressable
-                    onPress={() => {
-                      store.dispatch(Logout());
-                    }}
-                  >
-                    <MaterialCommunityIcons
-                      name="logout"
-                      size={25}
-                      color="black"
-                    />
-                  </Pressable>
-                ),
+                headerRight: LogoutUI,
+                headerTitle: t("common:Dashboard"),
               }}
             />
             <Stack.Screen
@@ -620,68 +266,13 @@ const RootStack = () => {
               component={ChatScreen}
               options={{
                 headerTitle: t("common:Chat"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-
             <Stack.Screen
               name="ClientHotel"
               component={ClientHotel}
               options={{
                 headerTitle: t("common:listofclients"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -689,33 +280,6 @@ const RootStack = () => {
               component={Settings}
               options={{
                 headerTitle: t("common:Settings"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -723,37 +287,8 @@ const RootStack = () => {
               component={Notifications}
               options={{
                 headerTitle: t("common:Notifications"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-
-            {/* Add more Hotel screens here */}
           </>
         ) : (
           <>
@@ -761,66 +296,13 @@ const RootStack = () => {
             <Stack.Screen
               name="Onboarding"
               component={Onboarding}
-              options={{
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => (
-                        <Pressable
-                          key={language.code}
-                          style={styles.buttonContainer}
-                          disabled={language.code === selectedLanguageCode}
-                          onPress={() => setLanguage(language.code)}
-                        >
-                          <Text
-                            style={[
-                              language.code === selectedLanguageCode
-                                ? styles.selectedText
-                                : styles.text,
-                            ]}
-                          >
-                            {language.label}
-                          </Text>
-                        </Pressable>
-                      ))}
-                    </View>
-                  </>
-                ),
-              }}
+              options={{}}
             />
             <Stack.Screen
               name="HomePage"
               component={HomePage}
               options={{
                 headerTitle: t("common:HomePage"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            style={styles.buttonContainer}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -828,34 +310,6 @@ const RootStack = () => {
               component={Signup}
               options={{
                 headerTitle: t("common:SignUp"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            style={styles.buttonContainer}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -863,29 +317,6 @@ const RootStack = () => {
               component={Login}
               options={{
                 headerTitle: t("common:Login"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => (
-                        <Pressable
-                          key={language.code}
-                          disabled={language.code === selectedLanguageCode}
-                          onPress={() => setLanguage(language.code)}
-                        >
-                          <Text
-                            style={[
-                              language.code === selectedLanguageCode
-                                ? styles.selectedText
-                                : styles.text,
-                            ]}
-                          >
-                            {language.label}
-                          </Text>
-                        </Pressable>
-                      ))}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -893,34 +324,6 @@ const RootStack = () => {
               component={EmailVerification}
               options={{
                 headerTitle: t("common:EmailVerification"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            style={styles.buttonContainer}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -928,34 +331,6 @@ const RootStack = () => {
               component={ForgotPassword}
               options={{
                 headerTitle: t("common:forgotPassword"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            style={styles.buttonContainer}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
             <Stack.Screen
@@ -963,37 +338,8 @@ const RootStack = () => {
               component={ResetPassword}
               options={{
                 headerTitle: t("common:ResetPassword"),
-                headerRight: () => (
-                  <>
-                    <View style={styles.containerRootStack}>
-                      {LANGUAGES.map((language) => {
-                        const selectedLanguage =
-                          language.code === selectedLanguageCode;
-                        return (
-                          <Pressable
-                            key={language.code}
-                            style={styles.buttonContainer}
-                            disabled={selectedLanguage}
-                            onPress={() => setLanguage(language.code)}
-                          >
-                            <Text
-                              style={[
-                                selectedLanguage
-                                  ? styles.selectedText
-                                  : styles.text,
-                              ]}
-                            >
-                              {language.label}
-                            </Text>
-                          </Pressable>
-                        );
-                      })}
-                    </View>
-                  </>
-                ),
               }}
             />
-            {/* Add more screens for other roles or states */}
           </>
         )}
       </Stack.Navigator>
