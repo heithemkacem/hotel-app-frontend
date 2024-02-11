@@ -1,3 +1,2 @@
-const localUrl = "http://192.168.251.104:5000";
-const devUrl = "https://tame-red-boa-sari.cyclic.app/";
+import { devUrl, localUrl } from "../../util/hostUrl";
 const currentUrl = devUrl;
