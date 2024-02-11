@@ -1,6 +1,7 @@
 {
   "build": {
     "preview": {
+      "channel": "staging",
       "android": {
         "buildType": "apk"
       }

@@ -2,7 +2,7 @@ import axios from "axios";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.251.104:5000";
 const devUrl = "https://tame-red-boa-sari.cyclic.app/";
-const currentUrl = localUrl;
+const currentUrl = devUrl;
 export const roomServiceAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {

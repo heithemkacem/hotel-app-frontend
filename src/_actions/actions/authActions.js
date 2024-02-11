@@ -5,7 +5,7 @@ import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 const localUrl = "http://192.168.251.104:5000";
-const currentUrl = localUrl;
+const currentUrl = devUrl;
 //otp find hotel
 
 export const findHotelOtpAction =
