@@ -1,13 +1,10 @@
 import axios from "axios";
-import { setRole, setUser } from "../types";
 import jwt_decode from "jwt-decode";
-
+import { setRole, setUser } from "../types";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { CommonActions } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
-const localUrl = "http://192.168.1.128:5000";
+const localUrl = "http://192.168.251.104:5000";
 const devUrl = "https://tame-red-boa-sari.cyclic.app/";
 const currentUrl = devUrl;
 //otp find hotel
@@ -27,14 +24,14 @@ export const findHotelOtpAction =
               text2: t(response.data.message),
             });
           } else if (response.data.status === "Success") {
+            AsyncStorage.setItem("hotel_id", response.data.hotel._id);
+            AsyncStorage.setItem("hotel_name", response.data.hotel.hotelName);
             setSubmitting(false);
-
             Toast.show({
               type: "success",
               text1: t("common:Success"),
               text2: t("common:verificationotpsent"),
             });
-
             moveTo("ClientDashboard", {
               id: response.data.id,
               otp: otp,
@@ -76,31 +73,23 @@ export const LoginAction =
             });
           } else if (response.data.status === "Success") {
             const { token } = response.data;
+            AsyncStorage.setItem("jwt", token);
             setAuth(token);
             const decode = jwt_decode(token);
-            //dispatch(setUser(decode));
-            //dispatch(setRole(role));
+            dispatch({ type: setRole, payload: decode.role });
             dispatch({ type: setUser, payload: decode });
-            dispatch({ type: setRole, payload: response.data.whoami });
-            // dispatch({ type: setRole, payload: role });
-            AsyncStorage.setItem("jwt", token);
             setSubmitting(false);
             Toast.show({
               type: "success",
               text1: t("common:Success"),
               text2: t("common:Welcome"),
             });
-            console.log("responseeee11111", response.data);
-            console.log("responseeee", response.data.whoami);
-            const role = response.data.whoami;
-            if (response.data.whoami === "Admin") {
+            if (decode.role === "ADMIN") {
               moveTo("Dashboard");
-              console.log("hh", response.data.role);
-            } else if (response.data.whoami === "Hotel") {
+            } else if (decode.role === "HOTEL") {
               moveTo("HotelDashboard");
             } else {
               moveTo("Clientotp");
-              //moveTo("ClientDashboard");
             }
           } else if (response.data.status === "Verify") {
             setSubmitting(false);
@@ -490,11 +479,12 @@ export const Logout = () => async (dispatch) => {
     payload: {},
   });
 };
-/*export const setUser = (decode) => ({
-  type: setUser,
-  payload: decode,
-});
-export const setRole = (decode) => ({
-  type: setRole,
-  payload: decode,
-});*/
+
+// export const setUser = (decode) => ({
+//   type: setUser,
+//   payload: decode,
+// });
+// export const setRole = (decode) => ({
+//   type: setRole,
+//   payload: decode,
+// });

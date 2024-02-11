@@ -25,7 +25,7 @@ const Dashboard = ({ navigation }) => {
     },
     {
       name: "common:Communication",
-      page: "ChatScreen",
+      page: "ClientCommunicationList",
       img: require("../../assets/imgDashboard/message.png"),
     },
 

@@ -24,6 +24,7 @@ import Reservation from "../screens/ClientDashboard/Reservation";
 import RoomService from "../screens/ClientDashboard/RoomService";
 import ChatScreen from "../screens/ClientDashboard/ChatScreen";
 import Notifications from "../screens/DashboardScreens/Notifications";
+import ClientCommunicationList from "../screens/HotelDashboard/ClientCommunicationList";
 //!Other imports
 import { colors } from "../components/colors";
 import { NavigationContainer } from "@react-navigation/native";
@@ -84,7 +85,7 @@ const RootStack = () => {
           },
         }}
       >
-        {isConnected && role === "Admin" ? (
+        {isConnected && role === "ADMIN" ? (
           <>
             {/* Admin Screens */}
             <Stack.Screen
@@ -263,7 +264,7 @@ const RootStack = () => {
 
             {/* Add more Admin screens here */}
           </>
-        ) : isConnected && role === "Client" ? (
+        ) : isConnected && role === "CLIENT" ? (
           <>
             <Stack.Screen
               name="Clientotp"
@@ -582,7 +583,7 @@ const RootStack = () => {
 
             {/* Add more Client screens here */}
           </>
-        ) : isConnected && role === "Hotel" ? (
+        ) : isConnected && role === "HOTEL" ? (
           <>
             {/* Hotel Screens */}
             <Stack.Screen
@@ -608,6 +609,11 @@ const RootStack = () => {
               name="EditPassword"
               component={EditPassword}
               options={{ headerTitle: t("common:EditPassword") }}
+            />
+            <Stack.Screen
+              name="ClientCommunicationList"
+              component={ClientCommunicationList}
+              options={{ headerTitle: t("Group Chats") }}
             />
             <Stack.Screen
               name="ChatScreen"

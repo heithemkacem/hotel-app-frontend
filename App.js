@@ -6,21 +6,21 @@ import RootStack from "./src/navigators/RootStack";
 import { Provider } from "react-redux";
 import store from "./src/_actions/store";
 import { setAuth } from "./src/util/setAuth";
-import { setUser, Logout } from "./src/_actions/actions/authActions";
+import { Logout } from "./src/_actions/actions/authActions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwt_decode from "jwt-decode";
 import Toast from "react-native-toast-message";
+import { setUser, setRole } from "./src/_actions/types";
 export default function App() {
-  //get jwt item from asynsStorage
-
   AsyncStorage.getItem("jwt").then((token) => {
     if (token) {
       const decode = jwt_decode(token);
-      store.dispatch(setUser(decode));
+      console.log(decode, "decode");
       setAuth(token);
+      store.dispatch({ type: setRole, payload: decode.role });
+      store.dispatch({ type: setUser, payload: decode });
+
       const currentDate = Date.now() / 1000;
-      console.log(currentDate);
-      console.log('dec',decode.exp);
       if (decode.exp < currentDate) {
         store.dispatch(Logout());
       }

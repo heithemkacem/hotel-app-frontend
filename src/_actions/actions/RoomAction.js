@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
-const localUrl = "http://192.168.1.128:5000";
+const localUrl = "http://192.168.251.104:5000";
 const devUrl = "https://tame-red-boa-sari.cyclic.app/";
 const currentUrl = devUrl;
 export const roomServiceAction =

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,16 +9,18 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { styles } from "../../styles/styles";
 import { colors } from "../../components/colors";
+
 const { accent } = colors;
 const ChatScreen = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const [message, setMessage] = useState("");
+
   const chatData = [
     { id: 1, message: "Hello " },
     { id: 2, message: "How are you?" },

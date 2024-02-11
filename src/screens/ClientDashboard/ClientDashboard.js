@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import { View, Text } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 import ImgComponent from "../../components/imageComponent/ImgComponent";
 import { useTranslation } from "react-i18next";
 import { styles } from "../../styles/styles";
-
+import socket from "../../_actions/SocketCommunication/SocketIO";
+import { useSelector } from "react-redux";
 const Dashboard = ({ navigation, route }) => {
   const { otp } = route.params;
-  console.log("ottttttttt1", otp);
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad, otp: otp });
   };
+  const auth = useSelector((state) => state.auth);
+  const { firstName, lastName } = auth.user;
+  const groupName = firstName + " " + lastName;
+  const [rooms, setRooms] = useState([]);
+  useLayoutEffect(() => {
+    function fetchGroups() {
+      fetch("http://192.168.251.104:5000/chat")
+        .then((res) => res.json())
+        .then((data) => setRooms(data))
+        .catch((err) => console.error(err));
+    }
+    fetchGroups();
+  }, []);
+  console.log(rooms, "rroms");
 
+  useEffect(() => {
+    //check if group name aleady exists in the rooms.name list
+    if (rooms.length > 0) {
+      rooms.map((room) =>
+        room.name.includes(groupName)
+          ? console.log(room.name)
+          : socket.emit("createRoom", groupName)
+      );
+    } else {
+      socket.emit("createRoom", groupName);
+      console.log("hahaha");
+    }
+  }, []);
   const { t } = useTranslation();
   //context
   const [items, setItems] = React.useState([
