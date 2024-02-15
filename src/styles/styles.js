@@ -425,7 +425,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     marginTop: 20,
-    border: 10,
     borderRadius: 10,
     width: "100%",
   },
