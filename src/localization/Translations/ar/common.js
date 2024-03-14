@@ -242,4 +242,5 @@ export default {
   CheckInDateRequired: "تاريخ تسجيل الوصول مطلوب",
   CheckOutDateRequired: "تاريخ تسجيل الخروج مطلوب",
   Enter: "أدخل",
+  YourHotel: "فندقك",
 };

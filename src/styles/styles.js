@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     width: 150,
     height: 150,
     //border raduis circle
-    borderRadius: 150 / 2,
+    borderRadius: 75,
     //align the image in the center
     alignSelf: "center",
   },

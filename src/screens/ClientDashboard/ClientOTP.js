@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { findHotelOtpAction } from "../../_actions/actions/authActions";
 
 const { primary, black } = colors;
-const Clientotp = ({ navigation }) => {
+const ClientOTP = ({ navigation }) => {
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
   const dispatch = useDispatch();
@@ -74,4 +74,4 @@ const Clientotp = ({ navigation }) => {
   );
 };
 
-export default Clientotp;
+export default ClientOTP;

@@ -1,3 +1,4 @@
 import { io } from "socket.io-client";
-const socket = io.connect("http://localhost:5000");
+import { localUrl } from "../../util/hostUrl";
+const socket = io.connect(localUrl);
 export default socket;

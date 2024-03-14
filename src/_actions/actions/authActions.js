@@ -5,7 +5,7 @@ import { setAuth } from "../../util/setAuth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Toast from "react-native-toast-message";
 import { devUrl, localUrl } from "../../util/hostUrl";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 //otp find hotel
 
 export const findHotelOtpAction =
@@ -75,21 +75,22 @@ export const LoginAction =
             AsyncStorage.setItem("jwt", token);
             setAuth(token);
             const decode = jwt_decode(token);
-            dispatch({ type: setRole, payload: decode.role });
+            console.log(decode.role, "role");
+            dispatch({ type: setRole, payload: response.data.user.role });
             dispatch({ type: setUser, payload: decode });
             setSubmitting(false);
-            console.log(decode);
+            console.log(response.data);
             Toast.show({
               type: "success",
               text1: t("common:Success"),
               text2: t("common:Welcome"),
             });
-            if (decode.role === "ADMIN") {
+            if (response.data.user.role === "ADMIN") {
               moveTo("Dashboard");
-            } else if (decode.role === "HOTEL") {
+            } else if (response.data.user.role === "HOTEL") {
               moveTo("HotelDashboard", { otp: decode.otp });
             } else {
-              moveTo("Clientotp");
+              moveTo("ClientOTP");
             }
           } else if (response.data.status === "Verify") {
             setSubmitting(false);

@@ -69,13 +69,9 @@ const RoomService = ({ navigation }) => {
                 label={t("common:RoomNumber")}
                 placeholder={t("common:EnterRoomNumber")}
                 errors={touched.RoomNumber && errors.RoomNumber}
-                component={
-                  <Switch
-                    value={values.RoomNumber}
-                    onValueChange={(value) => handleChange("RoomNumber")(value)}
-                  />
-                }
                 style={{ marginBottom: 25 }}
+                value={values.RoomNumber}
+                onChangeText={handleChange("RoomNumber")}
               />
               <StyledTextInput
                 language={selectedLanguageCode}

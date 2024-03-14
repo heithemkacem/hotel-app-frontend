@@ -1,80 +1,95 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import { useTranslation } from "react-i18next";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { styles } from "../../styles/styles";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { View, TextInput, Text, FlatList, Pressable } from "react-native";
+import socket from "../../_actions/SocketCommunication/SocketIO";
+import MessageComponent from "../../components/chat/MessageComponent";
+import { styles } from "../../util/styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const ChatScreen = () => {
-  const { t } = useTranslation();
+const ChatScreen = ({ route, navigation }) => {
+  const [user, setUser] = useState("");
+  const { name, id } = route.params;
+
+  const [chatMessages, setChatMessages] = useState([]);
   const [message, setMessage] = useState("");
 
-  const chatData = [
-    { id: 1, message: "Hello " },
-    { id: 2, message: "How are you?" },
-    { id: 3, message: "fine thank u?" },
-    { id: 4, message: "How can I help?" },
-    { id: 5, message: "i need edj ?" },
-    { id: 6, message: "hh jeejj ?" },
-    { id: 7, message: "How can ?" },
-    { id: 8, message: "How can ?" },
-    { id: 9, message: "How can ?" },
-    { id: 10, message: "How can ?" },
-    { id: 11, message: "How can ?" },
-    { id: 12, message: "How can ?" },
-    { id: 13, message: "How can ?" },
-    // Add more messages as needed
-  ];
-
-  const handleSendMessage = () => {
-    // Dispatch action to send message to the backend
-    // dispatch(sendMessageAction(message));
-
-    // Clear the message input field
-    setMessage("");
+  const getUsername = async () => {
+    try {
+      const value = await AsyncStorage.getItem("username");
+      if (value !== null) {
+        setUser(value);
+      }
+    } catch (e) {
+      console.error("Error while loading username!");
+    }
   };
 
-  return (
-    <View style={styles.containerChatScreen}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={chatData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View
-            style={[
-              styles.messageContainer,
-              item.id % 2 === 0 ? styles.evenMessage : styles.oddMessage,
-            ]}
-          >
-            <Icon name="user" size={20} color="#333" style={styles.userIcon} />
-            <Text style={styles.messageText}>{item.message}</Text>
-          </View>
-        )}
-        contentContainerStyle={styles.chatContainer}
-      />
+  const handleNewMessage = () => {
+    const hour =
+      new Date().getHours() < 10
+        ? `0${new Date().getHours()}`
+        : `${new Date().getHours()}`;
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.inputContainer}
+    const mins =
+      new Date().getMinutes() < 10
+        ? `0${new Date().getMinutes()}`
+        : `${new Date().getMinutes()}`;
+
+    if (user) {
+      socket.emit("newMessage", {
+        message,
+        room_id: id,
+        user,
+        timestamp: { hour, mins },
+      });
+    }
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: name });
+    getUsername();
+    socket.emit("findRoom", id);
+    socket.on("foundRoom", (roomChats) => setChatMessages(roomChats));
+  }, []);
+
+  useEffect(() => {
+    socket.on("foundRoom", (roomChats) => setChatMessages(roomChats));
+  }, [socket]);
+
+  return (
+    <View style={styles.messagingscreen}>
+      <View
+        style={[
+          styles.messagingscreen,
+          { paddingVertical: 15, paddingHorizontal: 10 },
+        ]}
       >
+        {chatMessages[0] ? (
+          <FlatList
+            data={chatMessages}
+            renderItem={({ item }) => (
+              <MessageComponent item={item} user={user} />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        ) : (
+          ""
+        )}
+      </View>
+
+      <View style={styles.messaginginputContainer}>
         <TextInput
-          style={styles.input}
-          placeholder={t("common:TypeYourMessage")}
-          value={message}
-          onChangeText={(text) => setMessage(text)}
+          style={styles.messaginginput}
+          onChangeText={(value) => setMessage(value)}
         />
-        <TouchableOpacity onPress={handleSendMessage} style={styles.sendButton}>
-          <Text style={styles.sendButtonText}>{t("common:Send")}</Text>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+        <Pressable
+          style={styles.messagingbuttonContainer}
+          onPress={handleNewMessage}
+        >
+          <View>
+            <Text style={{ color: "#f2f0f1", fontSize: 20 }}>SEND</Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
   );
 };

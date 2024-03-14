@@ -16,7 +16,7 @@ import CreateHotel from "../screens/AdminDashboard/CreateHotel";
 import Hotels from "../screens/AdminDashboard/Hotels";
 import Clients from "../screens/AdminDashboard/Clients";
 import HotelScreen from "../screens/DashboardScreens/HotelScreen";
-import Clientotp from "../screens/ClientDashboard/ClientOTP";
+import ClientOTP from "../screens/ClientDashboard/ClientOTP";
 import ClientHotel from "../screens/HotelDashboard/ClientHotel";
 import Hotelotp from "../screens/ClientDashboard/HotelOTP";
 import Reservation from "../screens/ClientDashboard/Reservation";
@@ -24,6 +24,8 @@ import RoomService from "../screens/ClientDashboard/RoomService";
 import ChatScreen from "../screens/DashboardScreens/ChatScreen";
 import Notifications from "../screens/DashboardScreens/Notifications";
 import ClientCommunicationList from "../screens/HotelDashboard/ClientCommunicationList";
+import RoomServiceScreen from "../screens/HotelDashboard/RoomService";
+import ReservationScreen from "../screens/HotelDashboard/Reservation";
 //!Other imports
 import { colors } from "../components/colors";
 import { NavigationContainer } from "@react-navigation/native";
@@ -170,8 +172,8 @@ const RootStack = () => {
         ) : isConnected && role === "CLIENT" ? (
           <>
             <Stack.Screen
-              name="Clientotp"
-              component={Clientotp}
+              name="ClientOTP"
+              component={ClientOTP}
               options={{
                 headerLeft: LogoutUI,
               }}
@@ -250,6 +252,16 @@ const RootStack = () => {
                 headerRight: LogoutUI,
                 headerTitle: t("common:Dashboard"),
               }}
+            />
+            <Stack.Screen
+              name="ReservationScreen"
+              component={ReservationScreen}
+              options={{ headerTitle: t("common:Reservation") }}
+            />
+            <Stack.Screen
+              name="RoomServiceScreen"
+              component={RoomServiceScreen}
+              options={{ headerTitle: t("common:RoomService") }}
             />
             <Stack.Screen
               name="EditPassword"

@@ -19,16 +19,27 @@ const Dashboard = ({ navigation }) => {
     },
 
     {
-      name: "common:Notifications",
-      page: "Notifications",
-      img: require("../../assets/imgDashboard/notif.png"),
-    },
-    {
       name: "common:Communication",
       page: "ClientCommunicationList",
       img: require("../../assets/imgDashboard/message.png"),
     },
 
+    {
+      name: "common:Reservation",
+      page: "ReservationScreen",
+      img: require("./../../assets/imgDashboard/booking.png"),
+    },
+
+    {
+      name: "common:RoomService",
+      page: "RoomServiceScreen",
+      img: require("./../../assets/imgDashboard/room.png"),
+    },
+    {
+      name: "common:Notifications",
+      page: "Notifications",
+      img: require("../../assets/imgDashboard/notif.png"),
+    },
     {
       name: "common:Settings",
       page: "Settings",

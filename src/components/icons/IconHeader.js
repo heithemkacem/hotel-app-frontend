@@ -7,9 +7,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const { white, accent } = colors;
 const IconBg = styled.View`
   background-color: ${accent};
-  width: ${ScreenHeight * 0.15}px;
-  height: ${ScreenHeight * 0.15}px;
-  border-radius: ${ScreenHeight * 0.2};
+  width: 40%;
+  height: 30%;
   justify-content: center;
   align-items: center;
   align-self: center;

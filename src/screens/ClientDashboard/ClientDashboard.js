@@ -6,18 +6,21 @@ import { useTranslation } from "react-i18next";
 import { styles } from "../../styles/styles";
 import socket from "../../_actions/SocketCommunication/SocketIO";
 import { useSelector } from "react-redux";
+import { localUrl } from "../../util/hostUrl";
 const Dashboard = ({ navigation, route }) => {
-  const { otp } = route.params;
+  const { id, otp, email } = route.params;
   const moveTo = (screen, payLoad) => {
     navigation.navigate(screen, { ...payLoad, otp: otp });
   };
+
   const auth = useSelector((state) => state.auth);
   const { firstName, lastName } = auth.user;
   const groupName = firstName + " " + lastName;
   const [rooms, setRooms] = useState([]);
+
   useLayoutEffect(() => {
     function fetchGroups() {
-      fetch("http://192.168.251.104:5000/chat")
+      fetch(`${localUrl}/chat`)
         .then((res) => res.json())
         .then((data) => setRooms(data))
         .catch((err) => console.error(err));
@@ -35,13 +38,14 @@ const Dashboard = ({ navigation, route }) => {
       );
     } else {
       socket.emit("createRoom", groupName);
+      console.log("room created");
     }
   }, []);
   const { t } = useTranslation();
   //context
   const [items, setItems] = React.useState([
     {
-      name: "common:Hotels",
+      name: "common:YourHotel",
       page: "Hotelotp",
       img: require("./../../assets/imgDashboard/hotel.png"),
     },

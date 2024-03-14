@@ -2,7 +2,7 @@ import axios from "axios";
 import Toast from "react-native-toast-message";
 import { devUrl, localUrl } from "../../util/hostUrl";
 
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 export const reserveHotelAction =
   (credentials, setSubmitting, moveTo, t) => async (dispatch) => {
     try {

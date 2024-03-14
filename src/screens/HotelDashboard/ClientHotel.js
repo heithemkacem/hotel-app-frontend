@@ -43,9 +43,12 @@ const ClientHotel = ({ route, navigation }) => {
   const filteredUsers = (filteredData ?? []).filter((user) => {
     const lowerCaseSearch = searchText.toLowerCase();
     return (
-      user.firstName.toLowerCase().includes(lowerCaseSearch) ||
-      user.firstName.toLowerCase().includes(lowerCaseSearch) ||
-      user.clientEmail.toLowerCase().includes(lowerCaseSearch)
+      (user.firstName &&
+        user.firstName.toLowerCase().includes(lowerCaseSearch)) ||
+      (user.lastName &&
+        user.lastName.toLowerCase().includes(lowerCaseSearch)) ||
+      (user.clientEmail &&
+        user.clientEmail.toLowerCase().includes(lowerCaseSearch))
     );
   });
 

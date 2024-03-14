@@ -238,4 +238,5 @@ export default {
   CheckInDateRequired: " Check In Date Required",
   CheckOutDateRequired: " Check Out Date Required",
   Enter: "Enter",
+  YourHotel: "Your Hotel",
 };

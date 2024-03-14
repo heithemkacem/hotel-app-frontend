@@ -1,7 +1,7 @@
 import isEmpty from "../../util/isEmpty";
 // authReducer.js
 
-import {setUser, setRole } from '../types';
+import { setUser, setRole } from "../types";
 
 const initialState = {
   user: {},
@@ -11,11 +11,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-   
-      case setUser:
+    case setUser:
       return {
         ...state,
         isConnected: !isEmpty(action.payload),
+        deviceId: action.payload.deviceId,
         user: action.payload,
       };
     case setRole:

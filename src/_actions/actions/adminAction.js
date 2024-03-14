@@ -1,6 +1,6 @@
 import axios from "axios";
 import { devUrl, localUrl } from "../../util/hostUrl";
-const currentUrl = devUrl;
+const currentUrl = localUrl;
 import Toast from "react-native-toast-message";
 
 //!Signup User

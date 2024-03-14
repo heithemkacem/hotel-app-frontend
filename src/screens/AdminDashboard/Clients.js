@@ -49,11 +49,13 @@ const Clients = ({ navigation }) => {
   const filteredData = (data.users ?? []).filter((user) => {
     const lowerCaseSearch = searchText.toLowerCase();
     return (
-      user.username.toLowerCase().includes(lowerCaseSearch) ||
-      user.firstName.toLowerCase().includes(lowerCaseSearch) ||
-      user.lastName.toLowerCase().includes(lowerCaseSearch) ||
-      user.email.toLowerCase().includes(lowerCaseSearch) ||
-      user._id.toLowerCase().includes(lowerCaseSearch)
+      (user.username &&
+        user.username.toLowerCase().includes(lowerCaseSearch)) ||
+      (user.firstName &&
+        user.firstName.toLowerCase().includes(lowerCaseSearch)) ||
+      (user.lastName &&
+        user.lastName.toLowerCase().includes(lowerCaseSearch)) ||
+      (user.email && user.email.toLowerCase().includes(lowerCaseSearch))
     );
   });
 

@@ -16,13 +16,10 @@ const RowContainer = styled.View`
 `;
 const InputField = styled.TextInput`
   font-family: "Roboto-Regular";
-  background-color: ${primary};
   padding-left: 65px;
   padding-right: 65px;
   font-size: 16px;
   height: 60px;
-  color: ${black};
-
   border-width: 2px;
 `;
 
@@ -37,7 +34,6 @@ const LeftIcon = styled.View`
 `;
 const RightIcon = styled.TouchableOpacity`
   position: absolute;
-
   top: 43px;
   right: 15px;
   z-index: 1;
@@ -100,7 +96,6 @@ const StyledTextInput = ({
           placeholderTextColor={lightGray}
           style={{
             fontFamily: "Roboto-Regular",
-            backgroundColor: inputBackgroundColor,
             ...props?.style,
             borderRadius: 20,
             borderColor: errors ? "red" : secondary,
